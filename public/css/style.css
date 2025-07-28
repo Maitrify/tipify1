@@ -79,6 +79,17 @@ html {
 }
 
 /* Navbar */
+/* 
+.log{
+  height: 40px;
+  width: 95px;
+  margin-right: 10px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.signin{
+  margin-right: 50px;
+} */
 
 .navbar {
   position: fixed;
@@ -135,13 +146,17 @@ html {
 header {
   width: 100vw;
   height: 100vh;
-  background-image: url("../img/bg.png");
+  background-image: url("../img/maitri1.jpg");
   background-position: bottom;
   background-attachment: fixed;
   background-size: cover;
   display: flex;
   align-items: end;
   justify-content: center;
+}
+
+.header1{
+  display: flex;
 }
 
 .header-content {
@@ -165,7 +180,7 @@ header {
 .line {
   width: 150px;
   height: 4px;
-  background: #fc036b;
+  background: #030436;
   margin: 10px auto;
   border-radius: 5px;
 }
@@ -181,16 +196,52 @@ header {
   font-size: var(--fs-links-btns);
   font-weight: 700;
   padding: 13px 50px;
-  background: #fc036b;
+  background: #030436;
   border-radius: 30px;
   color: whitesmoke;
 }
+.more.hover{
+  background-color: whitesmoke;
+  color: #030436;
+}
+
+/* 
+.header{
+  background: blue;
+  text-align: right;
+}
+.login-btn{
+  background: white;
+  color: blue;
+  border-radius: 5px;
+}
+
+.modal{
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0,0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content{
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 300px;
+  position: relative;
+} */
+
 
 .menu-btn {
+  
   position: absolute;
   top: 30px;
-  right: 30px;
-  width: 40px;
+  right: 20px;
+  width: 30px;
+  margin-left: 15px;
   cursor: pointer;
   display: none;
 }
@@ -370,7 +421,7 @@ section {
 #about_us {
   background: url("https://awe365.com/wp-content/uploads/2013/07/adventure-sports-hang-gliding-flickrcc-image-by-Steve-Slater.jpg");
   width: 100%;
-  height: 630px;
+  height: 400px;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -410,7 +461,7 @@ section {
 #about_us p::first-letter {
   padding-left: 47px;
   font-size: 55px;
-  color: #fc036b;
+  color:#030436 ;
 }
 
 /* Contributors */
@@ -441,7 +492,7 @@ section {
   justify-content: center;
 }
 .concard:hover {
-  background-color: #fb036b;
+  background-color: #030436;
   border-bottom: 5px solid #fff;
   color: #fff;
   transform: translateY(-7.5px);
@@ -475,6 +526,224 @@ section {
   width: 100%;
 }
 
+#userStatus{
+  display: flex;
+  height: 40px;
+}
+#logoutBtn{
+  margin-right: 50px;
+  margin-top: 6px;
+  height: 30px;
+  width: 60px;
+}
+
+/* BLOG */
+
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f8;
+}
+
+.blog{
+  text-align: center;
+}
+
+.blog-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  margin-top: 50px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.blog-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.blog-container input[type="text"],
+.blog-container textarea,
+.blog-container input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.blog-container textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+#image-preview {
+  margin: 10px 0;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  max-height: 250px;
+  border: 1px solid #ccc;
+}
+
+.blog-container button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #030436;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.blog-container button:hover {
+  background-color: #030436;
+}
+
+/* Blog List */
+.blog-list {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 0 20px;
+}
+
+.blog-card {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.blog-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.blog-card p {
+  color: #444;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/*BLOG CARD */
+.blog-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.blog-item {
+  flex: 0 0 250px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  scroll-snap-align: start;
+  
+}
+
+.blog-item:hover {
+  transform: scale(1.02);
+}
+
+
+
+.blog-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+.blog-item h3 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.blog-item p {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.3;
+}
+
+.blog-meta {
+  margin-top: 20px;
+  font-size: 0.75rem;
+  color: #888;
+  text-align: right;
+}
+
+.blog-list::-webkit-scrollbar{
+  height: 6px;
+}
+.blog-list::-webkit-scrollbar-thumb{
+  background: #ccc;
+  border-radius: 4px;
+}
+.blog-list::-webkit-scrollbar-track{
+  background: transparent;
+}
+/*FOR READ MORE IN CARD*/
+.blog-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.blog-popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+/*FOR READ MORE IN CARD ENDD*/
+
+/* BLOG CARD END */
+
+/* BLOG END */
+
 /* contact */
 #contact {
   width: 90%;
@@ -504,7 +773,7 @@ form {
 .cbox-line {
   width: 20%;
   height: 0.2em;
-  background-color: #fb036b;
+  background-color: #030436;
   margin-bottom: 3em;
   margin-top: 1em;
 }
@@ -521,19 +790,19 @@ form {
   padding: 1em;
   margin-bottom: 2em;
   padding-left: 2em;
-  border: 0.1em solid #fc036b;
-  background-color: #fc036b;
+  border: 0.1em solid #030436;
+  background-color: #030436;
   color: white;
   display: flex;
   border-radius: 2em;
   align-items: center;
-  border: #fc036b 0.1em solid;
+  border: #030436 0.1em solid;
   font-size: 1em;
 }
 
 .c_boxx a:hover {
   background-color: white;
-  color: #fc036b;
+  color: #030436;
   transition: all 0.5s ease;
 }
 
@@ -559,10 +828,10 @@ label {
 }
 
 input[type="submit"] {
-  background-color: #fc036b;
+  background-color: #030436;
   color: whitesmoke;
   padding: 12px 50px;
-  border: 2px solid #fc036b;
+  border: 2px solid #030436;
   border-radius: 100vmax;
   cursor: pointer;
   font-family: var(--ff-montserrat);
@@ -571,7 +840,7 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: whitesmoke;
-  color: #fc036b;
+  color: #030436;
 }
 
 .cform {
@@ -600,7 +869,7 @@ input[type="submit"]:hover {
   width: 20%;
   display: block;
   height: 1em;
-  border-bottom: 3px solid #fc036b;
+  border-bottom: 3px solid #030436;
 }
 
 .ccol-left {
@@ -632,7 +901,7 @@ input[type="submit"]:hover {
 
 .crow-s {
   margin: 1em;
-  color: #fc036b;
+  color: #030436;
 }
 
 /* footer */
@@ -676,7 +945,7 @@ input[type="submit"]:hover {
 }
 
 .social a:hover {
-  background-color: #fc036b;
+  background-color: #030436;
 }
 
 .social i {
@@ -695,26 +964,26 @@ img:hover {
 }
 
 .cir_border:hover{
-    color: #fc036b
+    color: #7173fa
 }
 
 
 .active {
   border: 2px solid whitesmoke;
   border-radius: 20px;
-  color: #fc036b;
+  color: #030436;
   cursor: pointer;
 }
 
 .ctn:hover {
   background: whitesmoke;
-  color: #fc036b;
+  color: #030436;
   box-shadow: 2px 2px 5px #00000056;
   cursor: pointer;
 }
 
 .nav-links .ctn:hover a {
-  color: #fc036b;
+  color: #030436;
 }
 
 body {
@@ -817,11 +1086,11 @@ body.dark{
 	
 	&:hover::after {
 		transform: rotate(45deg);
-		border-color:#fc036b;
+		border-color:#030436;
 		height: 120%;
 	}
 	&:hover::before {
-		border-color:#fc036b;
+		border-color:#030436;
 		transform: scale(.8);
 		
 	}
@@ -839,11 +1108,11 @@ body.dark{
   }
 
   &:hover::after {
-    border-color: #fc036b;
+    border-color: #030436;
   }
 
   &:hover::before {
-    border-color: #fc036b;
+    border-color: #030436;
   }
 }
 
@@ -855,7 +1124,7 @@ body.dark{
   font-size: 2em;
   letter-spacing: 4px;
   overflow: hidden;
-  background: linear-gradient(45deg, #fc036b, #fff, #41031d);
+  background: linear-gradient(45deg, #030436, #fff, #06bbf1 ,hsl(236, 84%, 58%));
   background-repeat: no-repeat;
   background-size: 80%;
   animation: animate 8s linear infinite;

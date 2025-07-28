@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ADVENTURE</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="img/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="img/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="img/favicon-16x16.png"
+        />
+        <!-- <link rel="manifest" href="/site.webmanifest" /> -->
+    </head>
+    <body
+        onload='if (window.location.href.substr(window.location.href.length - 6) == "#about") { introAboutLogoTransition(); }'
+    >
+    
+
+
+
+        <!--navbar-->
+        <nav class="navbar glass" style="height: 70px">
+            <span
+                ><a href="#home" style="display: flex; align-items: center"
+                    ><img
+                        class="img2"
+                        src="./img/mountain.png"
+                        width="40"
+                        style="margin: -25px -10px -25px -20px"
+                    />
+                    <h1 class="logo">&nbsp;ADVENTURE</h1></a
+                ></span
+            >
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="#home" id="pri" class="active cir_border">Home</a>
+                </li>
+                <li><a href="#events" id="sec" class="cir_border">Events</a></li>
+                <li>
+                    <a href="#explore" id="tri" class="cir_border">Explore</a>
+                </li>
+                <li>
+                    <a href="#tours" id="quad" class="cir_border">Tours</a>
+                </li>
+                <li><a href="#about" id="quint" class="cir_border">About</a></li>
+                <li>
+                    <a href="#contribution" id="hex" class="cir_border"
+                        >Contributions</a
+                    >
+                </li>
+                <li>
+                    <a href="#contact" id="hept" class="cir_border">Contact</a>
+                </li>
+                <li>
+                    <div>
+                        <input
+                            type="checkbox"
+                            class="checkbox dark"
+                            id="checkbox"
+                        />
+                        <label for="checkbox" class="label">
+                            <i class="fa fa-moon-o"></i>
+                            <i class="fa fa-sun-o"></i>
+                            <div class="ball"></div>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+
+            <!--Login-->
+            <!-- <div class="header">
+                <button class="log" onclick="openModal()">Login</button>
+            </div>
+
+            <div id="loginModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2>Login</h2>
+                    <input type="text" placeholder="Username or Email">
+                    <input type="password" placeholder="password">
+                    <button class="login-submit">Submit</button>
+                </div>
+            </div> -->
+            <!-- <button class="log">LogIn</button>
+            <button class="log signin">Sign Up</button> -->
+<!-- 
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Popup Modal</title> -->
+  <style>
+    /* body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    } */
+
+    .header {
+      /* padding: 20px;
+      background: #007bff; */
+      margin-right: 10px;
+      color: white;
+      text-align: right;
+    }
+
+    .login-btn {
+      background: white;
+      color: #007bff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 10px;
+      width: 90px;
+      height: 45px;
+    }
+
+    .modal {
+      display: none;
+       position: fixed; 
+       z-index: 10; 
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal12 {
+      display: none;
+       position: fixed; 
+       z-index: 10; 
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content { 
+       background-color: white; 
+      padding: 30px;
+      padding-top: 50px;
+      height: 300px;
+      margin-top: 500px;
+      border-radius: 8px;
+      width: 400px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .modal12-content { 
+       background-color: white; 
+      padding: 30px;
+      padding-top: 50px;
+      height: 500px;
+      margin-top: 500px;
+      border-radius: 8px;
+      width: 400px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+      color: #030436;
+    }
+
+    .modal12-content h2 {
+      margin-top: 0;
+      color: #030436;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 5px;
+      padding-right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+    }
+    .close12 {
+      position: absolute;
+      top: 10px;
+      right: 5px;
+      padding-right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 50px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="text"], input[type="password"],input[type="number"],input[type="email"], input[type="password"],input[type="date"] ,input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 50px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #signupPassword ,#confirmPassword{
+        width: 100%;
+      padding: 10px;
+      margin-bottom: 50px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+
+    }
+
+    .login-submit {
+      width: 100%;
+      margin-top: 20px;
+      bottom: 10px;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .signup-submit {
+      width: 100%;
+      margin-top: 20px;
+      bottom: 10px;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+  </style>
+
+
+<div class="header header1" id="authSection">
+  <button class="login-btn" onclick="openModal()">Login</button>
+  <button class="login-btn" onclick="openModal12()">Sign up</button>
+
+</div>
+
+<div id="userStatus" style="font-weight:bold  ; color:  green;"></div>
+
+<!-- Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Login</h2>
+    <input type="email" id="login-email" placeholder=" Email">
+    <input type="password" id="login-password" placeholder="Password">
+
+    <button type="button" class="login-submit">Submit</button>
+  </div>
+</div>
+
+ <div id="loginModal12" class = " modal12"> 
+  <div class="modal12-content">
+    <span class="close12" onclick="closeModal12()">&times;</span>
+    <h2>Sign up</h2>
+    <input type="text" placeholder="Username">
+    <input type="email" placeholder="Enter Your Email">
+    <input type="tel" placeholder="Enter Your Number">
+    <input type="date" placeholder="Enter your age">
+    <input type="password " id="signupPassword" placeholder="Password">
+    <input type="password " id="confirmPassword" placeholder="Confirm Password">
+
+
+    <button class=" signup-submit" type="button" onclick="return validateSignUp()">Sign up</button>
+    
+  </div>
+</div>
+<script>
+  const modal = document.getElementById("loginModal");
+   const modal12 = document.getElementById("loginModal12");
+
+   //TO CLEAR THE FORM AFTER LOGIN
+   function openModal() {
+  const modal = document.getElementById("loginModal");
+  if (modal) {
+    const inputs = modal.querySelectorAll("input");
+    inputs.forEach(input => input.value = ""); 
+    modal.style.display = "flex";
+  }
+}
+
+function closeModal() {
+  const modal = document.getElementById("loginModal");
+  if (modal) {
+    const inputs = modal.querySelectorAll("input");
+    inputs.forEach(input => input.value = ""); 
+    modal.style.display = "none";
+  }
+}
+
+//   function openModal() {
+//     modal.style.display = "flex";
+//   }
+
+//   function closeModal() {
+//     modal.style.display = "none";
+//   }
+
+
+
+// OPEN SIGNUP MODAL & RESET FIELDS
+function openModal12() {
+  const modal = document.getElementById("loginModal12");
+  if (modal) {
+    const inputs = modal.querySelectorAll("input");
+    inputs.forEach(input => input.value = ""); // Clear all fields
+    modal.style.display = "flex"; // Show modal
+  }
+}
+
+// CLOSE SIGNUP MODAL & RESET FIELDS
+function closeModal12() {
+  const modal = document.getElementById("loginModal12");
+  if (modal) {
+    const inputs = modal.querySelectorAll("input");
+    inputs.forEach(input => input.value = ""); // Clear all fields
+    modal.style.display = "none"; // Hide modal
+  }
+}
+
+//   function openModal12() {
+//     modal12.style.display = "flex";
+//   }
+
+//   function closeModal12() {
+//     modal12.style.display = "none";
+//   }
+
+
+//     function validateSignUp() {
+//     const password = document.getElementById("signupPassword").value;
+//     const confirmPassword = document.getElementById("confirmPassword").value;
+
+//     if (password !== confirmPassword) {
+//       alert("Passwords do not match!");
+//       return false;
+//     }
+
+//     alert("Sign up successful!");
+//     closeModal12();
+//     return true;
+//   }
+
+
+  // Close when clicking outside the modal content
+  window.onclick = function(event) {
+    if (event.target == modal12) {
+      closeModal();
+    }
+  }
+</script>
+
+            
+            <img src="./img/menu-btn.png" alt="" class="menu-btn" /> 
+        </nav>
+        <!--navbar-->
+
+        <header id="home">
+            <div class="header-content">
+                <h2 id="quote">Explore the colourful World</h2>
+                <div class="line"></div>
+                <h1>A WONDERFUL GIFT</h1>
+                <a
+                    href="#about"
+                    class="ctn "
+                    onclick='removeall(); $("#quad").css("border", "2px solid whitesmoke"); $("#quad").css("border-radius", "20px");'
+                    >Learn more</a
+                >
+            </div>
+        </header>
+
+        <!--Events-->
+        <section class="events" id="events">
+            <div class="container">
+                <div class="title">
+                    <h1 class="dark">Upcoming Events</h1>
+                    <div class="line"></div>
+                </div>
+                <div class="row">
+
+                
+
+
+
+                    <article class="card col">
+                        <img class="card-img" src="./img/img1.jfif" />
+                        <h4 class="dark">Everest camp trek</h4>
+                        <p class="font-color">
+                            Everest base camp trek is without a doubt, one of
+                            the most renowned travel destinations in the world.
+                        </p>
+                        <a href="#" class="ctn">All Details</a>
+                    </article>
+                    <article class="card col">
+                        <img src="./img/img2.jfif" />
+                        <h4 class="dark">Walking holidays</h4>
+                        <p class="font-color">
+                            Join small guided group walks, enjoy a challenging
+                            trek, or a luxury private guided walk which can be
+                            made especially for you.
+                        </p>
+                        <a href="#" class="ctn">All Details</a>
+                    </article>
+                    <article class="card col">
+                        <img src="./img/img2.jfif" />
+                        <h4 class="dark">Andaman Beaches</h4>
+                        <p class="font-color">
+                            Diving in Andaman Beaches is exceptional. The costal
+                            belt surroundings is one of the richest coral reef
+                            ecosystems in the world.
+                        </p>
+                        <a href="#" class="ctn">All Details</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!--Events-->
+
+        <!--Explore-->
+        <section class="explore" id="explore">
+            <div class="explore-content">
+                <h1>EXPLORE THE WORLD</h1>
+                <div class="line"></div>
+                <p>
+                    “Travel makes one modest. You see what a tiny place you
+                    occupy in the world.”– Gustav Flaubert <br />Exploring will
+                    make you want to pack your bag, book that ticket and jet
+                    away.
+                </p>
+                <a href="#" class="ctn">Explore more</a>
+            </div>
+        </section>
+        <!--Explore-->
+
+        <!--tours-->
+        <section class="tours" id="tours">
+            <div class="container row">
+                <div class="col content-col">
+                    <h1 class="font-color">UPCOMING TOURS & DESTINATION</h1>
+                    <div class="line"></div>
+                    <p>
+                        Wed 28 sept 2023 : Port of Spain City Tour and Birdseye
+                        Fort View. <br />
+                        Sat 1 oct 2023 : Tour the Gasparee Caves.<br />
+                        Tues 4 oct 2023 : Trinidad North Coast Experience.
+                        <br />
+                        and many more ......
+                    </p>
+                    <a href="#" class="ctn">Learn more</a>
+                </div>
+                <div class="image-col">
+                    <div class="image-gallery">
+                        <img src="./img/img3.png" alt="" />
+                        <img src="./img/img4.png" alt="" />
+                        <img src="./img/img5.png" alt="" />
+                        <img src="./img/img6.png" alt="" />
+                    </div>
+                </div>
+            </div>
+            <br /><br /><br /><br />
+        </section>
+        <!--tours-->
+
+        <!-- About -->
+        <section id="about">
+            <div class="title">
+                <h1 class="font-color">About Us</h1>
+                <div class="line"></div>
+            </div>
+            <br />
+            <div id="about_us">
+                <div class="boxx">
+                    <div class="containerx">
+                        <input type="radio" name="slider" id="item-1" checked />
+                        <input type="radio" name="slider" id="item-2" />
+                        <input type="radio" name="slider" id="item-3" />
+                        <div class="cards">
+                            <label class="cardt" for="item-1" id="col-img-1">
+                                <img src="./img/carousel-img4.jpg" />
+                            </label>
+                            <label class="cardt" for="item-2" id="col-img-2">
+                                <img src="./img/carousel-img5.jpg" />
+                            </label>
+                            <label class="cardt" for="item-3" id="col-img-3">
+                                <img src="./img/carousel-img6.jpg" />
+                            </label>
+                            
+                        </div>
+                    </div>
+                    <span id="about-quad"
+                        ><a href="#home"
+                            ><center>
+                                <h1
+                                    style="
+                                        font-family: var(--ff-montserrat);
+                                        color: white;
+                                    "
+                                >
+                                    Find that
+                                </h1>
+                                <br />
+                                <img
+                                    class="img2"
+                                    src="./img/mountain_dark.jpg"
+                                    width="200"
+                                    style="border-radius: 12%"
+                                />
+                                <br />
+                                <h1 class="logo" style="font-size: 50px">
+                                    ADVENTURE
+                                </h1>
+                            </center>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <!-- About -->
+
+      <!-- Contributions -->
+        <!--<div class="title">
+            <h1 class="font-color">Contributors</h1>
+            <div class="line"></div>
+        </div>
+        <section class="contributors" id="contribution">
+            <div class="concard">
+                <img
+                    src="https://github.com/PritamSarbajna.png"
+                    alt="profile-picture"
+                    class="pfp"
+                />
+                <div class="text">
+                    <h1>Pritam Sarbajna</h1>
+                </div>
+                <div class="logolink">
+                    <a href="https://github.com/PritamSarbajna" target="_blank"
+                        ><img
+                            src="img/GitHub120px.png"
+                            alt="Github-Logo"
+                            class="github-logo"
+                    /></a>
+                </div>
+            </div>
+
+
+            <div class="concard">
+                <img
+                    src="https://github.com/athar-ansari.png"
+                    alt="profile-picture"
+                    class="pfp"
+                />
+                <div class="text">
+                    <h1>ATHAR ANSARI</h1>
+                </div>
+                <div class="logolink">
+                    <a href="https://github.com/athar-ansari" target="_blank"
+                        ><img
+                            src="img/GitHub120px.png"
+                            alt="Github-Logo"
+                            class="github-logo"
+                    /></a>
+                </div>
+            </div>
+
+            <div class="concard">
+                <img
+                    src="https://github.com/prakhartiwari0.png"
+                    alt="profile-picture"
+                    class="pfp"
+                />
+                <div class="text">
+                    <h1>Prakhar Tiwari</h1>
+                </div>
+                <div class="logolink">
+                    <a href="https://github.com/prakhartiwari0" target="_blank"
+                        ><img
+                            src="img/GitHub120px.png"
+                            alt="Github-Logo"
+                            class="github-logo"
+                    /></a>
+                </div>
+            </div>
+
+            <div class="concard">
+                <img
+                    src="https://github.com/hassana123.png"
+                    alt="profile-picture"
+                    class="pfp"
+                />
+                <div class="text">
+                    <h1>Hassana Abdullahi</h1>
+                </div>
+                <div class="logolink">
+                    <a href="https://github.com/hassana123" target="_blank"
+                        ><img
+                            src="img/GitHub120px.png"
+                            alt="Github-Logo"
+                            class="github-logo"
+                    /></a>
+                </div>
+            </div>
+
+            <div class="concard">
+                <img
+                    src="https://github.com/JumaCodes.png"
+                    alt="profile-picture"
+                    class="pfp"
+                />
+                <div class="text">
+                    <h1>Olumese Steve-John</h1>
+                </div>
+                <div class="logolink">
+                    <a href="https://github.com/JumaCodes" target="_blank"
+                        ><img
+                            src="img/GitHub120px.png"
+                            alt="Github-Logo"
+                            class="github-logo"
+                    /></a>
+                </div>
+            </div>
+
+            <div class="concard">
+                <img
+                    src="https://github.com/lubnafathima.png"
+                    alt="profile-picture"
+                    class="pfp"
+                />
+                <div class="text">
+                    <h1>Lubna Fathima N</h1>
+                </div>
+                <div class="logolink">
+                    <a href="https://github.com/lubnafathima" target="_blank"
+                        ><img
+                            src="img/GitHub120px.png"
+                            alt="Github-Logo"
+                            class="github-logo"
+                    /></a>
+                </div>
+            </div>
+
+            <div class="concard">
+                <img
+                    src="https://github.com/allanlalangan.png"
+                    alt="profile-picture"
+                    class="pfp"
+                />
+                <div class="text">
+                    <h1>Allan</h1>
+                </div>
+                <div class="logolink">
+                    <a href="https://github.com/allanlalangan" target="_blank"
+                        ><img
+                            src="img/GitHub120px.png"
+                            alt="Github-Logo"
+                            class="github-logo"
+                    /></a>
+                </div>
+            </div>
+
+            <div class="concard">
+                <img
+                    src="https://github.com/Seyi-Ojo.png"
+                    alt="profile-picture"
+                    class="pfp"
+                />
+                <div class="text">
+                    <h1>Mayowa Ojo</h1>
+                </div>
+                <div class="logolink">
+                    <a href="https://github.com/Seyi-Ojo" target="_blank"
+                        ><img
+                            src="img/GitHub120px.png"
+                            alt="Github-Logo"
+                            class="github-logo"
+                    /></a>
+                </div>
+            </div>
+
+            <div class="concard">
+                <img
+                    src="https://github.com/AmitBarman99.png"
+                    alt="profile-picture"
+                    class="pfp"
+                />
+                <div class="text">
+                    <h1>Amit Barman</h1>
+                </div>
+                <div class="logolink">
+                    <a href="https://github.com/AmitBarman99" target="_blank"
+                        ><img
+                            src="img/GitHub120px.png"
+                            alt="Github-Logo"
+                            class="github-logo"
+                    /></a>
+                </div>
+            </div>
+
+            <div class="concard">
+                <img
+                    src="https://github.com/ppdTurja.png"
+                    alt="profile-picture"
+                    class="pfp"
+                />
+                <div class="text">
+                    <h1>Partha Turja</h1>
+                </div>
+                <div class="logolink">
+                    <a href="https://github.com/ppdTurja" target="_blank"
+                        ><img
+                            src="img/GitHub120px.png"
+                            alt="Github-Logo"
+                            class="github-logo"
+                    /></a>
+                </div>
+            </div>
+
+            <div class="concard">
+                <img
+                    src="https://github.com/Brainiac-M.png"
+                    alt="profile-picture"
+                    class="pfp"
+                />
+                <div class="text">
+                    <h1>Mahmood Ademoye</h1>
+                </div>
+                <div class="logolink">
+                    <a href="https://github.com/Brainiac-M" target="_blank"
+                        ><img
+                            src="img/GitHub120px.png"
+                            alt="Github-Logo"
+                            class="github-logo"
+                    /></a>
+                </div>
+            </div>
+
+            <div class="concard">
+                <img
+                    src="https://github.com/abitsalihu.png"
+                    alt="profile-picture"
+                    class="pfp"
+                />
+                <div class="text">
+                    <h1>Abit Salihu</h1>
+                </div>
+                <div class="logolink">
+                    <a href="https://github.com/abitsalihu" target="_blank"
+                        ><img
+                            src="img/GitHub120px.png"
+                            alt="Github-Logo"
+                            class="github-logo"
+                    /></a>
+                </div>
+            </div>
+        </section> -->
+        <!-- Contributions-->
+
+        <!-- BLOG PAGE -->
+
+         <!--Blog Upload Section-->
+          <h1 class="blog">Blog</h1>
+          <div class="line"></div>
+<div class="blog-container">
+  <h2>Post a Blog</h2>
+  <input type="text" id="blog-title" placeholder="Enter blog title" />
+  <textarea id="blog-content" placeholder="Write your blog..."></textarea>
+  <input type="file" id="blog-image" accept="image/*" />
+  <img id="image-preview" src="#" alt="Image Preview" style="display:none;" />
+  <button id="post-btn" onclick="uploadBlog()">Post Blog</button>
+  <p id="error-message " style="color: red; margin-top: 8px;"></p>
+</div> 
+
+ <!--Blog Display Section -->
+<div id="blogList" class="blog-list"></div>
+
+
+<!--BLOG UPLOAD CARD SECTION-->
+<div class="blog-list" id="blogList">
+    <!-- the blog will upload here -->
+</div>
+<!-- Blog Detail Popup -->
+<div id="blogPopup" class="blog-popup" style="display:none;">
+  <div class="blog-popup-content">
+    <span id="closePopup" class="close-btn">&times;</span>
+    <h2 id="popup-title"></h2>
+    <img id="popup-image" style="max-width:100%; margin-bottom:10px;" />
+    <p id="popup-content"></p>
+  </div>
+</div>
+<!--BLOG UPLOAD CARD SECTION END-->
+
+
+
+
+        <!-- BLOG PAGE END -->
+    
+
+
+        <!-- contact -->
+        <section id="contact">
+            <div class="title">
+                <h1 class="font-color">Contact Us</h1>
+                <div class="line"></div>
+            </div>
+            <div class="contact_us">
+                <form class="cform" action="" method="post">
+                    <div class="crow-message">
+                        <h1 class="color">Send us a message</h1>
+                        <div></div>
+                    </div>
+                    <div class="crow-in">
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Your name"
+                        />
+                        <input
+                            type="text"
+                            id="email"
+                            name="email"
+                            placeholder="Your Email id"
+                        />
+                    </div>
+                    <div class="crow">
+                        <div class="ccol-left">
+                            <select name="country" id="country">
+                                <option value="India">India</option>
+                                <option value="Russia">Russia</option>
+                                <option value="usa">USA</option>
+                                <option value="Japan">Japan</option>
+                                <option value="France">France</option>
+                                <option value="Brazil">Brazil</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="crow">
+                        <div class="ccol-left">
+                            <textarea
+                                type="text"
+                                id="remarks"
+                                name="remarks"
+                                placeholder="Your Remarks....."
+                                style="height: 150px"
+                            ></textarea>
+                        </div>
+                    </div>
+                    <input class="crow-s" type="submit" value="Submit" />
+                </form>
+                <div class="cbox">
+                    <div>
+                        <p class="cbox-message">
+                            Prefer some other way ?<br />Reach us by using the
+                            details given below
+                        </p>
+                        <div class="cbox-line"></div>
+                    </div>
+                    <div class="c_boxx">
+                        <a href="mailto:abc@gmail.com"
+                            ><i class="fa fa-envelope"></i>
+                            Mail: tourism@adventure.com
+                        </a>
+                    </div>
+                    <div class="c_boxx">
+                        <a href="tel:+91-12345-67890"
+                            ><i class="fa fa-phone"></i>
+                            Phone: (+91) 12345-67890
+                        </a>
+                    </div>
+                    <div class="c_boxx">
+                        <a href="#"
+                            ><i class="fa fa-map-marker"></i>
+                            Location: Dadra and Nagar Haveli, Daman ,India
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- contact  -->
+        <!-- up scroll -->
+        <i class="arrow"  onclick="topFunction()" id="upbtn"></i>
+        <!-- end -->
+        <!--footer-->
+        <section class="footer">
+            <span
+                >Created By Tripify Team| &#169; 2025 All rights
+                reserved.</span
+            >
+            <div class="social">
+                <li>
+                    <a
+                        href="https://pritam-sarbajna-portfolio.netlify.app/"
+                        target="_blank"
+                        rel="noreferrer"
+                        ><i class="fa fa-globe"></i
+                    ></a>
+                    <a
+                        href="https://github.com/PritamSarbajna"
+                        target="_blank"
+                        rel="noreferrer"
+                        ><i class="fa fa-github"></i
+                    ></a>
+                    <a
+                        href="https://www.linkedin.com/in/pritam-sarbajna-74945821b/"
+                        target="_blank"
+                        rel="noreferrer"
+                        ><i class="fa fa-linkedin-square"></i
+                    ></a>
+                </li>
+            </div>
+        </section>
+        <!--footer-->
+
+        <script>
+            const menuBtn = document.querySelector(".menu-btn");
+            const navlinks = document.querySelector(".nav-links");
+
+            menuBtn.addEventListener("click", () => {
+                navlinks.classList.toggle("mobile-menu");
+            });
+        </script>
+
+        <!--FIREBASE-->
+
+        <!-- <script type="module">
+  // Import Firebase SDKs
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+  import { getStorage } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyC_Ze47H5D-1M2cz4_C9irVSzhrHPHV2k",
+    authDomain: "tripify3.firebaseapp.com",
+    projectId: "tripify3",
+    storageBucket: "tripify3.appspot.com",
+    messagingSenderId: "579031167731",
+    appId: "1:579031167731:web:a0ebbcb0ea2ad005fd0a86"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+</script> -->
+
+        <!--FIREBASE--> 
+        
+
+
+
+     <script type="module">
+  // Firebase imports
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword , onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getFirestore, doc, setDoc, collection, addDoc, query, orderBy, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyC_Ze47H5D-lM2cz4__C9irVSzhrHPHV2k",
+    authDomain: "tripify3.firebaseapp.com",
+    projectId: "tripify3",
+    storageBucket: "tripify3.firebasestorage.app",
+    messagingSenderId: "579031167731",
+    appId: "1:579031167731:web:a0ebbcba00e2ad0005fd86"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+ 
+//   const auth = getAuth(app);
+//   const storage = getStorage(app);
+  //const db = getFirestore(app);
+
+
+//CLOUDINARY DETAILS
+const cloudName = "df4dhssxu";
+const uploadPreset = "blog_preset";
+
+
+
+// import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+ 
+
+//SHOW THAT USER IS LOGGED IN
+const auth = getAuth();
+
+const authSection =document.getElementById("authSection");
+const userStatus = document.getElementById("userStatus");
+
+onAuthStateChanged(auth, (user) => {
+  const statusDiv = document.getElementById("userStatus");
+
+
+  
+  if (user) {
+    // Show logged-in user's email and logout , hide login/signup
+    authSection.style.display = "none";
+        // Show user icon
+    userStatus.innerHTML = `
+<img src="./img/user.jpg" width="40" style="vertical-align:middle; border-radius:50%;" />
+  <button id="logoutBtn" style="
+        margin-left: 10px;
+        padding: 8px 12px;
+        background: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      ">Logout</button>
+`;
+
+    // userStatus.innerHTML=` <b>${user.email}</b>
+    //  <button id="logoutBtn">Logout</button>`;
+    // statusDiv.innerHTML = ` Logged in as: <b>${user.email}</b> 
+    //   <button id="logoutBtn"> Logout</button>`;
+    
+    // Add logout functionality
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      await signOut(auth);
+      alert("You have logged out!");
+    });
+
+  } else {
+    // User not logged in
+    authSection.style.display = "flex";
+     userStatus.innerHTML = "";
+  }
+});
+// SHOW THAT USER IS LOGGED IN (END)
+
+
+//BLOG
+
+// ✅ Elements
+// const titleInput = document.getElementById('blog-title');
+// const contentInput = document.getElementById('blog-content');
+// const imageInput = document.getElementById('blog-image');
+// const imagePreview = document.getElementById('image-preview');
+// const blogList = document.getElementById('blogList');
+
+// // ✅ Show Image Preview
+// imageInput.addEventListener('change', () => {
+//     const file = imageInput.files[0];
+//     if (file) {
+//         imagePreview.src = URL.createObjectURL(file);
+//         imagePreview.style.display = 'block';
+//     }
+// });
+
+
+// ✅ Upload Blog (Only if user is logged in)
+// window.uploadBlog= async function() {
+//     const user = auth.currentUser;
+//     if (!user) {
+//         alert("Please log in first to post a blog.");
+//         return;
+//     }
+
+//     const title = titleInput.value.trim();
+//     const content = contentInput.value.trim();
+//     const file = imageInput.files[0];
+
+//     if (!title || !content || !file) {
+//         alert("Please enter title, content, and select an image.");
+//         return;
+//     }
+
+//     try {
+//         // Upload image to Storage
+//         const storageRef = ref(storage,'blogImages/' + Date.now() + '-' + file.name);
+//         await uploadBytes(storageRef,file);
+//         const imageUrl = await getDownloadURL(storageRef);
+
+//         // Save blog details in Firestore
+//         await addDoc(collection(db,'blogs'),{
+//             title,
+//             content,
+//             imageUrl,
+//             userId: user.uid,
+//             userEmail: user.email,
+//             createdAt: firebase.firestore.FieldValue.serverTimestamp()
+//         });
+
+//         alert("Blog posted successfully!");
+//         titleInput.value = '';
+//         contentInput.value = '';
+//         imageInput.value = '';
+//         imagePreview.style.display = 'none';
+
+//         fetchBlogs();
+//     } catch (error) {
+//         console.error("Error posting blog:", error);
+//         alert("Failed to upload blog.");
+//     }
+// }
+
+// // ✅ Fetch Blogs
+// async function fetchBlogs() {
+//     blogList.innerHTML = '';
+//     const q = query(collection(db,'blogs'),orderBy('createdAt','desc'));
+//     const snapshot = await getDocs(q);
+
+//     snapshot.forEach(doc => {
+//         const blog = doc.data();
+//         const blogCard = `
+//             <div class="blog-card">
+//                 <img src="${blog.imageUrl}" alt="Blog Image">
+//                 <h3>${blog.title}</h3>
+//                 <p>${blog.content}</p>
+//                 <small>Posted by: ${blog.userEmail}</small>
+//             </div>
+//         `;
+//         blogList.innerHTML += blogCard;
+//     });
+// }
+
+// // ✅ Login/Logout Buttons (Optional)
+// function login() {
+//     const provider = new firebase.auth.GoogleAuthProvider();
+//     auth.signInWithPopup(provider).then(() => {
+//         alert("Logged in successfully!");
+//     }).catch(error => {
+//         console.error(error);
+//         alert("Login failed.");
+//     });
+// }
+
+// function logout() {
+//     auth.signOut().then(() => {
+//         alert("Logged out successfully!");
+//     });
+// }
+
+// // ✅ Track Auth State
+//  onAuthStateChanged(auth, (user) => {
+//     if (user) {
+//         console.log("User logged in:", user.email);
+//     } else {
+//         console.log("No user logged in");
+//     }
+// });
+
+// // ✅ Load blogs when page loads
+// window.onload = fetchBlogs;
+//BLOG END
+
+
+// BLOG USING FIREBASE AND CLOUDINARY
+// Firebase v9 imports
+
+// Upload Blog Function
+window.uploadBlog = async function () {
+  const title = document.getElementById("blog-title").value;
+  const content = document.getElementById("blog-content").value;
+  const file = document.getElementById("blog-image").files[0];
+//   const errorMsg = document.getElementById("error-message");
+  const postBtn = document.getElementById("post-btn");
+
+
+  // Check if user is logged in
+  const user = auth.currentUser;
+  if (!user) {
+    alert("Please log in first to post a blog.");
+    return;
+  }
+
+  if (!title || !content) {
+    alert("Please enter both title and content.");
+    return;
+  }
+
+  //disable button and show loading text
+  postBtn.disabled = true;
+  postBtn.innerText = "Posting...";
+
+  let imageUrl = "";
+  if (file) {
+    //show uploading message
+    // alert("Uploading Image...");
+
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset);
+
+    try {
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+        method: "POST",
+        body: formData
+      });
+      const data = await res.json();
+      if(data.secure_url){
+      imageUrl = data.secure_url;
+      alert("image uploaded successfully!");}
+      else{
+        throw new Error("Image upload failed"); }
+ } catch (error) {
+       alert("image upload failed:" + error.message);
+       postBtn.disabled = false;
+       postBtn.innerText = "Post blog";
+         return;
+       }
+    }
+  
+
+  try {
+    await addDoc(collection(db, "blogs"), {
+      title,
+      content,
+      imageUrl,
+      userId: user.uid,
+      userEmail: user.email,
+      createdAt: serverTimestamp()
+    });
+
+    // errorMsg.style.color = "green";
+     alert("blog posted successfully");
+
+    // alert("Blog posted successfully!");
+
+    //reset fields
+    document.getElementById("blog-title").value = "";
+    document.getElementById("blog-content").value = "";
+    document.getElementById("blog-image").value = "";
+    fetchBlogs();
+  } catch (error) {
+    alert("Error posting blog: " + error.message);
+  }
+};
+
+// Fetch Blogs
+async function fetchBlogs() {
+  const blogList = document.getElementById("blogList");
+  blogList.innerHTML = "";
+  const q = query(collection(db, "blogs"), orderBy("createdAt", "desc"));
+  const snapshot = await getDocs(q);
+
+
+snapshot.forEach(doc => {
+    const blog = doc.data();
+    const div = document.createElement("div");
+    div.classList.add("blog-item");
+
+    // Escape backticks from content to avoid breaking template literals
+     const safeContent = (blog.content || "").replace(/`/g,"\\`")
+     .replace(/"/g,"&quot;")
+     .replace(/'/g,"\\'");
+
+    div.innerHTML = ` 
+        ${blog.imageUrl ? `<img src="${blog.imageUrl}" alt="Blog Image" class="blog-img"/>` : ""}
+        <h3>${blog.title}</h3>
+        <p>${blog.content.length > 60 ? blog.content.substring(0, 60) + "..." : blog.content}</p>
+        <button class="read-more" data-title="${blog.title}" data-image="${blog.imageUrl}" data-content="${safeContent}">Read More </button>
+        <div class="blog-meta">
+
+        Posted by ${blog.userEmail || "Unknown"}<br>
+            ${blog.createdAt?.toDate().toLocaleString() || 'Just now'}
+        </div>
+    `;
+
+    blogList.appendChild(div);
+});
+}
+
+// Auto-fetch blogs on load
+fetchBlogs();
+
+// Listen for Auth changes
+onAuthStateChanged(auth, user => {
+  console.log(user ? "Logged in" : "Logged out");
+});
+
+//SHOW IMAGE PREVIEW BEFORE UPLOAD
+document.getElementById("blog-image").addEventListener("change",function(){
+    const preview = document.getElementById("image-preview");
+    const file = this.files[0];
+    if(file){
+        preview.src = URL.createObjectURL(file);
+        preview.style.display="block";}
+        else{
+        preview.style.display="none";
+    }
+});
+
+//RAED MORE SECTION
+window.openBlogPopup = function (title, imageUrl, content) {
+  document.getElementById("popup-title").textContent = title;
+  document.getElementById("popup-image").src = imageUrl || "";
+  document.getElementById("popup-image").style.display = imageUrl ? "block" : "none";
+  document.getElementById("popup-content").textContent = content;
+  document.getElementById("blogPopup").style.display = "flex";
+};
+
+// Close popup
+document.getElementById("closePopup").onclick = function () {
+  document.getElementById("blogPopup").style.display = "none";
+};
+
+// Close on outside click
+window.onclick = function (event) {
+  if (event.target === document.getElementById("blogPopup")) {
+    document.getElementById("blogPopup").style.display = "none";
+  }
+};
+//READ MORE SECTION END
+
+
+//BLOG USING FIREBASE AND CLOUDINARY ENDD
+
+
+  // Sign Up Button Logic
+  document.querySelector(".signup-submit").addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const signupBtn = e.target;
+    signupBtn.disable = true;
+    signupBtn.innerText = "signing up...";
+
+    const email = document.querySelector('input[placeholder="Enter Your Email"]').value;
+    const password = document.getElementById("signupPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    const username = document.querySelector('input[placeholder="Username"]').value;
+    const number = document.querySelector('input[placeholder="Enter Your Number"]').value;
+    const dob = document.querySelector('input[placeholder="Enter your age"]').value;
+
+    try{
+        const userCredential = await createUserWithEmailAndPassword(auth,email,password);
+        alert("Signup successful!");
+        signupBtn.innerText="sign up";
+        signupBtn.disable = false;
+        closeModal12();
+    }catch (error){
+        if(error.code ==="auth/email-already-in-use"){
+            alert("email already in use.please login")
+        }else{
+            alert("signup failed:" + error.message);
+        }
+        signupBtn.innerText = "sign up";
+        signupBtn.disable = false;
+    }
+});
+
+
+
+  // Login Button Logic
+  document.querySelector(".login-submit").addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const loginBtn = e.target;
+    loginBtn.disable = true;
+    loginBtn.innerText = "logging up...";
+
+    const email = document.querySelector('#login-email').value;
+    const password = document.querySelector('#login-password').value;
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      alert("Login successful!");
+      loginBtn.innerText = "login";
+      loginBtn.disable = false;
+      closeModal();
+    } catch (error) {
+        if(error.code === "auth/invalid-credential " || error.code === "auth/wrong-password"){
+      alert("invalid email or password");
+        }else{
+            alert("login failed:"+ error.message);
+        }
+    }
+    loginBtn.innerText = "login";
+    loginBtn.disable = false;
+    
+  });
+</script> 
+
+   
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>

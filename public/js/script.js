@@ -130,3 +130,84 @@ function updateNav() {
 }
 
 window.addEventListener("scroll", updateNav);
+
+// BLOG
+
+// document.getElementById("blog-image").addEventListener("change", function () {
+//   const file = this.files[0];
+//   if (file) {
+//     const reader = new FileReader();
+//     reader.onload = function (e) {
+//       const preview = document.getElementById("image-preview");
+//       preview.src = e.target.result;
+//       preview.style.display = "block";
+//     };
+//     reader.readAsDataURL(file);
+//   }
+// });
+
+// onAuthStateChanged(auth, (user) => {
+//   if (user) {
+//     document.getElementById("blog-form").style.display = "block";
+//     document.getElementById("user-info").innerText = Welcome,` ${user.email}`;
+//   } else {
+//     document.getElementById("blog-form").style.display = "none";
+//     document.getElementById("user-info").innerText = "Please log in to post blogs.";
+//   }
+// });
+
+
+
+// submitBtn.addEventListener("click", async () => {
+//   const user = auth.currentUser;
+//   if (!user) {
+//     alert("Please login first!");
+//     return;
+//   }
+
+//   const title = titleInput.value.trim();
+//   const content = contentInput.value.trim();
+//   const imageFile = imageInput.files[0];
+
+//   if (!title || !content || !imageFile) {
+//     alert("Please fill all fields.");
+//     return;
+//   }
+
+//   const imageRef = ref(storage,` blogImages/${Date.now()}_${imageFile.name}`);
+//   const snapshot = await uploadBytes(imageRef, imageFile);
+//   const imageUrl = await getDownloadURL(snapshot.ref);
+
+//   await addDoc(collection(db, "blogs"), {
+//     title,
+//     content,
+//     imageUrl,
+//     userId: user.uid,
+//     userEmail: user.email,
+//     timestamp: serverTimestamp()
+//   });
+
+//   alert("Blog uploaded!");
+//   titleInput.value = "";
+//   contentInput.value = "";
+//   imageInput.value = "";
+// });
+//BLOG END
+
+// function openSignupModal(){
+//     const modal = document.getElementById("loginModal12");
+//     if(modal){
+//         const inputs = modal.forEach(input => input.value = " ");
+//         modal.style.display = "block";
+//     }
+// }
+
+// function closeModal12(){
+//     const modal= document.getElementById("loginModal12");
+//     if(modal){
+//         const inputs = modal.querySelectorAll("input");
+//         inputs.forEach(input => input.value = "");
+//         modal.style.display = "none"
+//     }
+// }
+
