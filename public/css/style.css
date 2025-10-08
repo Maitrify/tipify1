@@ -60,6 +60,10 @@ html {
   overflow-x: hidden;
   box-sizing: border-box;
 }
+body{
+  background-color: white;
+}
+
 
 .container {
   width: 98%;
@@ -114,8 +118,6 @@ html {
   padding: 0 1.2rem;
   font-weight: 300;
   color: rgb(254, 252, 252); 
-  
-  
 }
 
 
@@ -124,6 +126,14 @@ html {
   display: flex;
   align-items: center;
 }
+
+/* .nav-links{
+  display: none;
+}
+
+.nav-links.mobile_menu{
+  display: block;
+} */
 
 .nav-links li {
   font-family: var(--ff-montserrat);
@@ -654,7 +664,7 @@ body {
 
 .blog-item {
   flex: 0 0 250px;
-  background: #fff;
+  background: #c8cceb;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);

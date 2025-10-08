@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tripify - Filter Trips</title>
+  <link rel="stylesheet" href="Fstyles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f8f9fa;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .filter-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .filter-container select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      min-width: 150px;
+      transition: 0.3s ease;
+    }
+
+    .filter-container select:focus {
+      outline: none;
+      border-color: #00aaff;
+      box-shadow: 0 0 5px rgba(0, 170, 255, 0.5);
+    }
+
+
+
+    .card-container{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px;
+      box-sizing: border-box;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* .trip-card {
+      position: relative;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    } */
+
+        .trip-card {
+      position: relative;
+      width: 300px;
+      /* height: 250px; */
+      margin: 15px;
+      object-fit: cover;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .trip-overlay-center{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity:0;
+  transition: opacity 0.3s ease;
+   /* transform: translateY(100%);
+  transition: all 0.3s ease;
+  border-bottom-left-radius: 12px ;
+  border-bottom-right-radius: 12px;  */
+}
+
+    .trip-card:hover .trip-overlay-center{
+      /* transform: translateY(-5px); */
+      opacity: 1;
+      /* transform: translateY(0); */
+    }
+
+    .trip-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .trip-card .content {
+      padding: 15px;
+    }
+
+    .trip-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: #007bff;
+    }
+
+    .trip-card p {
+      font-size: 14px;
+      color: #555;
+      margin: 0;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+
+    /* DETAIL MODAL CARD */
+    /* .modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 90%;
+  padding: 20px;
+  position: relative;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #333;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+.gallery img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+} */
+
+/* Modal main */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+   white-space: pre-line;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+/* Content box */
+.modal-content {
+  background: white;
+  margin: auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+
+}
+#modalDescription{
+  white-space: pre-line;
+  padding-left: 20px;
+}
+
+
+
+/* Close button */
+.close-btn {
+  color: #333;
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Gallery images */
+.gallery {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gallery img {
+  width: 75%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+
+/* .gallery img:hover {
+  transform: scale(1.5);
+} */
+
+
+/* Zoomed image modal */
+#imageModal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  text-align: center;
+}
+
+/* Modal Gallery – vertical scroll */
+#modalGallery {
+  display: flex;
+  flex-direction: column;  /* stack vertically */
+  gap: 12px;
+  max-height: 450px;       /* adjust as you want */
+  overflow-y: auto;        /* scrollable if many images */
+  margin-top: 15px;
+  padding-right: 6px;
+}
+
+#modalGallery img {
+  width: 100%;
+  border-radius: 10px;
+
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* #modalGallery img:hover {
+  transform: scale(1.02);
+} */
+
+
+.modal-image {
+  margin-top: 5%;
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+#imgClose {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+    /* DETAIL MODAL CARD END */
+  </style>
+</head>
+<body>
+  <h2>Filter Trips</h2>
+
+  <div class="filter-container">
+    <select id="season">
+      <option value="">Season</option>
+      <option value="summer">Summer</option>
+      <option value="winter">Winter</option>
+      <option value="rainy">Rainy</option>
+    </select>
+
+    <select id="group">
+      <option value="">Group Size</option>
+      <option value="solo">Solo</option>
+      <option value="couple">Couple</option>
+      <option value="family">Family</option>
+      <option value="friends">Friends</option>
+    </select>
+
+       <!-- <select id="group">
+      <option value="">Group Size</option>
+      <option value="solo">Solo</option>
+      <option value="couple">Couple</option>
+      <option value="family">Family</option>
+      <option value="friends">Friends</option>
+    </select> -->
+
+    
+
+    <select id="mood">
+      <option value="">Mood</option>
+      <option value="relaxing">Relaxing</option>
+      <option value="adventure">Adventure</option>
+      <option value="romantic">Romantic</option>
+      <option value="cultural">Cultural</option>
+      <option value="nature">Nature</option>
+    </select>
+
+
+    <select id="budget">
+      <option value="">Budget</option>
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+  </div>
+
+  <div class="card-container" id="tripCards"></div>
+  <!-- DETAIL MODAL description -->
+   <!-- Modal -->
+<div class="modal" id="detailsModal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+    <div class="gallery" id="modalGallery"></div>
+  </div>
+</div>
+<!-- image zoom modal -->
+ <div class="modal" id="imageModal">
+  <span class="close-btn" id="imgClose">&times;</span>
+  <!-- <img class="modal-image" id="zoomedImage"> -->
+   <img class="zoomed-img" id="zoomedImage">
+ </div>
+
+     <!-- DETAIL MODAL description END -->
+
+  <script>
+    const trips = [
+      {
+        name: "Maldives",
+        description: "Perfect honeymoon destination with beach vibes and sunsets.",
+       details: "🗓 Best Time: Dec–Apr (dry season, best weather); May–Oct (monsoon, cheaper deals, surfing season).\n\n✈ How to Reach: Fly to Malé (MLE) from India (2–4.5 hrs). Transfers by Speedboat (30–120 min, cheaper), Seaplane (20–50 min, scenic but expensive), or Public Ferry (budget, limited schedule).\n\n🏝 Stay Options: Resort Islands (luxury, alcohol allowed) OR Local Islands (budget-friendly, cultural, modest dress, no alcohol).\n\n💰 Budget: Backpacker ₹8k–15k/day | Mid-range ₹20k–40k/day | Luxury ₹60k–2L+/day. Flights from India: ₹12k–35k. Transfers (seaplane): ₹35k–85k RT.\n\n📝 Entry: Visa on Arrival (free, 30 days for Indians). IMUGA Declaration online within 96 hrs.\n\n🌊 Things to Do: Snorkeling, Diving, Sandbank picnics, Dolphin cruises, Spa & Island-hopping.\n\n🕌 Culture & Rules: Alcohol only in resorts, modest dress on local islands, bikinis only at ‘bikini beaches’, drugs strictly banned, respect prayer times.\n\n🎒 Packing Tips: Reef-safe sunscreen, light clothes, modest wear, flip-flops, snorkel gear, universal adapter (Type G), USD cash (small notes).",
+        season: ["summer"],
+        group: ["couple"],
+        mood: ["romantic"],
+        budget: "high",
+        image: "https://www.andbeyond.com/wp-content/uploads/sites/5/maldives-six-senses-laamu4-1536x864.jpg",
+          gallery:[
+           "https://images.squarespace-cdn.com/content/v1/5260d046e4b0c0ba62540470/1623905649049-37JT5E3XQWUZKF6V8BU3/Hilton+Maldives+Amingiri+-+Speciality+Restaurant+%26+Champagne+Bar_Arch.jpg",
+           "https://i0.wp.com/www.tusktravel.com/blog/wp-content/uploads/2023/01/Coconut-Items-Maldives.jpg?resize=1200%2C800&ssl=1",
+           "https://miro.medium.com/0*cLYRi2wMmyrl-qXY.jpg",
+           "https://www.onevasco.com/blog/wp-content/uploads/Maldives-Famous-Food.jpg",
+           "https://blog.thomascook.in/wp-content/uploads/2017/09/city-travel-decoration-food-color-bazaar-market-shopping-tourism-pottery-decor-material-public-space-ethnic-art-crafts-decorative-turkey-istanbul-culture-heritage-e-Custom.jpg",
+           "https://www.swantour.com/blogs/wp-content/uploads/2018/12/Delicious-Maldives-Seafood.jpg",
+           "https://tripxl.com/blog/wp-content/uploads/2024/08/Male-Local-Market.jpg",
+           "https://i3.wp.com/mawakebholidays.com//storage/2023/02/%D8%B4%D9%87%D8%B1-%D8%B9%D8%B3%D9%84-%D8%B1%D8%AD%D9%84%D8%A7%D8%AA-%D9%85%D8%A7%D9%84%D8%AF%D9%8A%D9%81-%D9%85%D9%88%D8%A7%D9%83%D8%A8-%D9%84%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D8%A9-Honeymoon-Maldives-Trips-to-Maldives-Mawakeb-Travel1111-1.jpg"
+        ]
+      },
+      {
+        name: "Manali",
+        description: "Snow-capped mountains, ideal for friends and family.",
+        details: "❄ Best Time: Oct-Feb (snow season), Mar-Jun (pleasant weather).\n\n🚗 How to Reach: By road from Delhi/Chandigarh or fly to Kullu Airport (Bhuntar) then 50 km taxi/bus to Manali.\n\n🏠 Stay Options: Budget hostels, guest houses, luxury resorts with mountain views.\n\n💸 Budget: Backpacker ₹800–₹1500/day (budget), ₹3500+/day (luxury).\n\n🎟 Entry: No entry fee for town, but Rohtang Pass requires permit.\n\n🎯 Things to Do: Solang Valley adventure sports (skiing, paragliding, zorbing), Rohtang Pass snow, Hidimba Devi Temple, Old Manali cafés, shopping at Mall Road, trekking (Hampta Pass, Bhrigu Lake).\n\n⚠ Culture & Rules: Dress warmly in winter, respect local customs, avoid littering in mountains.",
+        season: ["winter"],
+        group: ["family", "friends"],
+        mood: ["adventure", "romantic"],
+        budget: "medium",
+        image: "https://images.unsplash.com/photo-1613935461248-8dd5b651951f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        gallery:[
+          "https://e1.pxfuel.com/desktop-wallpaper/668/380/desktop-wallpaper-himachal-tour-manali.jpg",
+           "https://images.unsplash.com/photo-1579689189009-874f5cac2db5?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1hbmFsaXxlbnwwfHwwfHx8MA%3D%3D",
+           "https://w0.peakpx.com/wallpaper/920/734/HD-wallpaper-snowmanali-manali-scenery-snowfall-winter.jpg"
+        ]
+      },
+      {
+        name: "Rishikesh",
+        description: "Peaceful Ganga ghats and yoga retreats.",
+        details:"🗓 Best Time: Oct-Mar (pleasant weather for rafting & yoga), avoid heavy monsoon in Jul-Sep.\n\n 🚗 How to Reach: Fly to Dehradun (Jolly Grant Airport, 35 km) or train/bus from Delhi & Haridwar.\n\n🏠 Stay Options: Budget hostels & ashrams, mid-range hotels on the Ganges, luxury yoga retreats.\n\n💸 Budget: Backpacker ₹700–₹1500/day (budget), ₹3000+/day (luxury wellness resorts).\n\n🎟 Entry: Free entry to ghats & temples, rafting/camping charges vary by operator.\n\n🎯 Things to Do: White-water rafting on the Ganges, bungee jumping, cliff jumping, camping on riverside, evening Ganga Aarti at Triveni Ghat, yoga & meditation classes, Beatles Ashram.\n\n⚠ Culture & Rules: Alcohol and non-veg strictly banned in main town area, dress modestly in temples & ashrams, respect local customs.",
+        season: ["rainy"],
+        group: ["solo", "family"],
+        mood: ["relaxing"],
+        budget: "low",
+        image: "https://images.unsplash.com/photo-1713340546638-5e30e2b7b1fe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmlzaGlrZXNofGVufDB8fDB8fHww",
+          gallery:[
+           "https://d3sftlgbtusmnv.cloudfront.net/blog/wp-content/uploads/2024/11/Things-To-Do-In-Rishikesh-With-Family-840x425.jpg",
+           "https://uttarakhandtourism.gov.in/assets/media/UTDB_media_1736491078under_banner_1.jpg",
+           "https://s7ap1.scene7.com/is/image/incredibleindia/parmarth%20niketan-rishikesh-uttarakhand-hero?qlt=82&ts=1726646245949",
+           "https://www.chardhamhotel.in/blog/wp-content/uploads/2024/05/Parmarth-Niketan-Ashram-Rishikesh.jpg",
+           "https://s3-us-west-2.amazonaws.com/issuewireassets/primg/23391/rishikesh-yogkulam-yoga-teacher-training-school-in-rishikesh72.jpg"
+        ]
+      },
+      {
+        name: "Udaipur",
+        description: "Historic palaces and lakes with royal vibes.",
+        season: ["winter"],
+        group: ["family"],
+        mood: ["cultural"],
+        budget: "medium",
+        image: "https://plus.unsplash.com/premium_photo-1697729844084-c03db2377161?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dWRhaXB1cnxlbnwwfHwwfHx8MA%3D%3D",
+          gallery:[
+           "https://assets.architecturaldigest.in/photos/667a99b6245036d329c54302/16:9/w_2560%2Cc_limit/_ZC_1405.jpg",
+           "https://cf.bstatic.com/xdata/images/hotel/max1024x768/719117630.jpg?k=d67f2be203f24c6f83bb2707953ecee07f1709f23a38463ec3e316f6efb6bdaa&o=&hp=1",
+            "https://wanderon-images.gumlet.io/blogs/new/2024/09/udaipur-india.jpg",
+           "https://www.thegrandindianroute.com/wp-content/uploads/2024/03/Untitled-design-92.jpg",
+           "https://d25wybtmjgh8lz.cloudfront.net/sites/default/files/styles/sbg_masthead_1920x640/public/2024-01/1_The-Leela-Palace-Udaipur_Dusk-exterior.jpg?h=b7df4416"
+        ]
+      },
+      {
+  name: "Goa",
+  description: "Beaches, nightlife, and Portuguese heritage. Ideal for friends.",
+  season: ["winter"],
+  group: ["friends"],
+  mood: ["relaxing", "romantic"],
+  budget: "medium",
+  image: "https://images.unsplash.com/photo-1677747354829-a5d89cd8048c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTV8fGdvYXxlbnwwfHwwfHx8MA%3D%3D",
+    gallery:[
+           "https://goa-tourism.org.in/images/places-to-visit/headers/goa-local-sightseeing-tour-packages-header-goa-tourism.jpg.jpg",
+           "https://www.goatripsindia.com/images/2016/03/Visit-in-Goa-for-Honeymoon.jpg",
+           "https://images.travelandleisureasia.com/wp-content/uploads/sites/3/2024/04/15151106/palm-beach-1.jpeg?tr=w-1200,q-60",
+           "https://www.agoda.com/wp-content/uploads/2024/06/5-Dudhsagar-Waterfalls-Goa-Waterfalls.jpg ",
+           "https://www.theluxurycastles.com/wp-content/uploads/2024/10/New-Year-Party-In-Goa.jpg",
+           "https://www.goaindiatourism.org/images/slider1x2.jpg",
+           "https://www.easeindiatrip.com/blog/wp-content/uploads/2025/02/Goa-Goa-Carnival-festival.jpg",
+           "https://media1.thrillophilia.com/filestore/1uveqtc9af7n3lq8ts1yaxzceonw_1575012488_market_80.jpeg?w=400&dpr=2"
+        ]
+},
+
+{
+  name: "Kerala",
+  description: "Houseboats, backwaters, and peaceful nature.",
+  season: ["rainy"],
+  group: ["couple"],
+  mood: ["relaxing"],
+  budget: "medium",
+  image: "https://images.unsplash.com/photo-1691075213372-ff9e2d6d7645?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a2F0aGFrYWxpfGVufDB8fDB8fHww",
+    gallery:[
+           "https://th.bing.com/th/id/R.0f29d0dc9a67a57323aa16b0e2c4eba8?rik=3VDElmO%2b1rUEGw&riu=http%3a%2f%2fwww.escapetravelservices.com%2fwp-content%2fuploads%2f2022%2f06%2fkerala-tour-packages-for-family-scaled.jpg&ehk=CrhROQiQGasiUuTTcJWtudP0MEtVigXqmxKygiFd0Ns%3d&risl=&pid=ImgRaw&r=0  ",
+           "https://i.pinimg.com/originals/bf/08/39/bf0839211689f5dba69589b6183c2c54.jpg",
+           "https://specialplacesofindia.com/wp-content/uploads/2024/09/Visit-Vivekananda-Rock-Memorial.jpg ",
+           "https://4.bp.blogspot.com/-soZe3bp2_j4/X2MrgEvk4vI/AAAAAAAAhZk/AdIhSt3jTJM5WtQwu43d_1VrD_5ljN_9QCLcBGAsYHQ/s1600/largest-bird-statue-jadayupara-jatayu-earth-centre-india-7-5cb990b8cd28f__700.jpg ",
+           "https://th.bing.com/th/id/R.eedec4461b311e9ddd2ee5e087c54561?rik=KjpkrX0yLLkBNQ&riu=http%3a%2f%2fwesternghatstourism.com%2fdata%2fuploads%2fathirapally%2fathirapally-falls.jpg&ehk=xWOh94o6eaGuf8ZOAMoC5qbEDpc5wF1IzZQ2I8mnA0U%3d&risl=&pid=ImgRaw&r=0 "
+        ]
+},
+{
+  name: "Daman",
+  description: "Calm beaches, forts, and Portuguese architecture. Great for peaceful getaways.",
+  season: ["winter"],
+  group: ["family", "friends"],
+  mood: ["relaxing"],
+  budget: "low",
+  image: "https://dnhddtourism.in/storage/top_attraction/MDjRbrgcK3ayAdmITmR8Y2Pa7ERcHZfWeZZwNCNs.jpg",
+    gallery:[
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc=",
+           "https://plus.unsplash.com/premium_photo-1697729844084-c03db2377161?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dWRhaXB1cnxlbnwwfHwwfHx8MA%3D%3D",
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc="
+        ]
+},
+{
+  name: "Varanasi",
+  description: "Spiritual journey along the sacred Ganga ghats.",
+  season: ["rainy"],
+  group: ["solo"],
+  mood: ["cultural"],
+  budget: "low",
+  image: "https://www.andbeyond.com/wp-content/uploads/sites/5/iStock_000058485880_XXXLarge.jpg",
+    gallery:[
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc=",
+           "https://plus.unsplash.com/premium_photo-1697729844084-c03db2377161?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dWRhaXB1cnxlbnwwfHwwfHx8MA%3D%3D",
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc="
+        ]
+},
+{
+  name: "Diu",
+  description: "Clean beaches, historic forts, and vibrant culture. Ideal for couples and families.",
+  season: ["winter"],
+  group: ["couple"],
+  mood: ["romantic"],
+  budget: "medium",
+  image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHGN8OTx_OhSgnYn_8Q6iGwc1aNShkoG-hkw&s",
+    gallery:[
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc=",
+           "https://plus.unsplash.com/premium_photo-1697729844084-c03db2377161?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dWRhaXB1cnxlbnwwfHwwfHx8MA%3D%3D",
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc="
+        ]
+},
+{
+  name: "Saputara",
+  description: "Gujarat’s only hill station with scenic beauty and boating lake.",
+  season: ["monsoon"],
+  group: ["family", "friends"],
+  mood: ["adventure" ,"nature"],
+  budget: "low",
+  image: "https://plus.unsplash.com/premium_photo-1675827055694-010aef2cf08f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmF0dXJlfGVufDB8fDB8fHww",
+    gallery:[
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc=",
+           "https://plus.unsplash.com/premium_photo-1697729844084-c03db2377161?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dWRhaXB1cnxlbnwwfHwwfHx8MA%3D%3D",
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc="
+        ]
+},
+
+{
+  name: "Gir National Park",
+  description: "Home of the Asiatic lions, great for wildlife enthusiasts.",
+  season: ["winter"],
+  group: ["family"],
+  mood: ["adventure"," nature"],
+  budget: "medium",
+  image: "https://images.unsplash.com/photo-1575550959106-5a7defe28b56?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlvbiUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D",
+    gallery:[
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc=",
+           "https://plus.unsplash.com/premium_photo-1697729844084-c03db2377161?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dWRhaXB1cnxlbnwwfHwwfHx8MA%3D%3D",
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc="
+        ]
+},
+{
+  name: "Somnath",
+  description: "Ancient Jyotirlinga temple with spiritual vibes and sea views.",
+  season: ["winter"],
+  group: ["family"],
+  mood: ["cultural"],
+  budget: "low",
+  image: "https://c9admin.cottage9.com/uploads/5839/somnath-temple.jpg",
+    gallery:[
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc=",
+           "https://plus.unsplash.com/premium_photo-1697729844084-c03db2377161?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dWRhaXB1cnxlbnwwfHwwfHx8MA%3D%3D",
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc="
+        ]
+},
+{
+  name: "Mount Abu",
+  description: "A hill station in Rajasthan near Gujarat border, scenic and romantic.",
+  season: ["summer"],
+  group: ["couple" , "friends"],
+  mood: ["romantic"],
+  budget: "medium",
+  image: "https://udaipurblog.com/wp-content/uploads/2018/04/Goibibo.jpg",
+    gallery:[
+           "https://assets.cntraveller.in/photos/669120910f15e089fb0cd3f1/16:9/w_5616,h_3159,c_limit/1206473179",
+           "https://www.tripify.com/resources/images/blog/blog-details/shopping-in-mount-abu.jpg",
+           "https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/city/explore/Trevor01.jpg",
+           "https://www.holidify.com/images/cmsuploads/compressed/om-shnati-pandav-bhavan-mount-abu-e1524296388781_20190715111832.jpg",
+           "https://etimg.etb2bimg.com/photo/78065805.cms"
+        ]
+},
+{
+  name: "Ladakh",
+  description: "Breathtaking landscapes and high-altitude adventure.",
+  season: ["summer"],
+  group: ["friends"],
+  mood: ["adventure"],
+  budget: "high",
+  image: "https://media.istockphoto.com/id/472108091/photo/camel-is-waiting-for-tourists-in-nubra-valley-leh.webp?a=1&b=1&s=612x612&w=0&k=20&c=DBbRm7bM-JVaiiYQa6ni6udM960XS5f4v0otUza4gyE=",
+    gallery:[
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc=",
+           "https://plus.unsplash.com/premium_photo-1697729844084-c03db2377161?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dWRhaXB1cnxlbnwwfHwwfHx8MA%3D%3D",
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc="
+        ]
+},
+{
+  name: "Shimla",
+  description: "Colonial charm and scenic hills.",
+  season: ["winter"],
+  group: ["family", "friends"],
+  mood: ["relaxing"],
+  budget: "low",
+  image: "https://plus.unsplash.com/premium_photo-1661962094872-c52ebe1d3666?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D",
+    gallery:[
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc=",
+           "https://plus.unsplash.com/premium_photo-1697729844084-c03db2377161?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dWRhaXB1cnxlbnwwfHwwfHx8MA%3D%3D",
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc="
+        ]
+},
+{
+  name: "Kutch",
+  description: "White desert with vibrant culture and Rann Utsav.",
+  season: ["winter"],
+  group: ["family"],
+  mood: ["cultural"],
+  budget: "medium",
+  image: "https://images.unsplash.com/photo-1549468057-5b7fa1a41d7a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a3V0Y2h8ZW58MHx8MHx8fDA%3D",
+    gallery:[
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc=",
+           "https://plus.unsplash.com/premium_photo-1697729844084-c03db2377161?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dWRhaXB1cnxlbnwwfHwwfHx8MA%3D%3D",
+           "https://media.istockphoto.com/id/1406869055/photo/aerial-view-of-luxury-resort-in-maldives.webp?a=1&b=1&s=612x612&w=0&k=20&c=wEhjpDavTfmP3wrOuZaXUz0s4diHVmIQDoBsFhz-Nlc="
+        ]
+},
+
+
+    
+    ];
+
+    const seasonFilter = document.getElementById("season");
+    const groupFilter = document.getElementById("group");
+    const moodFilter = document.getElementById("mood");
+    const budgetFilter = document.getElementById("budget");
+    const tripCards = document.getElementById("tripCards");
+
+    function renderTrips(data) {
+      tripCards.innerHTML = "";
+      if (data.length === 0) {
+        tripCards.innerHTML = "<p>No matching trips found.</p>";
+        return;
+      }
+
+      data.forEach(trip => {
+        const card = document.createElement("div");
+        card.className = "trip-card";
+        card.innerHTML = `
+          <img src="${trip.image}" alt="${trip.name}">
+          <div class="content">
+            <h3>${trip.name}</h3>
+            <div class="trip-overlay-center">${trip.name}</div>
+            <p>${trip.description}</p>
+          </div>
+        `;
+
+        //CLICK to open model
+        card.addEventListener("click", ()=>openModal(trip));
+        tripCards.appendChild(card);
+      });
+    }
+
+    // function applyFilters() {
+    //   const selectedSeason = seasonFilter.value;
+    //   const selectedGroup = groupFilter.value;
+    //   const selectedMood = moodFilter.value;
+    //   const selectedBudget = budgetFilter.value;
+
+    //   const filtered = trips.filter(trip => {
+    //     return (
+    //       (selectedSeason === "" || trip.season === selectedSeason) &&
+    //       (selectedGroup === "" || trip.group === selectedGroup) &&
+    //       (selectedMood === "" || trip.mood === selectedMood) &&
+    //       (selectedBudget === "" || trip.budget === selectedBudget)
+    //     );
+    //   });
+
+    //   renderTrips(filtered);
+    // }
+
+
+    function applyFilters() {
+  const selectedSeason = seasonFilter.value;
+  const selectedGroup = groupFilter.value;
+  const selectedMood = moodFilter.value;
+  const selectedBudget = budgetFilter.value;
+
+  const filtered = trips.filter(trip => {
+    const seasonMatch = !selectedSeason || (Array.isArray(trip.season) && trip.season.includes(selectedSeason));
+    const groupMatch = !selectedGroup || (Array.isArray(trip.group) && trip.group.includes(selectedGroup));
+    const moodMatch = !selectedMood || (Array.isArray(trip.mood) && trip.mood.includes(selectedMood));
+    const budgetMatch = !selectedBudget || trip.budget === selectedBudget;
+
+    return seasonMatch && groupMatch && moodMatch && budgetMatch;
+  });
+
+  renderTrips(filtered);
+}
+
+    // Attach listeners
+    [seasonFilter, groupFilter, moodFilter, budgetFilter].forEach(select => {
+      select.addEventListener("change", applyFilters);
+    });
+
+    // Initial load
+    renderTrips(trips);
+
+    // DETAIL MODAL 
+
+
+    const modal = document.getElementById("detailsModal");
+const closeModal = document.getElementById("closeModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalDescription = document.getElementById("modalDescription");
+const modalGallery = document.getElementById("modalGallery");
+
+//image modal
+const imageModal= document.getElementById("imageModal");
+const zoomedImage = document.getElementById("zoomedImage");
+const imgClose = document.getElementById("imgClose");
+
+// Function to open trip modal
+// function openModal(title, description, images) {
+//   modal.style.display = "block";
+//   modalTitle.textContent = title;
+//   modalDescription.textContent = description;
+
+  // Fill gallery
+//   modalGallery.innerHTML = "";
+//   images.forEach(imgSrc => {
+//     const img = document.createElement("img");
+//     img.src = imgSrc;
+//     img.onclick = () => openImageModal(imgSrc);
+//     modalGallery.appendChild(img);
+//   });
+// }
+
+// Function to open zoomed image
+function openImageModal(src) {
+  imageModal.style.display = "block";
+  zoomedImage.src = src;
+}
+
+// Close buttons
+closeModal.onclick = () => modal.style.display = "none";
+imgClose.onclick = () => imageModal.style.display = "none";
+
+// Close on outside click
+window.onclick = function(event) {
+  if (event.target === modal) modal.style.display = "none";
+  if (event.target === imageModal) imageModal.style.display = "none";
+};
+
+// 
+
+//render cards
+// trips.forEach(trip =>{
+//   const card = document.createElement("div");
+//   card.classList.add("trip-card");
+//   card.innerHTML = ` <img src="${trip.image}" alt="${trip.title}">
+//   <h3>${trip.name}</h3>
+//   <p>${trip.description}</p> `;
+//   card.addEventListener("click", ()=> openModal(trip));
+//   tripCards.appendChild(card);
+// });
+
+// Function to open modal
+function openModal(trip) {
+  modalTitle.textContent = trip.name;
+  modalDescription.textContent = trip.details;
+  modalGallery.innerHTML = "";
+  trip.gallery.forEach(img => {
+    const imgElem = document.createElement("img");
+    imgElem.src = img;
+    modalGallery.appendChild(imgElem);
+  });
+  
+  modal.style.display = "flex";
+}
+
+// Close modal
+// closeModal.addEventListener("click", () => {
+//   modal.style.display = "none";
+// });
+// window.addEventListener("click", (e) => {
+//   if (e.target === modal) modal.style.display = "none";
+// });
+
+//GALLERY JS
+
+    //DETAIL MODAL END
+
+
+
+
+
+    
+  </script>
+
+
+
+
+
+  <!-- Popup Modal -->
+<!-- <div id="tripModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <img id="modalImage" src="" alt="" />
+    <p id="modalDescription"></p>
+    <ul id="modalDetails"></ul>
+  </div>
+</div> -->
+
+
+</body>
+</html>

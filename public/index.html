@@ -51,7 +51,7 @@
                 ></span
             >
             
-            <ul class="nav-links">
+            <ul class="nav-links" id="menu">
                 <li>
                     <a href="#home" id="pri" class="active cir_border">Home</a>
                 </li>
@@ -63,15 +63,15 @@
                     <a href="#tours" id="quad" class="cir_border">Tours</a>
                 </li>
                 <li><a href="#about" id="quint" class="cir_border">About</a></li>
-                <li>
+                <!-- <li>
                     <a href="#contribution" id="hex" class="cir_border"
                         >Contributions</a
                     >
-                </li>
+                </li> -->
                 <li>
                     <a href="#contact" id="hept" class="cir_border">Contact</a>
                 </li>
-                <li>
+                <!-- <li>
                     <div>
                         <input
                             type="checkbox"
@@ -84,7 +84,7 @@
                             <div class="ball"></div>
                         </label>
                     </div>
-                </li>
+                </li> -->
             </ul>
 
             <!--Login-->
@@ -371,7 +371,7 @@ function closeModal12() {
 </script>
 
             
-            <img src="./img/menu-btn.png" alt="" class="menu-btn" /> 
+            <img src="./img/menu-btn.png" alt="" class="menu-btn" id="mobile_menu"  /> 
         </nav>
         <!--navbar-->
 
@@ -381,10 +381,10 @@ function closeModal12() {
                 <div class="line"></div>
                 <h1>A WONDERFUL GIFT</h1>
                 <a
-                    href="#about"
+                    href="Filter/filter.html"
                     class="ctn "
                     onclick='removeall(); $("#quad").css("border", "2px solid whitesmoke"); $("#quad").css("border-radius", "20px");'
-                    >Learn more</a
+                    >Search</a
                 >
             </div>
         </header>
@@ -698,9 +698,20 @@ function closeModal12() {
             const menuBtn = document.querySelector(".menu-btn");
             const navlinks = document.querySelector(".nav-links");
 
-            menuBtn.addEventListener("click", () => {
+            menuBtn.addEventListener("click", (e) => {
+              e.stopPropagation();
                 navlinks.classList.toggle("mobile-menu");
             });
+
+            document.addEventListener("click",() => {
+              // const clickedInside = navLinks.contains(e.target) || menuBtn.contains(e.target);
+              // if(!clickedInside){
+                navLinks.classList.remove("mobile_menu");
+              // }
+            });
+
+
+
         </script>
 
         <!--FIREBASE-->

@@ -1,0 +1,170 @@
+/* DETAIL MODAL  */
+/* .modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 90%;
+  padding: 20px;
+  position: relative;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #333;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+.gallery img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+} */
+
+/* DETAIL MODAL END */
+
+
+
+
+
+
+
+/* 
+body {
+  font-family: Arial, sans-serif;
+}
+
+#openPanelBtn {
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.panel.hidden {
+  transform: translateX(100%);
+}
+
+.panel.visible {
+  transform: translateX(0);
+} */
+
+/* .default-trip-card {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: #fff;
+  padding: 15px;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  max-width: 700px;
+}
+
+.default-trip-card img {
+  width: 220px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.default-trip-card .trip-info {
+  flex: 1;
+}
+
+.default-trip-card h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #006699;
+}
+
+.default-trip-card p {
+  font-size: 14px;
+  color: #444;
+  margin: 10px 0;
+}
+
+.default-trip-card .tags span {
+  background: #e3f2fd;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-right: 8px;
+  font-size: 13px;
+  color: #0077b6;
+} */
+
+/* Modal Styles */
+/* .modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+  animation: fadeIn 0.3s;
+}
+
+.close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; top: -50px; }
+  to { opacity: 1; top: 0; }
+} */
+
+
