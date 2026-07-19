@@ -641,7 +641,7 @@ function closeModal12() {
                     <div class="c_boxx">
                         <a href="mailto:abc@gmail.com"
                             ><i class="fa fa-envelope"></i>
-                            Mail: tourism@adventure.com
+                            Mail: tripify@adventure.com
                         </a>
                     </div>
                     <div class="c_boxx">
@@ -806,6 +806,13 @@ window.uploadBlog = async function () {
   const file = document.getElementById("blog-image").files[0];
 //   const errorMsg = document.getElementById("error-message");
   const postBtn = document.getElementById("post-btn");
+ // Check maximum 1000 words
+const wordCount = content.trim().split(/\s+/).filter(word => word.length > 0).length;
+
+if (wordCount > 1000) {
+    alert(`Blog cannot exceed 1000 words.\nCurrent words: ${wordCount}`);
+    return;
+}
 
 
   // Check if user is logged in
