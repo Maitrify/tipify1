@@ -806,6 +806,13 @@ window.uploadBlog = async function () {
   const file = document.getElementById("blog-image").files[0];
 //   const errorMsg = document.getElementById("error-message");
   const postBtn = document.getElementById("post-btn");
+ // Check maximum 1000 words
+const wordCount = content.trim().split(/\s+/).filter(word => word.length > 0).length;
+
+if (wordCount > 1000) {
+    alert(`Blog cannot exceed 1000 words.\nCurrent words: ${wordCount}`);
+    return;
+}
 
 
   // Check if user is logged in
