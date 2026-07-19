@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tripify Premium | Discover Luxury Travel</title>
+  <meta name="description" content="Explore 50+ premium Indian travel destinations filtered by mood, season, budget and group size on Tripify.">
+  <title>Tripify | Discover Your Perfect Journey</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -21,763 +22,221 @@
       --shadow: 0 10px 30px rgba(10, 26, 53, 0.15);
       --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
       background: linear-gradient(135deg, #f5f9ff 0%, #e8f2ff 100%);
       color: var(--text-dark);
       line-height: 1.6;
       min-height: 100vh;
-      position: relative;
     }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.02"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%230a1a35"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 30px;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 50px;
-      position: relative;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-
+    .container { max-width: 1400px; margin: 0 auto; padding: 30px; }
+    header { text-align: center; margin-bottom: 50px; position: relative; }
+    .logo { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px; }
     .logo-icon {
-      width: 50px;
-      height: 50px;
+      width: 50px; height: 50px;
       background: linear-gradient(135deg, var(--navy), var(--sapphire));
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--white);
-      font-size: 24px;
-      box-shadow: var(--shadow);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 24px; box-shadow: var(--shadow);
     }
-
     .logo-text {
-      font-size: 2.8rem;
-      font-weight: 700;
+      font-size: 2.8rem; font-weight: 700;
       background: linear-gradient(135deg, var(--navy), var(--sapphire));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px;
     }
-
     .premium-badge {
       display: inline-block;
       background: linear-gradient(135deg, var(--gold), #f7e98e);
-      color: var(--navy);
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 5px 15px;
-      border-radius: 20px;
-      margin-left: 10px;
-      vertical-align: super;
-      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+      color: var(--navy); font-size: 0.8rem; font-weight: 700;
+      padding: 5px 15px; border-radius: 20px; margin-left: 10px;
+      vertical-align: super; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
     }
+    h2 { font-size: 2.2rem; color: var(--navy); margin-bottom: 15px; font-weight: 600; letter-spacing: -0.5px; }
+    .subtitle { color: var(--text-light); font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; line-height: 1.7; }
+    .divider { width: 80px; height: 4px; background: linear-gradient(to right, var(--gold), var(--sapphire)); margin: 0 auto; border-radius: 2px; }
 
-    h2 {
-      font-size: 2.2rem;
-      color: var(--navy);
-      margin-bottom: 15px;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-    }
-
-    .subtitle {
-      color: var(--text-light);
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 30px;
-      line-height: 1.7;
-    }
-
-    .divider {
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, var(--gold), var(--sapphire));
-      margin: 0 auto;
-      border-radius: 2px;
-    }
-
-    /* Filter Panel Styles */
-    .filter-panel-container {
-      position: relative;
-      margin-bottom: 40px;
-      display: flex;
-      justify-content: center;
-    }
-
+    /* Filter Panel for Mobile */
+    .filter-panel-container { position: relative; margin-bottom: 40px; display: flex; justify-content: center; }
     #openPanelBtn {
       background: linear-gradient(135deg, var(--sapphire), var(--royal-blue));
-      color: var(--white);
-      border: none;
-      padding: 16px 32px;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: var(--shadow);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      position: relative;
-      overflow: hidden;
+      color: var(--white); border: none; padding: 16px 32px; border-radius: 12px;
+      font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: var(--transition);
+      box-shadow: var(--shadow); display: flex; align-items: center; gap: 12px;
+      position: relative; overflow: hidden;
     }
-
-    #openPanelBtn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: var(--transition);
-    }
-
-    #openPanelBtn:hover::before {
-      left: 100%;
-    }
-
-    #openPanelBtn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(42, 90, 154, 0.4);
-    }
-
+    #openPanelBtn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(42, 90, 154, 0.4); }
     #filterPanel {
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--white);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 20px 50px rgba(10, 26, 53, 0.2);
-      z-index: 100;
-      min-width: 350px;
-      transition: var(--transition);
-      margin-top: 15px;
+      position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      background: var(--white); padding: 30px; border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(10, 26, 53, 0.2); z-index: 100;
+      min-width: 350px; transition: var(--transition); margin-top: 15px;
       border: 1px solid rgba(74, 140, 214, 0.1);
     }
-
-    #filterPanel.hidden {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateX(-50%) translateY(-15px);
-    }
-
-    #filterPanel.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    #filterPanel::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 12px solid transparent;
-      border-right: 12px solid transparent;
-      border-bottom: 12px solid var(--white);
-    }
-
-    .filter-form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .filter-group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .filter-group label {
-      font-weight: 600;
-      color: var(--navy);
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .filter-group label i {
-      color: var(--sapphire);
-    }
-
+    #filterPanel.hidden { opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(-15px); }
+    #filterPanel.visible { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .filter-form { display: flex; flex-direction: column; gap: 20px; }
+    .filter-group { display: flex; flex-direction: column; gap: 10px; }
+    .filter-group label { font-weight: 600; color: var(--navy); font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+    .filter-group label i { color: var(--sapphire); }
     .filter-group select {
-      padding: 14px 16px;
-      border: 2px solid var(--light-blue);
-      border-radius: 10px;
-      font-size: 1rem;
-      transition: var(--transition);
-      background: var(--white);
-      color: var(--text-dark);
-      cursor: pointer;
-      appearance: none;
+      padding: 14px 16px; border: 2px solid var(--light-blue); border-radius: 10px;
+      font-size: 1rem; transition: var(--transition); background: var(--white);
+      color: var(--text-dark); cursor: pointer; appearance: none;
       background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a3a6c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      background-size: 16px;
+      background-repeat: no-repeat; background-position: right 16px center; background-size: 16px;
     }
-
-    .filter-group select:focus {
-      outline: none;
-      border-color: var(--sapphire);
-      box-shadow: 0 0 0 3px rgba(42, 90, 154, 0.1);
-    }
-
+    .filter-group select:focus { outline: none; border-color: var(--sapphire); box-shadow: 0 0 0 3px rgba(42, 90, 154, 0.1); }
     .apply-filters-btn {
       background: linear-gradient(135deg, var(--sapphire), var(--royal-blue));
-      color: var(--white);
-      border: none;
-      padding: 16px;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+      color: var(--white); border: none; padding: 16px; border-radius: 10px;
+      font-size: 1rem; font-weight: 600; cursor: pointer; transition: var(--transition);
+      margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 10px;
     }
+    .apply-filters-btn:hover { background: linear-gradient(135deg, var(--royal-blue), var(--navy)); transform: translateY(-2px); }
 
-    .apply-filters-btn:hover {
-      background: linear-gradient(135deg, var(--royal-blue), var(--navy));
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(42, 90, 154, 0.3);
-    }
-
-    /* Main filter container */
+    /* Desktop Filter Container */
     .filter-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 50px;
-      background: var(--white);
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(74, 140, 214, 0.1);
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+      margin-bottom: 50px; background: var(--white); padding: 25px;
+      border-radius: 20px; box-shadow: var(--shadow); position: relative;
+      overflow: hidden; border: 1px solid rgba(74, 140, 214, 0.1);
     }
-
     .filter-container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
       background: linear-gradient(to right, var(--gold), var(--sapphire));
     }
-
     .filter-container select {
-      padding: 14px 20px;
-      border-radius: 10px;
-      border: 2px solid var(--light-blue);
-      min-width: 180px;
-      transition: var(--transition);
-      font-size: 1rem;
-      background: var(--white);
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(10, 26, 53, 0.05);
-      appearance: none;
+      padding: 14px 20px; border-radius: 10px; border: 2px solid var(--light-blue);
+      min-width: 180px; transition: var(--transition); font-size: 1rem;
+      background: var(--white); cursor: pointer;
+      box-shadow: 0 4px 10px rgba(10, 26, 53, 0.05); appearance: none;
       background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a3a6c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      background-size: 16px;
+      background-repeat: no-repeat; background-position: right 16px center; background-size: 16px;
     }
-
-    .filter-container select:hover {
-      border-color: var(--sapphire);
-      transform: translateY(-2px);
+    .filter-container select:hover { border-color: var(--sapphire); transform: translateY(-2px); }
+    .filter-container select:focus { outline: none; border-color: var(--sapphire); box-shadow: 0 0 0 3px rgba(42, 90, 154, 0.1); }
+    .results-count {
+      text-align: center; margin-bottom: 20px; font-size: 0.95rem; color: var(--text-light);
+      font-weight: 500;
     }
-
-    .filter-container select:focus {
-      outline: none;
-      border-color: var(--sapphire);
-      box-shadow: 0 0 0 3px rgba(42, 90, 154, 0.1);
-    }
+    .results-count span { color: var(--navy); font-weight: 700; }
 
     /* Cards */
     .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 30px;
-      padding: 10px;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px; padding: 10px;
     }
-
     .trip-card {
-      position: relative;
-      background: var(--white);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      cursor: pointer;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
+      position: relative; background: var(--white); border-radius: 20px; overflow: hidden;
+      box-shadow: var(--shadow); transition: var(--transition); cursor: pointer;
+      height: 100%; display: flex; flex-direction: column;
       border: 1px solid rgba(74, 140, 214, 0.1);
-    }
-
-    .trip-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(10, 26, 53, 0.2);
-    }
-
-    .trip-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, transparent 0%, rgba(10, 26, 53, 0.1) 100%);
-      z-index: 1;
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .trip-card:hover::before {
-      opacity: 1;
-    }
-
-    .card-image {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-
-    .trip-card:hover .card-image {
-      transform: scale(1.05);
-    }
-
-    .trip-overlay-center {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(10, 26, 53, 0.9) 0%, rgba(42, 90, 154, 0.9) 100%);
-      color: var(--white);
-      font-size: 1.5rem;
-      font-weight: 600;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transition: var(--transition);
-      z-index: 2;
-    }
-
-    .trip-card:hover .trip-overlay-center {
-      opacity: 1;
-    }
-
-    .trip-card .content {
-      padding: 25px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .trip-card h3 {
-      margin: 0 0 15px;
-      font-size: 1.5rem;
-      color: var(--navy);
-      font-weight: 700;
-    }
-
-    .trip-card p {
-      font-size: 1rem;
-      color: var(--text-light);
-      margin: 0;
-      flex-grow: 1;
-      line-height: 1.7;
-    }
-
-    .trip-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .trip-tag {
-      background: var(--light-blue);
-      color: var(--sapphire);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .budget-tag {
-      background: linear-gradient(135deg, var(--gold), #f7e98e);
-      color: var(--navy);
-    }
-
-    .premium-banner {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: linear-gradient(135deg, var(--gold), #f7e98e);
-      color: var(--navy);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      z-index: 3;
-      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
-    }
-
-    .no-results {
-      text-align: center;
-      padding: 60px;
-      grid-column: 1 / -1;
-      background: var(--white);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-    }
-
-    .no-results h3 {
-      color: var(--navy);
-      margin-bottom: 15px;
-      font-size: 1.8rem;
-    }
-
-    .no-results p {
-      color: var(--text-light);
-      font-size: 1.1rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .trip-card {
       animation: fadeIn 0.5s ease forwards;
     }
+    .trip-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(10, 26, 53, 0.2); }
+    .card-image { width: 100%; height: 220px; object-fit: cover; transition: var(--transition); }
+    .trip-card:hover .card-image { transform: scale(1.05); }
+    .trip-overlay-center {
+      position: absolute; top: 0; left: 0; width: 100%; height: 220px;
+      background: linear-gradient(135deg, rgba(10, 26, 53, 0.88) 0%, rgba(42, 90, 154, 0.88) 100%);
+      color: var(--white); font-size: 1.4rem; font-weight: 600;
+      display: flex; justify-content: center; align-items: center;
+      opacity: 0; transition: var(--transition); z-index: 2;
+    }
+    .trip-card:hover .trip-overlay-center { opacity: 1; }
+    .trip-card .content { padding: 22px; flex-grow: 1; display: flex; flex-direction: column; }
+    .trip-card h3 { margin: 0 0 6px; font-size: 1.3rem; color: var(--navy); font-weight: 700; }
+    .trip-card .state-label { font-size: 0.82rem; color: var(--text-light); margin-bottom: 10px; }
+    .trip-card p { font-size: 0.92rem; color: var(--text-light); margin: 0; flex-grow: 1; line-height: 1.7; }
+    .trip-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .trip-tag {
+      background: var(--light-blue); color: var(--sapphire);
+      padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+    }
+    .budget-tag { background: linear-gradient(135deg, var(--gold), #f7e98e); color: var(--navy); }
+    .mood-badge {
+      position: absolute; top: 14px; left: 14px; z-index: 3;
+      background: rgba(10, 26, 53, 0.82); color: #fff;
+      padding: 4px 12px; border-radius: 20px; font-size: 0.74rem; font-weight: 700;
+      backdrop-filter: blur(4px);
+    }
+    .rating-badge {
+      position: absolute; top: 14px; right: 14px; z-index: 3;
+      background: linear-gradient(135deg, var(--gold), #f7e98e); color: var(--navy);
+      padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 700;
+    }
+    .no-results {
+      text-align: center; padding: 60px; grid-column: 1 / -1;
+      background: var(--white); border-radius: 20px; box-shadow: var(--shadow);
+    }
+    .no-results h3 { color: var(--navy); margin-bottom: 15px; font-size: 1.8rem; }
+    .no-results p { color: var(--text-light); font-size: 1.1rem; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
     /* DETAIL MODAL */
     .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(10, 26, 53, 0.8);
-      backdrop-filter: blur(5px);
+      display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(10, 26, 53, 0.8); backdrop-filter: blur(5px);
     }
-
     .modal-content {
-      background: var(--white);
-      margin: auto;
-      padding: 40px;
-      border-radius: 25px;
-      width: 90%;
-      max-width: 1000px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 25px 60px rgba(10, 26, 53, 0.3);
-      position: relative;
+      background: var(--white); margin: auto; padding: 40px; border-radius: 25px;
+      width: 90%; max-width: 1000px; max-height: 90vh; overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(10, 26, 53, 0.3); position: relative;
       animation: modalFadeIn 0.4s ease;
-      border: 1px solid rgba(74, 140, 214, 0.1);
     }
-
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
+    @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
     .close-btn {
-      color: var(--text-light);
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 28px;
-      cursor: pointer;
-      transition: var(--transition);
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
+      color: var(--text-light); position: absolute; top: 20px; right: 25px;
+      font-size: 28px; cursor: pointer; transition: var(--transition);
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%;
     }
-
-    .close-btn:hover {
-      background: var(--light-blue);
-      color: var(--navy);
-      transform: rotate(90deg);
-    }
-
-    #modalTitle {
-      margin-top: 0;
-      color: var(--navy);
-      font-size: 2.2rem;
-      padding-bottom: 15px;
-      border-bottom: 2px solid var(--light-blue);
-      margin-bottom: 25px;
-    }
-
-    .detail-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-bottom: 30px;
-    }
-
-    .detail-section {
-      background: var(--light-blue);
-      padding: 25px;
-      border-radius: 15px;
-      border-left: 4px solid var(--sapphire);
-    }
-
-    .detail-section h3 {
-      color: var(--navy);
-      margin-bottom: 15px;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .detail-section h3 i {
-      color: var(--sapphire);
-    }
-
-    .detail-section p {
-      color: var(--text-dark);
-      line-height: 1.7;
-      margin-bottom: 0;
-    }
-
-    .detail-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .detail-list li {
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(74, 140, 214, 0.2);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .detail-list li:last-child {
-      border-bottom: none;
-    }
-
-    .detail-list i {
-      color: var(--sapphire);
-      width: 20px;
-    }
-
-    .highlight-box {
-      background: linear-gradient(135deg, var(--sapphire), var(--royal-blue));
-      color: white;
-      padding: 25px;
-      border-radius: 15px;
-      margin: 20px 0;
-    }
-
-    .highlight-box h3 {
-      color: white;
-      margin-bottom: 15px;
-      font-size: 1.4rem;
-    }
-
-    .highlight-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .highlight-list li {
-      padding: 10px 0;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1.05rem;
-    }
-
-    .highlight-list i {
-      color: var(--gold);
-    }
-
-    .gallery {
-      margin-top: 30px;
-    }
-
-    .gallery h3 {
-      margin-bottom: 20px;
-      color: var(--navy);
-      font-size: 1.5rem;
-    }
-
-    #modalGallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 15px;
-      max-height: 500px;
-      overflow-y: auto;
-      padding-right: 10px;
-    }
-
-    #modalGallery img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: var(--transition);
-      border: 2px solid transparent;
-    }
-
-    #modalGallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(10, 26, 53, 0.2);
-      border-color: var(--sapphire);
-    }
+    .close-btn:hover { background: var(--light-blue); color: var(--navy); transform: rotate(90deg); }
+    #modalTitle { margin-top: 0; color: var(--navy); font-size: 2.2rem; padding-bottom: 15px; border-bottom: 2px solid var(--light-blue); margin-bottom: 25px; }
+    .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .detail-section { background: var(--light-blue); padding: 22px; border-radius: 15px; border-left: 4px solid var(--sapphire); }
+    .detail-section h3 { color: var(--navy); margin-bottom: 12px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+    .detail-section h3 i { color: var(--sapphire); }
+    .detail-section p { color: var(--text-dark); line-height: 1.7; margin-bottom: 0; }
+    .detail-list { list-style: none; padding: 0; }
+    .detail-list li { padding: 8px 0; border-bottom: 1px solid rgba(74, 140, 214, 0.2); display: flex; align-items: center; gap: 10px; }
+    .detail-list li:last-child { border-bottom: none; }
+    .detail-list i { color: var(--sapphire); width: 20px; }
+    .highlight-box { background: linear-gradient(135deg, var(--sapphire), var(--royal-blue)); color: white; padding: 25px; border-radius: 15px; margin: 20px 0; }
+    .highlight-box h3 { color: white; margin-bottom: 15px; font-size: 1.4rem; }
+    .highlight-list { list-style: none; padding: 0; }
+    .highlight-list li { padding: 10px 0; display: flex; align-items: center; gap: 12px; font-size: 1rem; }
+    .highlight-list i { color: var(--gold); }
+    .gallery { margin-top: 30px; }
+    .gallery h3 { margin-bottom: 20px; color: var(--navy); font-size: 1.5rem; }
+    #modalGallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; max-height: 400px; overflow-y: auto; }
+    #modalGallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 12px; cursor: pointer; transition: var(--transition); border: 2px solid transparent; }
+    #modalGallery img:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(10, 26, 53, 0.2); border-color: var(--sapphire); }
 
     /* Image zoom modal */
-    #imageModal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(10, 26, 53, 0.95);
-      text-align: center;
-    }
+    #imageModal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(10, 26, 53, 0.95); text-align: center; align-items: center; justify-content: center; }
+    #imageModal.open { display: flex; }
+    .zoomed-img { max-width: 90%; max-height: 90vh; border-radius: 15px; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+    #imgClose { position: absolute; top: 25px; right: 40px; color: white; font-size: 40px; cursor: pointer; transition: var(--transition); }
+    #imgClose:hover { transform: scale(1.1); color: var(--gold); }
 
-    .zoomed-img {
-      margin-top: 5%;
-      max-width: 90%;
-      max-height: 85%;
-      border-radius: 15px;
-      object-fit: contain;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    }
+    footer { text-align: center; margin-top: 60px; padding: 30px; color: var(--text-light); font-size: 0.9rem; border-top: 1px solid var(--light-blue); }
 
-    #imgClose {
-      position: absolute;
-      top: 25px;
-      right: 40px;
-      color: white;
-      font-size: 40px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    #imgClose:hover {
-      transform: scale(1.1);
-      color: var(--gold);
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      margin-top: 60px;
-      padding: 30px;
-      color: var(--text-light);
-      font-size: 0.9rem;
-      border-top: 1px solid var(--light-blue);
-    }
-
-    /* Responsive adjustments */
+    /* Responsive */
     @media (max-width: 768px) {
-      .filter-container {
-        display: none;
-      }
-      
-      .filter-panel-container {
-        display: block;
-      }
-      
-      .card-container {
-        grid-template-columns: 1fr;
-      }
-      
-      h2 {
-        font-size: 1.8rem;
-      }
-      
-      .logo-text {
-        font-size: 2.2rem;
-      }
-      
-      .modal-content {
-        padding: 25px;
-        width: 95%;
-      }
-      
-      #filterPanel {
-        min-width: 300px;
-      }
-      
-      .detail-grid {
-        grid-template-columns: 1fr;
-      }
+      .filter-container { display: none; }
+      .filter-panel-container { display: block; }
+      .card-container { grid-template-columns: 1fr; }
+      h2 { font-size: 1.8rem; }
+      .logo-text { font-size: 2.2rem; }
+      .modal-content { padding: 25px; width: 95%; }
+      #filterPanel { min-width: 300px; }
+      .detail-grid { grid-template-columns: 1fr; }
     }
-
     @media (min-width: 769px) {
-      .filter-panel-container {
-        display: none;
-      }
-      
-      .filter-container {
-        display: flex;
-      }
+      .filter-panel-container { display: none; }
+      .filter-container { display: flex; }
     }
   </style>
 </head>
@@ -785,23 +244,17 @@
   <div class="container">
     <header>
       <div class="logo">
-        <div class="logo-icon">
-          <i class="fas fa-compass"></i>
-        </div>
+        <div class="logo-icon"><i class="fas fa-compass"></i></div>
         <div class="logo-text">Tripify<span class="premium-badge">PREMIUM</span></div>
       </div>
       <h2>Discover Your Perfect Journey</h2>
-      <p class="subtitle">Explore our curated collection of luxury destinations, meticulously selected to match your travel preferences and create unforgettable experiences.</p>
+      <p class="subtitle">Explore our curated collection of 50+ Indian destinations, filtered by mood, season, budget, and group size.</p>
       <div class="divider"></div>
     </header>
 
-    <!-- Filter Panel for Mobile -->
+    <!-- Mobile Filter Panel -->
     <div class="filter-panel-container">
-      <button id="openPanelBtn">
-        <i class="fas fa-sliders-h"></i>
-        Filter Destinations
-      </button>
-      
+      <button id="openPanelBtn"><i class="fas fa-sliders-h"></i> Filter Destinations</button>
       <div id="filterPanel" class="hidden">
         <form id="filterForm" class="filter-form">
           <div class="filter-group">
@@ -810,10 +263,10 @@
               <option value="">Any Season</option>
               <option value="summer">Summer</option>
               <option value="winter">Winter</option>
-              <option value="rainy">Rainy</option>
+              <option value="rainy">Rainy / Monsoon</option>
+              <option value="yearround">Year Round</option>
             </select>
           </div>
-          
           <div class="filter-group">
             <label for="panelGroup"><i class="fas fa-users"></i> Group Size</label>
             <select id="panelGroup" name="group">
@@ -824,46 +277,49 @@
               <option value="friends">Friends</option>
             </select>
           </div>
-          
           <div class="filter-group">
             <label for="panelMood"><i class="fas fa-heart"></i> Mood</label>
             <select id="panelMood" name="mood">
               <option value="">Any Mood</option>
-              <option value="relaxing">Relaxing</option>
               <option value="adventure">Adventure</option>
+              <option value="relax">Relax</option>
               <option value="romantic">Romantic</option>
-              <option value="cultural">Cultural</option>
+              <option value="solo">Solo</option>
+              <option value="family">Family</option>
+              <option value="beach">Beach</option>
+              <option value="mountains">Mountains</option>
               <option value="nature">Nature</option>
+              <option value="spiritual">Spiritual</option>
+              <option value="foodlover">Food Lover</option>
+              <option value="photography">Photography</option>
+              <option value="luxury">Luxury Escape</option>
             </select>
           </div>
-          
           <div class="filter-group">
-            <label for="panelBudget"><i class="fas fa-coins"></i> Budget</label>
+            <label for="panelBudget"><i class="fas fa-rupee-sign"></i> Budget (per person)</label>
             <select id="panelBudget" name="budget">
               <option value="">Any Budget</option>
-              <option value="low">Economy</option>
-              <option value="medium">Comfort</option>
-              <option value="high">Luxury</option>
+              <option value="budget-0-5000">₹0 – ₹5,000</option>
+              <option value="budget-5001-10000">₹5,001 – ₹10,000</option>
+              <option value="budget-10001-20000">₹10,001 – ₹20,000</option>
+              <option value="budget-20001-50000">₹20,001 – ₹50,000</option>
+              <option value="budget-50000plus">₹50,000+</option>
             </select>
           </div>
-          
-          <button type="submit" class="apply-filters-btn">
-            <i class="fas fa-check"></i>
-            Apply Filters
-          </button>
+          <button type="submit" class="apply-filters-btn"><i class="fas fa-check"></i> Apply Filters</button>
         </form>
       </div>
     </div>
 
-    <!-- Main Filter Container for Desktop -->
+    <!-- Desktop Filter Container -->
     <div class="filter-container">
       <select id="season">
         <option value="">Season</option>
         <option value="summer">Summer</option>
         <option value="winter">Winter</option>
-        <option value="rainy">Rainy</option>
+        <option value="rainy">Rainy / Monsoon</option>
+        <option value="yearround">Year Round</option>
       </select>
-
       <select id="group">
         <option value="">Group Size</option>
         <option value="solo">Solo</option>
@@ -871,27 +327,33 @@
         <option value="family">Family</option>
         <option value="friends">Friends</option>
       </select>
-
       <select id="mood">
         <option value="">Mood</option>
-        <option value="relaxing">Relaxing</option>
         <option value="adventure">Adventure</option>
+        <option value="relax">Relax</option>
         <option value="romantic">Romantic</option>
-        <option value="cultural">Cultural</option>
+        <option value="solo">Solo</option>
+        <option value="family">Family</option>
+        <option value="beach">Beach</option>
+        <option value="mountains">Mountains</option>
         <option value="nature">Nature</option>
+        <option value="spiritual">Spiritual</option>
+        <option value="foodlover">Food Lover</option>
+        <option value="photography">Photography</option>
+        <option value="luxury">Luxury Escape</option>
       </select>
-
       <select id="budget">
-        <option value="">Budget</option>
-        <option value="low">Economy</option>
-        <option value="medium">Comfort</option>
-        <option value="high">Luxury</option>
+        <option value="">Budget (per person)</option>
+        <option value="budget-0-5000">₹0 – ₹5,000</option>
+        <option value="budget-5001-10000">₹5,001 – ₹10,000</option>
+        <option value="budget-10001-20000">₹10,001 – ₹20,000</option>
+        <option value="budget-20001-50000">₹20,001 – ₹50,000</option>
+        <option value="budget-50000plus">₹50,000+</option>
       </select>
     </div>
 
-    <div class="card-container" id="tripCards">
-      <!-- Cards will be generated by JavaScript -->
-    </div>
+    <div class="results-count" id="resultsCount"><span id="visibleCount">50</span> destinations found</div>
+    <div class="card-container" id="tripCards"></div>
   </div>
 
   <!-- DETAIL MODAL -->
@@ -899,39 +361,20 @@
     <div class="modal-content">
       <span class="close-btn" id="closeModal">&times;</span>
       <h2 id="modalTitle"></h2>
-      
       <div class="detail-grid">
-        <div class="detail-section">
-          <h3><i class="fas fa-calendar-alt"></i> Best Time to Visit</h3>
-          <p id="modalBestTime"></p>
-        </div>
-        
-        <div class="detail-section">
-          <h3><i class="fas fa-map-marker-alt"></i> How to Reach</h3>
-          <p id="modalHowToReach"></p>
-        </div>
-        
-        <div class="detail-section">
-          <h3><i class="fas fa-hotel"></i> Stay Options</h3>
-          <p id="modalStayOptions"></p>
-        </div>
-        
-        <div class="detail-section">
-          <h3><i class="fas fa-coins"></i> Budget Range</h3>
-          <p id="modalBudget"></p>
-        </div>
+        <div class="detail-section"><h3><i class="fas fa-calendar-alt"></i> Best Time to Visit</h3><p id="modalBestTime"></p></div>
+        <div class="detail-section"><h3><i class="fas fa-map-marker-alt"></i> How to Reach</h3><p id="modalHowToReach"></p></div>
+        <div class="detail-section"><h3><i class="fas fa-hotel"></i> Stay Options</h3><p id="modalStayOptions"></p></div>
+        <div class="detail-section"><h3><i class="fas fa-rupee-sign"></i> Budget Range</h3><p id="modalBudget"></p></div>
       </div>
-      
       <div class="highlight-box">
         <h3><i class="fas fa-star"></i> Top Experiences</h3>
         <ul class="highlight-list" id="modalHighlights"></ul>
       </div>
-      
       <div class="detail-section">
         <h3><i class="fas fa-info-circle"></i> Travel Tips</h3>
         <ul class="detail-list" id="modalTips"></ul>
       </div>
-      
       <div class="gallery">
         <h3><i class="fas fa-images"></i> Gallery</h3>
         <div id="modalGallery"></div>
@@ -940,368 +383,888 @@
   </div>
 
   <!-- Image zoom modal -->
-  <div class="modal" id="imageModal">
-    <span class="close-btn" id="imgClose">&times;</span>
-    <img class="zoomed-img" id="zoomedImage">
+  <div id="imageModal">
+    <span id="imgClose">&times;</span>
+    <img class="zoomed-img" id="zoomedImage" alt="Destination photo">
   </div>
 
-  <footer>
-    <p>Tripify Premium &copy; 2023 | Luxury Travel Experiences Curated for You</p>
-  </footer>
+  <footer><p>Tripify Premium &copy; 2025 | Luxury Travel Experiences Curated for You</p></footer>
 
   <script>
-    // Trip data with detailed information
-    const tripDetails = {
-      maldives: {
-        title: "Maldives Paradise",
-        bestTime: "December to April (dry season with perfect weather)",
-        howToReach: "Fly to Malé International Airport (MLE) from major international hubs, then transfer via speedboat or seaplane to your resort",
-        stayOptions: "Luxury overwater villas, private island resorts, and boutique hotels with world-class amenities",
-        budget: "Luxury: $500-$2000+ per night | Premium: $300-$500 per night",
-        highlights: [
-          "Private overwater villa experience",
-          "Crystal clear lagoon snorkeling",
-          "Sunset dolphin watching cruises",
-          "Underwater restaurant dining",
-          "Private sandbank picnics",
-          "Luxury spa treatments"
-        ],
-        tips: [
-          "Book seaplane transfers in advance during peak season",
-          "Pack reef-safe sunscreen and underwater camera",
-          "Respect local customs - modest clothing when visiting local islands",
-          "Try local Maldivian cuisine at resort restaurants",
-          "Consider all-inclusive packages for better value"
-        ],
-        gallery: [
-          "https://images.squarespace-cdn.com/content/v1/5260d046e4b0c0ba62540470/1623905649049-37JT5E3XQWUZKF6V8BU3/Hilton+Maldives+Amingiri+-+Speciality+Restaurant+%26+Champagne+Bar_Arch.jpg",
-          "https://i0.wp.com/www.tusktravel.com/blog/wp-content/uploads/2023/01/Coconut-Items-Maldives.jpg?resize=1200%2C800&ssl=1"
-        ],
-        season: "summer",
-        group: "couple",
-        mood: "relaxing",
-        budget: "high"
-      },
-      manali: {
-        title: "Manali Mountain Retreat",
-        bestTime: "October to June (snow season in winter, pleasant weather in summer)",
-        howToReach: "Fly to Bhuntar Airport (KUU) or take a scenic road trip from Delhi/Chandigarh via well-maintained highways",
-        stayOptions: "Luxury mountain resorts, boutique hotels, heritage properties, and cozy cottages with fireplace",
-        budget: "Luxury: $150-$400 per night | Comfort: $80-$150 per night | Economy: $30-$80 per night",
-        highlights: [
-          "Snow activities at Solang Valley",
-          "Ancient Hadimba Temple visit",
-          "Scenic drives to Rohtang Pass",
-          "River rafting in Beas River",
-          "Mountain trekking experiences",
-          "Local culture and cuisine tours"
-        ],
-        tips: [
-          "Carry warm clothing even in summer months",
-          "Acclimatize to high altitude gradually",
-          "Book adventure activities through registered operators",
-          "Try local Himachali dishes like Sidu and Dham",
-          "Reserve vehicles for Rohtang Pass in advance"
-        ],
-        gallery: [
-          "https://e1.pxfuel.com/desktop-wallpaper/668/380/desktop-wallpaper-himachal-tour-manali.jpg",
-          "https://images.unsplash.com/photo-1579689189009-874f5cac2db5?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1hbmFsaXxlbnwwfHwwfHx8MA%3D%3D"
-        ],
-        season: "winter",
-        group: "family",
-        mood: "adventure",
-        budget: "medium"
-      },
-      rishikesh: {
-        title: "Rishikesh Spiritual Haven",
-        bestTime: "September to November and February to May (pleasant weather for outdoor activities)",
-        howToReach: "Fly to Dehradun's Jolly Grant Airport (DED) or take a train to Haridwar followed by a short drive",
-        stayOptions: "Luxury riverside resorts, yoga ashrams, wellness retreats, and boutique hotels with Ganga views",
-        budget: "Luxury: $100-$300 per night | Comfort: $50-$100 per night | Economy: $20-$50 per night",
-        highlights: [
-          "Evening Ganga Aarti ceremony",
-          "White water rafting adventures",
-          "Yoga and meditation retreats",
-          "Beatles Ashram exploration",
-          "Bungee jumping and flying fox",
-          "Ayurvedic wellness treatments"
-        ],
-        tips: [
-          "Respect local customs - modest clothing in temples",
-          "Book adventure activities with certified operators",
-          "Carry cash as many places don't accept cards",
-          "Try vegetarian local cuisine",
-          "Participate in morning yoga sessions"
-        ],
-        gallery: [
-          "https://d3sftlgbtusmnv.cloudfront.net/blog/wp-content/uploads/2024/11/Things-To-Do-In-Rishikesh-With-Family-840x425.jpg",
-          "https://uttarakhandtourism.gov.in/assets/media/UTDB_media_1736491078under_banner_1.jpg"
-        ],
-        season: "rainy",
-        group: "solo",
-        mood: "nature",
-        budget: "low"
-      },
-      goa: {
-        title: "Goa Beach Paradise",
-        bestTime: "November to February (cool and pleasant weather)",
-        howToReach: "Fly to Goa International Airport (GOI) or take a scenic train journey to Madgaon or Thivim stations",
-        stayOptions: "Beachfront resorts, boutique hotels, heritage Portuguese villas, and budget-friendly hostels",
-        budget: "Luxury: $200-$500 per night | Comfort: $80-$200 per night | Economy: $20-$80 per night",
-        highlights: [
-          "Sunset at Anjuna Beach",
-          "Portuguese heritage architecture",
-          "Water sports and dolphin watching",
-          "Flea market shopping",
-          "Goan seafood cuisine",
-          "Nightlife and beach parties"
-        ],
-        tips: [
-          "Rent a scooter for easy exploration",
-          "Try authentic Goan fish curry and feni",
-          "Respect local customs away from beaches",
-          "Carry swimwear and sunscreen",
-          "Book water sports through licensed operators"
-        ],
-        gallery: [
-          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z29hJTIwYmVhY2h8ZW58MHx8MHx8fDA%3D",
-          "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Z29hJTIwYmVhY2h8ZW58MHx8MHx8fDA%3D"
-        ],
-        season: "summer",
-        group: "friends",
-        mood: "relaxing",
-        budget: "medium"
-      },
-      paris: {
-        title: "Paris Romantic Getaway",
-        bestTime: "April to June and September to October (mild weather and fewer crowds)",
-        howToReach: "Fly to Charles de Gaulle (CDG) or Orly (ORY) airports, then use the efficient Metro system to reach the city center",
-        stayOptions: "Luxury hotels with Eiffel Tower views, charming boutique hotels in Montmartre, and stylish apartments",
-        budget: "Luxury: $400-$1000+ per night | Comfort: $200-$400 per night | Economy: $80-$200 per night",
-        highlights: [
-          "Eiffel Tower ascent and evening light show",
-          "Louvre Museum masterpieces",
-          "Seine River cruise",
-          "Montmartre and Sacré-Cœur",
-          "French gourmet dining experiences",
-          "Shopping on Champs-Élysées"
-        ],
-        tips: [
-          "Purchase museum passes in advance",
-          "Learn basic French phrases",
-          "Validate metro tickets before use",
-          "Try local patisseries and cafes",
-          "Be aware of pickpockets in tourist areas"
-        ],
-        gallery: [
-          "https://images.unsplash.com/photo-1502602898536-47ad22581b52?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGFyaXN8ZW58MHx8MHx8fDA%3D",
-          "https://images.unsplash.com/photo-1431274172761-fca41d930114?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGFyaXN8ZW58MHx8MHx8fDA%3D"
-        ],
-        season: "summer",
-        group: "couple",
-        mood: "romantic",
-        budget: "high"
-      }
-    };
-
-    // Initialize the page with all trip cards
-    function initializeTripCards() {
-      const tripCardsContainer = document.getElementById('tripCards');
-      tripCardsContainer.innerHTML = '';
-      
-      // Create a card for each destination
-      for (const [key, trip] of Object.entries(tripDetails)) {
-        const card = document.createElement('div');
-        card.className = 'trip-card';
-        card.setAttribute('data-season', trip.season);
-        card.setAttribute('data-group', trip.group);
-        card.setAttribute('data-mood', trip.mood);
-        card.setAttribute('data-budget', trip.budget);
-        card.onclick = () => openModal(key);
-        
-        card.innerHTML = `
-          <img src="${trip.gallery[0]}" alt="${trip.title}" class="card-image">
-          <div class="trip-overlay-center">View Details</div>
-          <div class="content">
-            <h3>${trip.title}</h3>
-            <p>${trip.highlights[0]}</p>
-            <div class="trip-tags">
-              <span class="trip-tag">${trip.season}</span>
-              <span class="trip-tag">${trip.group}</span>
-              <span class="trip-tag budget-tag">${trip.budget === 'high' ? 'Luxury' : trip.budget === 'medium' ? 'Comfort' : 'Economy'}</span>
-            </div>
-          </div>
-        `;
-        
-        tripCardsContainer.appendChild(card);
-      }
+  // ===== 50+ DESTINATION DATA =====
+  const tripDetails = {
+    goa: {
+      title: "Goa Beach Paradise", state: "Goa",
+      image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=700&q=80",
+      rating: "4.7 ★", mood: "beach", season: "winter", group: "friends", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,000 – ₹20,000", description: "Tropical beaches, Portuguese heritage, vibrant nightlife and fresh seafood on India's western coast.",
+      bestTime: "November to February — cool, dry weather perfect for beach activities.",
+      howToReach: "Fly to Goa International Airport (GOI) or take scenic train to Madgaon/Thivim stations.",
+      stayOptions: "Beachfront resorts, boutique heritage villas, backpacker hostels.",
+      budget: "Budget: ₹8,000–₹25,000 per person | Luxury: ₹40,000+",
+      highlights: ["Sunset at Anjuna Beach", "Portuguese Heritage Walk in Old Goa", "Water sports & dolphin watching", "Dudhsagar Falls jeep safari", "Flea markets and nightlife"],
+      tips: ["Rent a scooter for ₹300–400/day", "Avoid monsoon season (June–Sep)", "Book Christmas–NYE stays 6+ weeks early"],
+      gallery: ["https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=500&q=75", "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&q=75"]
+    },
+    manali: {
+      title: "Manali Mountain Retreat", state: "Himachal Pradesh",
+      image: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=700&q=80",
+      rating: "4.8 ★", mood: "mountains", season: "winter", group: "friends", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,000 – ₹20,000", description: "Snow-capped peaks, roaring Beas River, Hadimba Temple, and adventure sports galore in the Kullu Valley.",
+      bestTime: "October to June — winter for snow, summer for trekking and rafting.",
+      howToReach: "Fly to Bhuntar Airport (KUU) or take road trip from Delhi via NH21.",
+      stayOptions: "Mountain resorts, heritage hotels, cozy cottages with fireplace.",
+      budget: "Budget: ₹8,000–₹15,000 | Comfort: ₹15,000–₹30,000 | Luxury: ₹50,000+",
+      highlights: ["Snow activities at Solang Valley", "Hadimba Temple forest walk", "Rohtang Pass drives", "Beas River rafting", "Old Manali cafe culture"],
+      tips: ["Acclimatise before high-altitude excursions", "Carry warm clothes in all seasons", "Rohtang Pass permit needed (₹500)"],
+      gallery: ["https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=500&q=75", "https://images.unsplash.com/photo-1559628233-100c798642d2?w=500&q=75"]
+    },
+    kashmir: {
+      title: "Kashmir — Heaven on Earth", state: "Jammu & Kashmir",
+      image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=700&q=80",
+      rating: "4.9 ★", mood: "nature", season: "summer", group: "couple", budgetRange: "budget-20001-50000",
+      budgetDisplay: "₹20,001 – ₹50,000", description: "Dal Lake houseboats, saffron meadows, Mughal gardens, and Himalayan valleys of breathtaking beauty.",
+      bestTime: "March to June and September to November for ideal weather.",
+      howToReach: "Fly to Srinagar Airport (SXR) or drive via Jammu–Srinagar NH44.",
+      stayOptions: "Dal Lake houseboats, luxury hotels, heritage lodges.",
+      budget: "Budget: ₹12,000–₹20,000 | Comfort: ₹25,000–₹50,000",
+      highlights: ["Houseboat stay on Dal Lake", "Shikara ride at sunrise", "Mughal Garden visits", "Gulmarg gondola ride", "Saffron field walk at Pampore"],
+      tips: ["Check travel advisories before visiting", "Book houseboats through J&K Tourism Board", "Bargain at shikara rides"],
+      gallery: ["https://images.unsplash.com/photo-1548013146-72479768bada?w=500&q=75", "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=500&q=75"]
+    },
+    ladakh: {
+      title: "Ladakh — Land of High Passes", state: "Union Territory",
+      image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=700&q=80",
+      rating: "4.9 ★", mood: "adventure", season: "summer", group: "friends", budgetRange: "budget-20001-50000",
+      budgetDisplay: "₹20,001 – ₹50,000", description: "Barren moonscapes, ancient monasteries, Pangong Lake, and the world's highest motorable roads.",
+      bestTime: "June to September when roads are open and weather is clear.",
+      howToReach: "Fly to Leh Airport (IXL) or drive via Manali–Leh or Srinagar–Leh Highway.",
+      stayOptions: "Luxury camps at Pangong, guesthouses in Leh, heritage homestays.",
+      budget: "Budget: ₹15,000–₹25,000 | Comfort: ₹30,000–₹55,000",
+      highlights: ["Overnight camping at Pangong Tso", "Bactrian camel safari in Nubra Valley", "Thiksey & Hemis Monastery visits", "Khardung La pass crossing", "Zanskar River rafting"],
+      tips: ["Rest 48 hrs in Leh before any activity", "Inner Line Permits mandatory for Pangong, Nubra", "Download offline maps — connectivity is limited"],
+      gallery: ["https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500&q=75", "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=500&q=75"]
+    },
+    jaipur: {
+      title: "Jaipur — The Pink City", state: "Rajasthan",
+      image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=700&q=80",
+      rating: "4.7 ★", mood: "photography", season: "winter", group: "family", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "Amber Fort, Hawa Mahal, royal palaces, and bustling bazaars dripping in Rajasthani heritage.",
+      bestTime: "October to March — cool and pleasant.",
+      howToReach: "Fly to Jaipur Airport (JAI) or take train from Delhi (Ajmer Shatabdi, 4 hrs).",
+      stayOptions: "Heritage havelis, palace hotels, boutique guesthouses.",
+      budget: "Budget: ₹5,000–₹12,000 | Comfort: ₹12,000–₹25,000 | Luxury: ₹50,000+",
+      highlights: ["Amber Fort at sunrise", "Hawa Mahal at dusk", "City Palace museum tour", "Johri Bazaar gemstone shopping", "Sound & Light show"],
+      tips: ["Take jeep to Amber Fort instead of elephant", "Visit Abhaneri Stepwell on day trip", "Bargain in Bapu Bazaar for textiles"],
+      gallery: ["https://images.unsplash.com/photo-1599661046289-e31897846e41?w=500&q=75", "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=500&q=75"]
+    },
+    udaipur: {
+      title: "Udaipur — City of Lakes", state: "Rajasthan",
+      image: "https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?w=700&q=80",
+      rating: "4.8 ★", mood: "romantic", season: "winter", group: "couple", budgetRange: "budget-20001-50000",
+      budgetDisplay: "₹20,001 – ₹50,000", description: "The Lake Palace, City Palace, seven lakes, sunset rooftops, and classical dance — India's most romantic city.",
+      bestTime: "September to March — ideal weather and beautiful lake vistas.",
+      howToReach: "Fly to Maharana Pratap Airport (UDR) or train from Jaipur (3.5 hrs).",
+      stayOptions: "Lake Palace (luxury), heritage havelis, rooftop guesthouses.",
+      budget: "Comfort: ₹15,000–₹30,000 | Luxury: ₹80,000+ (Lake Palace)",
+      highlights: ["Lake Palace dinner by boat", "City Palace Museum", "Bagore ki Haveli dance show", "Fateh Sagar Lake promenade", "Kumbhalgarh Fort day trip"],
+      tips: ["Book Ambrai Restaurant at sunset", "Explore old city on foot", "Visit Ranakpur Jain Temple on day trip"],
+      gallery: ["https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?w=500&q=75", "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=500&q=75"]
+    },
+    rishikesh: {
+      title: "Rishikesh — Yoga Capital", state: "Uttarakhand",
+      image: "https://images.unsplash.com/photo-1592134665534-9ae83d91f3b1?w=700&q=80",
+      rating: "4.6 ★", mood: "spiritual", season: "summer", group: "solo", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "Sacred Ganges, yoga ashrams, white-water rafting, bungee jumping, and the legendary Ganga Aarti ceremony.",
+      bestTime: "February to May and September to November.",
+      howToReach: "Fly to Dehradun (DED), then 45-min drive. Train to Haridwar + 25-min drive.",
+      stayOptions: "Ashram accommodation, riverside resorts, adventure camps.",
+      budget: "Budget: ₹3,000–₹8,000 | Comfort: ₹10,000–₹20,000",
+      highlights: ["Evening Ganga Aarti at Parmarth Niketan", "White-water rafting from Shivpuri", "Beatles Ashram visit", "Bungee jumping at Jumpin Heights", "Yoga & meditation retreat"],
+      tips: ["Strictly vegetarian & alcohol-free zone", "Book rafting with IRDP licensed operators", "Arrive early for Ganga Aarti front row"],
+      gallery: ["https://images.unsplash.com/photo-1592134665534-9ae83d91f3b1?w=500&q=75", "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=500&q=75"]
+    },
+    kerala: {
+      title: "Kerala Backwaters", state: "Kerala",
+      image: "https://images.unsplash.com/photo-1602301099967-57e710c2cabb?w=700&q=80",
+      rating: "4.8 ★", mood: "relax", season: "winter", group: "couple", budgetRange: "budget-20001-50000",
+      budgetDisplay: "₹20,001 – ₹50,000", description: "Houseboat cruises through mirror-still waterways, spice plantations, Ayurvedic retreats, and pristine beaches.",
+      bestTime: "September to March — calm backwaters and pleasant weather.",
+      howToReach: "Fly to Kochi (COK) as hub or Trivandrum (TRV); well-connected by trains.",
+      stayOptions: "Kettuvallam (rice barge houseboats), luxury ayurvedic resorts, heritage mansions.",
+      budget: "Budget: ₹10,000–₹18,000 | Comfort: ₹25,000–₹50,000",
+      highlights: ["Overnight houseboat cruise", "Munnar tea estate tour & tasting", "Kathakali dance performance in Kochi", "Thekkady spice plantation walk", "Varkala beach cliff cafes"],
+      tips: ["Book houseboats directly for better rates", "Try authentic Sadya on banana leaf", "Kochi Fort area is best explored on foot"],
+      gallery: ["https://images.unsplash.com/photo-1602301099967-57e710c2cabb?w=500&q=75", "https://images.unsplash.com/photo-1586500036706-41963de24d8b?w=500&q=75"]
+    },
+    andaman: {
+      title: "Andaman Islands", state: "Union Territory",
+      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80",
+      rating: "4.8 ★", mood: "beach", season: "winter", group: "couple", budgetRange: "budget-20001-50000",
+      budgetDisplay: "₹20,001 – ₹50,000", description: "Asia's best beaches, pristine coral reefs, bioluminescent bays, and world-class snorkelling & scuba diving.",
+      bestTime: "October to May — dry season with calm seas and excellent visibility.",
+      howToReach: "Fly to Port Blair (IXZ) from Chennai, Kolkata, or Delhi.",
+      stayOptions: "Beach huts, luxury resorts on Havelock, homestays on Neil Island.",
+      budget: "Budget: ₹15,000–₹25,000 | Comfort: ₹30,000–₹60,000",
+      highlights: ["Radhanagar Beach sunset", "Scuba diving at Lighthouse reef", "Night kayaking in bioluminescent bay", "Cellular Jail sound & light show", "Neil Island sunrise at Sitapur Beach"],
+      tips: ["Carry cash — limited ATMs on outer islands", "Use reef-safe sunscreen", "Book inter-island ferries in advance"],
+      gallery: ["https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=75", "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=75"]
+    },
+    meghalaya: {
+      title: "Meghalaya — Abode of Clouds", state: "Northeast India",
+      image: "https://images.unsplash.com/photo-1626182398573-55a28b4f5c11?w=700&q=80",
+      rating: "4.7 ★", mood: "nature", season: "winter", group: "friends", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "Living root bridges, Dawki's glass-clear river, Nohkalikai Falls, and sacred forests in the world's wettest place.",
+      bestTime: "October to May — post-monsoon lush landscapes, clear rivers.",
+      howToReach: "Fly to Guwahati (GAU) + 3-hr drive to Shillong, or direct flights to Shillong (SHL).",
+      stayOptions: "Colonial heritage hotels in Shillong, jungle lodges near Cherrapunji.",
+      budget: "Budget: ₹8,000–₹15,000 | Comfort: ₹15,000–₹28,000",
+      highlights: ["Double Decker Living Root Bridge trek", "Dawki crystal-clear river boat ride", "Nohkalikai Falls viewpoint", "Mawsmai Cave exploration", "Shillong rock music scene"],
+      tips: ["Carry rain gear always", "Start Nongriat trek before 7am", "Hire local guide for Cherrapunji trails"],
+      gallery: ["https://images.unsplash.com/photo-1626182398573-55a28b4f5c11?w=500&q=75", "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&q=75"]
+    },
+    coorg: {
+      title: "Coorg Coffee Country", state: "Karnataka",
+      image: "https://images.unsplash.com/photo-1566296731-c2a4d22f27b7?w=700&q=80",
+      rating: "4.6 ★", mood: "relax", season: "winter", group: "couple", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "Misty coffee and spice plantations, cascading waterfalls, Tibetan settlements, and exceptional Kodava cuisine.",
+      bestTime: "October to March — post-monsoon fresh greenery and pleasant weather.",
+      howToReach: "Drive 5 hrs from Bangalore or 4 hrs from Mysore. Nearest airport: Mysore.",
+      stayOptions: "Plantation homestays, luxury jungle resorts, eco-lodges.",
+      budget: "Budget: ₹8,000–₹15,000 | Luxury: ₹25,000–₹50,000",
+      highlights: ["Coffee plantation walk & tasting", "Abbey Falls visit", "Namdroling Monastery golden temple", "White-water rafting on Barapole River", "Elephant camp at Dubare"],
+      tips: ["Stay at a plantation homestay for authentic experience", "Try Pandi Curry (pork) and Kadambuttu", "Hire a local guide for waterfalls"],
+      gallery: ["https://images.unsplash.com/photo-1566296731-c2a4d22f27b7?w=500&q=75", "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=500&q=75"]
+    },
+    ooty: {
+      title: "Ooty — Queen of Hill Stations", state: "Tamil Nadu",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80",
+      rating: "4.4 ★", mood: "family", season: "summer", group: "family", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "The classic Nilgiri hill station with toy train rides, botanical gardens, Doddabetta peak, and tea estates.",
+      bestTime: "March to June — summer escape; October–February for cool weather.",
+      howToReach: "Take Nilgiri Mountain Railway (toy train) from Mettupalayam — a UNESCO Heritage journey.",
+      stayOptions: "Heritage colonial bungalows, family resorts, TTDC hotels.",
+      budget: "Budget: ₹4,000–₹8,000 | Comfort: ₹10,000–₹18,000",
+      highlights: ["Nilgiri Mountain Railway toy train", "Botanical Gardens walk", "Doddabetta Peak viewpoint", "Ooty Lake boating", "Tea factory tour at Dodabetta"],
+      tips: ["Book toy train tickets well in advance", "Try Toda tribal arts and home cheese", "Best rose season is May in botanical gardens"],
+      gallery: ["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=75", "https://images.unsplash.com/photo-1582407947304-fd86f28f82f6?w=500&q=75"]
+    },
+    darjeeling: {
+      title: "Darjeeling — Tea & Himalayas", state: "West Bengal",
+      image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=700&q=80",
+      rating: "4.5 ★", mood: "photography", season: "summer", group: "solo", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "Tiger Hill sunrise over Kangchenjunga, Darjeeling Himalayan Railway, first-flush tea tasting, and Buddhist monasteries.",
+      bestTime: "March to May (spring bloom) and October–November (clear mountain views).",
+      howToReach: "Fly to Bagdogra (IXB) + 3-hr drive or take the Toy Train from New Jalpaiguri.",
+      stayOptions: "Heritage tea-estate bungalows, colonial hotels, budget guesthouses.",
+      budget: "Budget: ₹4,000–₹9,000 | Comfort: ₹12,000–₹22,000",
+      highlights: ["Tiger Hill sunrise with Kangchenjunga view", "Darjeeling Himalayan Railway toy train", "Happy Valley Tea Estate tour & tasting", "Batasia Loop garden and war memorial", "Ghoom Monastery visit"],
+      tips: ["Pre-book jeep to Tiger Hill before 4am", "Try First Flush (March–April) Darjeeling tea", "Carry warm layers — evenings are cold"],
+      gallery: ["https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=500&q=75", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=75"]
+    },
+    varanasi: {
+      title: "Varanasi — City of Light", state: "Uttar Pradesh",
+      image: "https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=700&q=80",
+      rating: "4.6 ★", mood: "spiritual", season: "winter", group: "solo", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "The world's oldest living city — ghats, cremation ceremonies, classical music, silk weaving, and Ganga Aarti at dawn.",
+      bestTime: "November to March — cool and pleasant, Ganga not flooded.",
+      howToReach: "Fly to Varanasi Airport (VNS) or trains from Delhi (12 hrs), Kolkata (12 hrs).",
+      stayOptions: "Ghat-side heritage guesthouses, heritage hotels, ashrams.",
+      budget: "Budget: ₹3,000–₹7,000 | Comfort: ₹10,000–₹18,000",
+      highlights: ["Dawn boat ride on the Ganga", "Dasaswamedh Ghat evening Aarti", "Kashi Vishwanath Temple visit", "Sarnath Buddhist site day trip", "Banarasi silk shopping"],
+      tips: ["Boats at dawn are magical and uncrowded", "Wear modest clothes at temples", "Walk the ghats — each has a unique character"],
+      gallery: ["https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=500&q=75", "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=500&q=75"]
+    },
+    amritsar: {
+      title: "Amritsar — Golden Temple City", state: "Punjab",
+      image: "https://images.unsplash.com/photo-1558441440-d4111d18d48f?w=700&q=80",
+      rating: "4.8 ★", mood: "spiritual", season: "winter", group: "family", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "The magnificent Golden Temple, Jallianwala Bagh, Wagah Border ceremony, and legendary Amritsari street food.",
+      bestTime: "November to March — pleasant weather for sightseeing.",
+      howToReach: "Fly to Sri Guru Ram Dass Jee Airport (ATQ) or train from Delhi (5–6 hrs).",
+      stayOptions: "Heritage hotels near Golden Temple, mid-range hotels in city centre.",
+      budget: "Budget: ₹3,500–₹8,000 | Comfort: ₹10,000–₹18,000",
+      highlights: ["Golden Temple (Harmandir Sahib) at sunrise", "Langar (community kitchen) experience", "Wagah Border flag ceremony at sunset", "Jallianwala Bagh memorial", "Hall Bazaar street food trail"],
+      tips: ["Cover head and remove shoes at Golden Temple", "The langar is free and open to all", "Book Wagah Border spots early — it fills up"],
+      gallery: ["https://images.unsplash.com/photo-1558441440-d4111d18d48f?w=500&q=75", "https://images.unsplash.com/photo-1591803854604-5e0e6b20aaf0?w=500&q=75"]
+    },
+    hampi: {
+      title: "Hampi — Vijayanagara Ruins", state: "Karnataka",
+      image: "https://images.unsplash.com/photo-1582560475093-ba66accbc424?w=700&q=80",
+      rating: "4.7 ★", mood: "photography", season: "winter", group: "solo", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "A UNESCO World Heritage Site — 500-year-old stone temples, boulder-strewn landscapes, and India's most surreal ruins.",
+      bestTime: "October to March — comfortable for exploring the extensive ruins on foot.",
+      howToReach: "Nearest railhead Hospet (13 km) from Bangalore (7 hrs) or Hyderabad (8 hrs).",
+      stayOptions: "Guesthouses across the river in Virupapur, budget lodges in Hampi Bazaar.",
+      budget: "Budget: ₹3,000–₹7,000 | Comfort: ₹8,000–₹15,000",
+      highlights: ["Virupaksha Temple at dawn", "Vittala Temple stone chariot", "Matanga Hill sunset", "Coracle ride on Tungabhadra", "Hippie Island across the river"],
+      tips: ["Hire bicycle or moped to cover distances", "Visit Matanga Hill at sunrise for best views", "Ruins spread over 40 sq km — plan 3+ days"],
+      gallery: ["https://images.unsplash.com/photo-1582560475093-ba66accbc424?w=500&q=75", "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=500&q=75"]
+    },
+    munnar: {
+      title: "Munnar — Tea Garden Paradise", state: "Kerala",
+      image: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=700&q=80",
+      rating: "4.6 ★", mood: "nature", season: "winter", group: "couple", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "Endless rolling hills of tea bushes, Eravikulam National Park, mountain waterfalls, and cool misty mornings.",
+      bestTime: "September to March — after monsoon freshness and clear skies.",
+      howToReach: "Drive 4.5 hrs from Kochi or 3 hrs from Madurai through mountain roads.",
+      stayOptions: "Tea estate bungalows, eco-resorts, boutique mountain lodges.",
+      budget: "Budget: ₹6,000–₹12,000 | Comfort: ₹15,000–₹30,000",
+      highlights: ["Tea plantation walk and factory tour", "Eravikulam National Park (Nilgiri Tahr)", "Mattupetty Dam boat ride", "Top Station viewpoint", "Neelakurinji blooms (every 12 years)"],
+      tips: ["Book Eravikulam permits online in advance", "Early morning drives for best mist scenes", "Taste different grades of Munnar tea at factory"],
+      gallery: ["https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=500&q=75", "https://images.unsplash.com/photo-1602301099967-57e710c2cabb?w=500&q=75"]
+    },
+    spiti: {
+      title: "Spiti Valley — Cold Desert", state: "Himachal Pradesh",
+      image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=700&q=80",
+      rating: "4.9 ★", mood: "adventure", season: "summer", group: "friends", budgetRange: "budget-20001-50000",
+      budgetDisplay: "₹20,001 – ₹50,000", description: "A high-altitude Tibetan-Buddhist desert valley of ancient monasteries, stark mountains, and pristine mountain lakes.",
+      bestTime: "June to September — the only window when roads are open.",
+      howToReach: "Drive from Manali (12 hrs via Kunzum La) or from Shimla (14 hrs via Kinnaur).",
+      stayOptions: "Village homestays, eco-camps, basic guesthouses in Kaza.",
+      budget: "Budget: ₹12,000–₹20,000 | Comfort: ₹25,000–₹45,000",
+      highlights: ["Key Monastery — world's highest monastery", "Chandratal Moon Lake camping", "Pin Valley National Park wildlife", "Dhankar Fort and Lake", "Village life in Langza and Komic"],
+      tips: ["Acclimatise thoroughly before arriving", "Inner Line Permit required near borders", "Carry cash — no ATMs beyond Kaza"],
+      gallery: ["https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500&q=75", "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=500&q=75"]
+    },
+    shimla: {
+      title: "Shimla — Queen of Hills", state: "Himachal Pradesh",
+      image: "https://images.unsplash.com/photo-1559628233-100c798642d2?w=700&q=80",
+      rating: "4.4 ★", mood: "family", season: "winter", group: "family", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "Colonial capital with the famous Mall Road, Jakhu Temple, Toy Train, and snow-covered cedar forests in winter.",
+      bestTime: "December to February for snow; March–June for trekking and pleasant weather.",
+      howToReach: "Drive 5 hrs from Delhi or take the Kalka–Shimla toy train (UNESCO Heritage Railway).",
+      stayOptions: "Heritage colonial hotels, boutique guesthouses, HPTDC properties.",
+      budget: "Budget: ₹6,000–₹12,000 | Comfort: ₹15,000–₹30,000",
+      highlights: ["Jakhu Temple and monkey forest", "Mall Road evening stroll", "Kalka–Shimla Toy Train ride", "Christ Church colonial architecture", "Kufri snow activities"],
+      tips: ["Mall Road is vehicle-free — pack light", "Book Kufri snow activities through operators", "Visit in December–January for snowfall experience"],
+      gallery: ["https://images.unsplash.com/photo-1559628233-100c798642d2?w=500&q=75", "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=500&q=75"]
+    },
+    nainital: {
+      title: "Nainital — Lake District", state: "Uttarakhand",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80",
+      rating: "4.4 ★", mood: "family", season: "summer", group: "family", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "The pear-shaped Naini Lake, cable car to Snow View, Nainidevi Temple, and colonial Kumaoni hill culture.",
+      bestTime: "March to June for summer escape; December–January for snow.",
+      howToReach: "Drive 6.5 hrs from Delhi or take train to Kathgodam (35 km away).",
+      stayOptions: "Heritage hotels on Mallital, lakeside guesthouses, budget lodges.",
+      budget: "Budget: ₹4,000–₹8,000 | Comfort: ₹10,000–₹18,000",
+      highlights: ["Naini Lake boating at sunrise", "Ropeway to Snow View point", "Nainidevi Temple visit", "Mall Road evening walk", "Tiffin Top (Dorothy's Seat) trek"],
+      tips: ["Avoid peak summer holidays (May–June) for crowds", "Morning boat rides are peaceful and affordable", "Try bal mithai (local fudge) from Mallital shops"],
+      gallery: ["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=75", "https://images.unsplash.com/photo-1566296731-c2a4d22f27b7?w=500&q=75"]
+    },
+    ranthambore: {
+      title: "Ranthambore Tiger Reserve", state: "Rajasthan",
+      image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=700&q=80",
+      rating: "4.7 ★", mood: "adventure", season: "winter", group: "family", budgetRange: "budget-20001-50000",
+      budgetDisplay: "₹20,001 – ₹50,000", description: "India's most famous tiger sanctuary — dense forest, ancient fort ruins, and the best Bengal tiger sightings in Asia.",
+      bestTime: "October to June (park closed July–September).",
+      howToReach: "Fly to Jaipur (160 km) or take train from Delhi to Sawai Madhopur (5 hrs).",
+      stayOptions: "Luxury jungle lodges, wildlife camps, heritage hotels.",
+      budget: "Comfort: ₹15,000–₹30,000 | Luxury: ₹50,000+ (Aman-i-Khás)",
+      highlights: ["Morning tiger safari in open gypsies", "Ranthambore Fort (UNESCO) inside the park", "Zone 1–5 wildlife drives", "Sloth bear and crocodile sightings", "Bird photography at Padam Talao"],
+      tips: ["Book safaris 90 days in advance through Forest Dept. website", "Zone 1–5 have best tiger sightings", "Morning safaris yield more wildlife activity"],
+      gallery: ["https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=500&q=75", "https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=500&q=75"]
+    },
+    pushkar: {
+      title: "Pushkar — Sacred Lake Town", state: "Rajasthan",
+      image: "https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=700&q=80",
+      rating: "4.5 ★", mood: "spiritual", season: "winter", group: "solo", budgetRange: "budget-0-5000",
+      budgetDisplay: "₹0 – ₹5,000", description: "One of the world's oldest cities — the sacred Pushkar Lake, Brahma Temple, and the legendary annual Camel Fair.",
+      bestTime: "October to March; November for Pushkar Camel Fair (Kartik Purnima).",
+      howToReach: "Drive 14 km from Ajmer; train to Ajmer from Jaipur (2 hrs).",
+      stayOptions: "Lakeside guesthouses, rooftop budget hotels, ashram accommodation.",
+      budget: "Budget: ₹2,000–₹6,000 | Comfort: ₹8,000–₹15,000",
+      highlights: ["Brahma Temple — one of very few in India", "Pushkar Lake ghat sunset ceremony", "Camel Fair (November)", "Rooftop cafes overlooking the ghats", "Desert cycling day trip"],
+      tips: ["No alcohol or non-veg in the sacred town", "Visit Savitri Temple by ropeway at sunrise", "Camel Fair period requires advance booking 3+ months"],
+      gallery: ["https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=500&q=75", "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=500&q=75"]
+    },
+    jodhpur: {
+      title: "Jodhpur — The Blue City", state: "Rajasthan",
+      image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=700&q=80",
+      rating: "4.6 ★", mood: "photography", season: "winter", group: "friends", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "Mehrangarh Fort dominating a sea of blue houses, Umaid Bhawan Palace, and the vibrant bazaars of the old city.",
+      bestTime: "October to March — cool and perfect for the fort and city exploration.",
+      howToReach: "Fly to Jodhpur Airport (JDH) or train from Jaipur (5.5 hrs), Delhi (9 hrs).",
+      stayOptions: "Palace hotels, heritage havelis, boutique guesthouses in the old blue city.",
+      budget: "Budget: ₹6,000–₹12,000 | Comfort: ₹15,000–₹30,000 | Luxury: ₹80,000+ (Umaid Bhawan)",
+      highlights: ["Mehrangarh Fort museum and views", "Jaswant Thada marble cenotaph", "Ghanta Ghar clock tower bazaar", "Umaid Bhawan Palace tour", "Zip-lining over the fort"],
+      tips: ["The fort audio guide (multilingual) is excellent", "Wandering the blue city on foot is the highlight", "Try Mawa Kachori and Makhaniya Lassi"],
+      gallery: ["https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&q=75", "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=500&q=75"]
+    },
+    jaisalmer: {
+      title: "Jaisalmer — Golden City", state: "Rajasthan",
+      image: "https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=700&q=80",
+      rating: "4.7 ★", mood: "adventure", season: "winter", group: "friends", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "A living fort rising from the Thar Desert, camel safaris, stargazing camps on sand dunes, and exquisite havelis.",
+      bestTime: "October to March — before summer heat makes the desert unbearable.",
+      howToReach: "Fly to Jaisalmer (JSA) or overnight train from Delhi (12 hrs), Jaipur (7 hrs).",
+      stayOptions: "Fort guesthouses (unique UNESCO-listed accommodation), luxury desert camps at Sam.",
+      budget: "Budget: ₹5,000–₹12,000 | Luxury desert camp: ₹20,000–₹45,000",
+      highlights: ["Camel safari to Sam Sand Dunes", "Overnight camp under stars", "Sonar Fort walk at golden hour", "Patwon ki Haveli architecture", "Gadisar Lake sunset"],
+      tips: ["Stay inside the fort for a living UNESCO experience", "Negotiate desert camp rates directly", "Best stargazing in India — far from any city lights"],
+      gallery: ["https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=500&q=75", "https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=500&q=75"]
+    },
+    mysore: {
+      title: "Mysore — Royal Heritage City", state: "Karnataka",
+      image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=700&q=80",
+      rating: "4.5 ★", mood: "cultural", season: "winter", group: "family", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "The illuminated Mysore Palace, Chamundeshwari Temple, silk markets, sandalwood products, and the Dasara festival.",
+      bestTime: "October to March; October (Dasara) for the legendary festival.",
+      howToReach: "Drive 3 hrs from Bangalore or train from Bangalore (2 hrs by Shatabdi).",
+      stayOptions: "Heritage hotels near palace, palace hotel properties, budget lodges.",
+      budget: "Budget: ₹4,000–₹9,000 | Comfort: ₹12,000–₹22,000",
+      highlights: ["Mysore Palace illuminated on weekends", "Chamundeshwari Temple on Chamundi Hill", "Devaraja Market for silk and sandalwood", "Brindavan Gardens light show", "Dasara procession (October)"],
+      tips: ["Palace is illuminated 7–8pm on Sundays and holidays — plan accordingly", "Buy genuine Mysore silk from Government Silk Factory", "Combine with Coorg and Wayanad for longer trip"],
+      gallery: ["https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=500&q=75", "https://images.unsplash.com/photo-1566296731-c2a4d22f27b7?w=500&q=75"]
+    },
+    pondicherry: {
+      title: "Pondicherry — French Riviera of the East", state: "Puducherry",
+      image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=700&q=80",
+      rating: "4.5 ★", mood: "relax", season: "winter", group: "couple", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "Yellow colonial streets, café au lait, Sri Aurobindo Ashram, pristine beaches, and a unique Franco-Tamil culture.",
+      bestTime: "October to March — pleasant weather for coastal exploration.",
+      howToReach: "Drive 3 hrs from Chennai or 4 hrs from Bangalore. No airport — road/train only.",
+      stayOptions: "Boutique heritage mansions in the French Quarter, beach resorts, ashram guesthouses.",
+      budget: "Budget: ₹5,000–₹12,000 | Comfort: ₹15,000–₹30,000",
+      highlights: ["French Quarter walking tour", "Sri Aurobindo Ashram", "Auroville visit and Matrimandir", "Promenade Beach sunrise", "Café du Flore and French bakeries"],
+      tips: ["Rent a bicycle for the French Quarter", "The Ashram requires silence and modest dress", "Auroville requires pre-booking for Matrimandir inner chamber"],
+      gallery: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=500&q=75", "https://images.unsplash.com/photo-1536650135174-e88f2e64c2c4?w=500&q=75"]
+    },
+    lakshadweep: {
+      title: "Lakshadweep — Coral Island Paradise", state: "Union Territory",
+      image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=700&q=80",
+      rating: "4.9 ★", mood: "luxury", season: "winter", group: "couple", budgetRange: "budget-50000plus",
+      budgetDisplay: "₹50,000+", description: "Pristine coral atolls with crystal lagoons, vibrant reefs, no cars, no crowds — India's most exclusive island paradise.",
+      bestTime: "October to May — calm lagoon and excellent marine visibility.",
+      howToReach: "Fly to Agatti Island (AGX) from Kochi; only Indian nationals allowed.",
+      stayOptions: "SPORTS Resort Bangaram (only private resort), government water bungalows.",
+      budget: "Luxury only: ₹80,000–₹3,00,000+ per couple (package stays)",
+      highlights: ["Kayaking on turquoise lagoons", "Scuba diving at pristine reefs", "Glass-bottom boat viewing coral", "Isolated beach picnics", "Night snorkelling with phosphorescence"],
+      tips: ["Entry permit required — apply through LAKSHADWEEP tourism", "Only SPORTS packages available — book 6+ months ahead", "No alcohol on most islands except Bangaram"],
+      gallery: ["https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=75", "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=75"]
+    },
+    maldives_india: {
+      title: "Agatti Island — Indian Maldives", state: "Lakshadweep",
+      image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=700&q=80",
+      rating: "4.8 ★", mood: "luxury", season: "winter", group: "couple", budgetRange: "budget-50000plus",
+      budgetDisplay: "₹50,000+", description: "India's answer to the Maldives — a tiny strip of coral sand surrounded by a shallow lagoon of impossible blue.",
+      bestTime: "November to April — calm seas and clear skies.",
+      howToReach: "Fly Kochi to Agatti (2 hrs) on Air India regional service.",
+      stayOptions: "Water cottages, beach huts, resort accommodation.",
+      budget: "Luxury: ₹1,00,000–₹2,50,000 per couple (all-inclusive)",
+      highlights: ["Snorkelling on house reef", "Dolphin watching boat trips", "Sunset beach walks", "Traditional Maldivian boat ride", "Underwater coral photography"],
+      tips: ["Only accessible with government package tours for non-residents", "Very limited accommodation — book 6–12 months ahead", "No plastic — pack eco-consciously"],
+      gallery: ["https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=75", "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=75"]
+    },
+    puri: {
+      title: "Puri — Spiritual Beach Town", state: "Odisha",
+      image: "https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=700&q=80",
+      rating: "4.4 ★", mood: "spiritual", season: "winter", group: "family", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "One of Hinduism's sacred Char Dham — Jagannath Temple, long sandy beach, Rath Yatra festival, and Odishan cuisine.",
+      bestTime: "October to February — pleasant for temple and beach visits.",
+      howToReach: "Fly to Bhubaneswar (BBI) + 1.5-hr drive; or train from Kolkata (9 hrs).",
+      stayOptions: "OTDC beach resorts, heritage lodges, temple-town guesthouses.",
+      budget: "Budget: ₹3,500–₹8,000 | Comfort: ₹10,000–₹18,000",
+      highlights: ["Jagannath Temple (non-Hindus see from Raghunandan Library terrace)", "Rath Yatra chariot festival (June/July)", "Chilika Lake flamingo season boat ride", "Konark Sun Temple day trip", "Puri beach sunrise"],
+      tips: ["Non-Hindus cannot enter Jagannath Temple — view from library terrace", "Rath Yatra (June/July) is the most spectacular festival in India", "Try Chhena Poda (baked cheese dessert)"],
+      gallery: ["https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=500&q=75", "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&q=75"]
+    },
+    kaziranga: {
+      title: "Kaziranga National Park", state: "Assam",
+      image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=700&q=80",
+      rating: "4.8 ★", mood: "adventure", season: "winter", group: "family", budgetRange: "budget-20001-50000",
+      budgetDisplay: "₹20,001 – ₹50,000", description: "Home to 2/3 of the world's one-horned rhinoceroses, plus elephants, tigers, and wild water buffaloes in floodplain grasslands.",
+      bestTime: "November to April (park closed May–October).",
+      howToReach: "Fly to Guwahati (GAU) + 3-hr drive to Kohora gate.",
+      stayOptions: "Jungle lodges inside buffer zone, eco-camps, resort hotels at Kohora.",
+      budget: "Comfort: ₹15,000–₹25,000 | Luxury: ₹30,000–₹60,000",
+      highlights: ["Elephant safari for rhino sightings", "Jeep safari in Central Range", "One-horned rhinoceros photo opportunities", "Wild Asian elephant herds", "Brahmaputra River flood-plain views"],
+      tips: ["Elephant safaris provide closest rhino access", "Book safari permits online at forest dept website", "Carry telephoto camera lens (200mm minimum)"],
+      gallery: ["https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=500&q=75", "https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=500&q=75"]
+    },
+    tawang: {
+      title: "Tawang Monastery Valley", state: "Arunachal Pradesh",
+      image: "https://images.unsplash.com/photo-1626182398573-55a28b4f5c11?w=700&q=80",
+      rating: "4.8 ★", mood: "spiritual", season: "summer", group: "solo", budgetRange: "budget-20001-50000",
+      budgetDisplay: "₹20,001 – ₹50,000", description: "Asia's largest Buddhist monastery, alpine lakes, and dramatic border mountain landscapes at 3,000 metres.",
+      bestTime: "March to October — Sela Pass accessible; winters see heavy snowfall.",
+      howToReach: "Fly to Guwahati or Tezpur, drive 8–10 hrs through Bomdila and Sela Pass.",
+      stayOptions: "Government guesthouses (ITBP), private lodges, monastery circuit homestays.",
+      budget: "Budget: ₹12,000–₹20,000 | Comfort: ₹22,000–₹40,000",
+      highlights: ["Tawang Monastery (largest in India)", "Sela Pass at 4,170m with mountain lake", "Madhuri Lake (Shonga-tser Lake)", "PT Tso lake trek", "War Memorial Tawang"],
+      tips: ["Inner Line Permit mandatory — obtain in Guwahati or online", "Acclimatise at Bomdila before proceeding to Tawang", "Sela Pass can be snowbound Oct–March"],
+      gallery: ["https://images.unsplash.com/photo-1626182398573-55a28b4f5c11?w=500&q=75", "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=500&q=75"]
+    },
+    kolkata: {
+      title: "Kolkata — City of Joy", state: "West Bengal",
+      image: "https://images.unsplash.com/photo-1536650135174-e88f2e64c2c4?w=700&q=80",
+      rating: "4.5 ★", mood: "foodlover", season: "winter", group: "solo", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "Colonial grandeur, the intellectual capital of India — Victoria Memorial, Howrah Bridge, Durga Puja, and extraordinary food.",
+      bestTime: "October to February; October for Durga Puja festival.",
+      howToReach: "Fly to Netaji Subhas Chandra Bose Airport (CCU) — very well connected.",
+      stayOptions: "Heritage hotels in Park Street, boutique guesthouses, budget lodges.",
+      budget: "Budget: ₹4,000–₹9,000 | Comfort: ₹12,000–₹22,000",
+      highlights: ["Victoria Memorial and museum", "Howrah Bridge dawn walk", "Durga Puja pandal hopping (October)", "Park Street café and restaurant trail", "Kumartuli clay idol workshop tour"],
+      tips: ["Trams are the slowest but most atmospheric way to travel", "Street food trail: kati rolls, mishti doi, phuchka", "Durga Puja pandal visits are free and extraordinary"],
+      gallery: ["https://images.unsplash.com/photo-1536650135174-e88f2e64c2c4?w=500&q=75", "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=500&q=75"]
+    },
+    mumbai: {
+      title: "Mumbai — City of Dreams", state: "Maharashtra",
+      image: "https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=700&q=80",
+      rating: "4.5 ★", mood: "foodlover", season: "winter", group: "solo", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "Gateway of India, Marine Drive queen's necklace, Bollywood, Dharavi tours, and the world's best street food.",
+      bestTime: "November to February — pleasant, dry, and festive.",
+      howToReach: "Fly to CSMI Airport (BOM) — one of India's best-connected hubs.",
+      stayOptions: "Luxury heritage hotels (Taj Mahal Palace), business hotels, backpacker hostels.",
+      budget: "Budget: ₹6,000–₹12,000 | Comfort: ₹15,000–₹30,000 | Luxury: ₹80,000+",
+      highlights: ["Marine Drive sunset walk", "Gateway of India and Elephanta Caves", "Dharavi slum walking tour", "Bollywood studio tour", "Crawford Market and Chor Bazaar"],
+      tips: ["Use local trains to move quickly (avoid peak hours)", "Try Vada Pav, Pav Bhaji, and Bombay Duck", "Book Elephanta Caves ferry from Gateway at 9am"],
+      gallery: ["https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=500&q=75", "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=500&q=75"]
+    },
+    delhi: {
+      title: "Delhi — Capital of Contrasts", state: "Delhi NCR",
+      image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=700&q=80",
+      rating: "4.3 ★", mood: "cultural", season: "winter", group: "family", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "Red Fort, Qutub Minar, Humayun's Tomb, Chandni Chowk street food, and eight layers of historical civilisation.",
+      bestTime: "October to March — pleasant weather for sightseeing.",
+      howToReach: "Fly to IGI Airport (DEL) — India's largest and best connected hub.",
+      stayOptions: "5-star hotels in Aerocity and Connaught Place, boutique lodges in Hauz Khas.",
+      budget: "Budget: ₹5,000–₹12,000 | Comfort: ₹15,000–₹30,000",
+      highlights: ["Red Fort and Chandni Chowk morning", "Qutub Minar complex", "Humayun's Tomb gardens", "India Gate evening walk", "Dilli Haat craft market"],
+      tips: ["Metro connects all major sites efficiently", "Chandni Chowk: eat parantha, jalebi and chaat", "Old Delhi cycling tours are excellent"],
+      gallery: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=500&q=75", "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&q=75"]
+    },
+    agra: {
+      title: "Agra — Taj Mahal City", state: "Uttar Pradesh",
+      image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=700&q=80",
+      rating: "4.6 ★", mood: "romantic", season: "winter", group: "couple", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "The Taj Mahal at sunrise — the world's most romantic monument — plus Agra Fort, Fatehpur Sikri, and Petha sweets.",
+      bestTime: "October to March — clear skies for Taj views. Full moon night is magical.",
+      howToReach: "Train from Delhi (Gatimaan Express, 2 hrs) or drive via Yamuna Expressway.",
+      stayOptions: "Taj-view hotels (Oberoi Amarvilas), heritage guesthouses, budget hotels.",
+      budget: "Budget: ₹4,000–₹8,000 | Luxury: ₹50,000+ (Taj-view rooms)",
+      highlights: ["Taj Mahal at sunrise", "Agra Fort Red Sandstone complex", "Baby Taj (Itimad-ud-Daulah)", "Fatehpur Sikri ghost city", "Mehtab Bagh Taj sunset view"],
+      tips: ["Enter Taj at 6am for sunrise and minimal crowds", "Full moon visits require advance booking", "Book the Agra Fort + Baby Taj + Taj combo ticket"],
+      gallery: ["https://images.unsplash.com/photo-1564507592333-c60657eea523?w=500&q=75", "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=500&q=75"]
+    },
+    corbett: {
+      title: "Jim Corbett National Park", state: "Uttarakhand",
+      image: "https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=700&q=80",
+      rating: "4.6 ★", mood: "adventure", season: "winter", group: "family", budgetRange: "budget-20001-50000",
+      budgetDisplay: "₹20,001 – ₹50,000", description: "India's oldest national park and a prime Bengal tiger habitat — elephant-back safaris, river drives, and jungle camps.",
+      bestTime: "November to June (Dhikala Zone open Nov–May; closes July–Oct).",
+      howToReach: "Drive 6 hrs from Delhi or take train to Ramnagar (9 hrs).",
+      stayOptions: "Forest rest houses in Dhikala, luxury wildlife lodges, tented camps.",
+      budget: "Comfort: ₹15,000–₹28,000 | Luxury: ₹40,000–₹80,000",
+      highlights: ["Tiger sightings in Dhikala zone", "Elephant safari in Bijrani zone", "Corbett Museum at Kaladhungi", "Ram Ganga riverside bird watching", "Jhirna zone year-round safaris"],
+      tips: ["Dhikala is the premier zone — book FRH accommodation well in advance", "Sunrise and sunset jeep safaris have best wildlife activity", "Bring binoculars — 600+ bird species recorded"],
+      gallery: ["https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=500&q=75", "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=500&q=75"]
+    },
+    varkala: {
+      title: "Varkala Cliff Beach", state: "Kerala",
+      image: "https://images.unsplash.com/photo-1602301099967-57e710c2cabb?w=700&q=80",
+      rating: "4.5 ★", mood: "beach", season: "winter", group: "solo", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "Dramatic red laterite cliffs over the Arabian Sea, yoga cafes, Papanasam Beach, and the sacred Janardana Swami Temple.",
+      bestTime: "November to March — calm seas and sunshine.",
+      howToReach: "Train to Varkala Sivagiri station from Trivandrum (1 hr) or Kochi (3 hrs).",
+      stayOptions: "Cliff-top guesthouses and boutique hotels, Ayurvedic retreat centres.",
+      budget: "Budget: ₹3,500–₹8,000 | Comfort: ₹10,000–₹18,000",
+      highlights: ["Sunset from the cliff top", "Papanasam Beach swimming", "Janardana Swami Temple", "Ayurvedic massage sessions", "Cliff-top café culture"],
+      tips: ["The beach has strong currents — swim only in marked areas", "Cliff-side restaurants have the best sunset views", "Avoid peak Christmas period for budget travel"],
+      gallery: ["https://images.unsplash.com/photo-1602301099967-57e710c2cabb?w=500&q=75", "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=75"]
+    },
+    mahabaleshwar: {
+      title: "Mahabaleshwar Hill Station", state: "Maharashtra",
+      image: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=700&q=80",
+      rating: "4.3 ★", mood: "family", season: "summer", group: "family", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "Maharashtra's premier hill station — strawberry farms, valley viewpoints, Arthur's Seat, and the Venna Lake.",
+      bestTime: "March to June (summer escape); October to February (cool and clear).",
+      howToReach: "Drive 5 hrs from Mumbai or 2 hrs from Pune via Panchgani.",
+      stayOptions: "Heritage hotels, family resorts, cottage stays.",
+      budget: "Budget: ₹4,000–₹9,000 | Comfort: ₹12,000–₹20,000",
+      highlights: ["Arthur's Seat viewpoint (1,340m drop)", "Venna Lake boating", "Strawberry farm picking experience", "Elephant's Head rock viewpoint", "Pratapgad Fort day trip"],
+      tips: ["Visit strawberry farms March–May for picking experience", "Viewpoints are best in post-monsoon October–December", "Panchgani road has the most scenic viewpoints"],
+      gallery: ["https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=500&q=75", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=75"]
+    },
+    wayanad: {
+      title: "Wayanad Wild Forest", state: "Kerala",
+      image: "https://images.unsplash.com/photo-1566296731-c2a4d22f27b7?w=700&q=80",
+      rating: "4.6 ★", mood: "nature", season: "winter", group: "family", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "Dense tribal forests, elephant corridors, Edakkal Caves, bamboo tree houses, and some of Kerala's finest coffee.",
+      bestTime: "October to May — wildlife active and waterfalls flowing.",
+      howToReach: "Drive 4 hrs from Calicut (Kozhikode) or 5 hrs from Kochi via Ooty.",
+      stayOptions: "Bamboo tree houses, jungle lodges, eco-resorts.",
+      budget: "Budget: ₹6,000–₹12,000 | Comfort: ₹15,000–₹28,000",
+      highlights: ["Chembra Peak trek (heart-shaped lake)", "Edakkal Caves prehistoric rock carvings", "Pookode Lake boating", "Elephant watching at Muthanga wildlife sanctuary", "Coffee plantation homestay"],
+      tips: ["Chembra Peak requires forest permit (buy at 7am)", "Tribal village visits need prior permission", "Misty early mornings are spectacular — wake up at 6am"],
+      gallery: ["https://images.unsplash.com/photo-1566296731-c2a4d22f27b7?w=500&q=75", "https://images.unsplash.com/photo-1602301099967-57e710c2cabb?w=500&q=75"]
+    },
+    kodaikanal: {
+      title: "Kodaikanal — Princess of Hill Stations", state: "Tamil Nadu",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80",
+      rating: "4.4 ★", mood: "nature", season: "summer", group: "couple", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "The star-shaped Kodai Lake, Pillar Rocks, Coaker's Walk, Neelakurinji flowers, and Palani Hills shola forests.",
+      bestTime: "April to June and September to November.",
+      howToReach: "Drive 3 hrs from Madurai or bus from Coimbatore.",
+      stayOptions: "Lakeside cottages, heritage bungalows, TTDC hotels.",
+      budget: "Budget: ₹4,000–₹8,000 | Comfort: ₹10,000–₹18,000",
+      highlights: ["Kodai Lake pedal boating", "Coaker's Walk cliff path views", "Pillar Rocks viewpoint", "Bear Shola Falls hike", "Silver Cascade waterfall"],
+      tips: ["Coaker's Walk is free — best at dawn with cloud sea views", "Try Kodaikanal chocolate and eucalyptus oil products", "Hire bicycle for the lake circuit"],
+      gallery: ["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=75", "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=500&q=75"]
+    },
+    cherrapunji: {
+      title: "Cherrapunji — World's Wettest", state: "Meghalaya",
+      image: "https://images.unsplash.com/photo-1626182398573-55a28b4f5c11?w=700&q=80",
+      rating: "4.6 ★", mood: "photography", season: "winter", group: "friends", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "Nohkalikai Falls, Bangladesh border viewpoints, limestone caves, and the lush landscapes of the world's wettest place.",
+      bestTime: "October to May — post-monsoon waterfalls at their most dramatic.",
+      howToReach: "Drive 55 km from Shillong (2 hrs via winding mountain roads).",
+      stayOptions: "Eco-lodges, guesthouses, heritage bungalows.",
+      budget: "Budget: ₹6,000–₹12,000 | Comfort: ₹15,000–₹25,000",
+      highlights: ["Nohkalikai Falls (340m)", "Mawsmai Cave exploration", "Thangkharang Park Bangladesh view", "Seven Sisters Falls", "Wei-Sawdong Falls trek"],
+      tips: ["Hire a local guide — paths are unmarked", "Carry rain gear always", "Best waterfalls are post-monsoon (October)"],
+      gallery: ["https://images.unsplash.com/photo-1626182398573-55a28b4f5c11?w=500&q=75", "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&q=75"]
+    },
+    mussoorie: {
+      title: "Mussoorie — Queen of Hill Stations", state: "Uttarakhand",
+      image: "https://images.unsplash.com/photo-1559628233-100c798642d2?w=700&q=80",
+      rating: "4.3 ★", mood: "family", season: "summer", group: "family", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "Landour cantonment walks, Kempty Falls, Mall Road sunsets, cable car rides, and sweeping Himalayan panoramas.",
+      bestTime: "March to June (summer escape) and December–January for snow.",
+      howToReach: "Drive 1.5 hrs from Dehradun or from Haridwar (2.5 hrs).",
+      stayOptions: "Heritage hotels, cottages, GMVN properties.",
+      budget: "Budget: ₹4,000–₹8,000 | Comfort: ₹10,000–₹20,000",
+      highlights: ["Lal Tibba highest point sunrise", "Kempty Falls picnic", "Landour bazaar walk", "Cable car to Gun Hill", "Ruskin Bond's Landour literary trail"],
+      tips: ["Walk to Lal Tibba for best Himalayan panorama", "Landour is quieter and more charming than Mussoorie", "Try wai-wai noodles and local bun-chaat from Kulri market"],
+      gallery: ["https://images.unsplash.com/photo-1559628233-100c798642d2?w=500&q=75", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=75"]
+    },
+    gokarna: {
+      title: "Gokarna — Sacred Beach Town", state: "Karnataka",
+      image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=700&q=80",
+      rating: "4.5 ★", mood: "beach", season: "winter", group: "solo", budgetRange: "budget-0-5000",
+      budgetDisplay: "₹0 – ₹5,000", description: "A quieter, more authentic alternative to Goa — Om Beach, Kudle Beach, the Mahabaleshwara Temple, and sunset treks.",
+      bestTime: "October to March — ideal beach weather.",
+      howToReach: "Train to Gokarna Road station from Goa (2 hrs) or Bangalore (8 hrs).",
+      stayOptions: "Beach huts, budget guesthouses, eco-camps.",
+      budget: "Budget: ₹2,000–₹5,000 | Comfort: ₹6,000–₹12,000",
+      highlights: ["Om Beach sunset", "Trek between five beaches", "Mahabaleshwara Temple", "Half Moon Beach camp", "Kudle Beach sunrise yoga"],
+      tips: ["Om Beach is the backpacker hub", "Trekking between beaches takes a full morning", "No alcohol near Mahabaleshwara Temple area"],
+      gallery: ["https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=500&q=75", "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=75"]
+    },
+    mcleodganj: {
+      title: "McLeod Ganj — Little Lhasa", state: "Himachal Pradesh",
+      image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=700&q=80",
+      rating: "4.6 ★", mood: "solo", season: "summer", group: "solo", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "The Dalai Lama's home-in-exile — Tibetan monasteries, Triund trek, momos, and a vibrant exile community culture.",
+      bestTime: "March to June and September to November.",
+      howToReach: "Drive 1.5 hrs from Dharamshala town + bus from Dharamshala town (McLeod Ganj is 10km above).",
+      stayOptions: "Tibetan guesthouses, café-guesthouses, retreat centres.",
+      budget: "Budget: ₹3,500–₹7,000 | Comfort: ₹8,000–₹15,000",
+      highlights: ["Tsuglagkhang Complex (Dalai Lama Temple)", "Triund Trek overnight camping", "Bhagsu Nag Falls", "Norbulingka Institute Tibetan crafts", "Dharamshala cricket ground views"],
+      tips: ["Attending the Dalai Lama's public teachings is a rare privilege — check schedule at tibet.net", "Triund camping requires overnight permit from local office", "Best momos in town at Tibet Kitchen"],
+      gallery: ["https://images.unsplash.com/photo-1548013146-72479768bada?w=500&q=75", "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500&q=75"]
+    },
+    alleppey: {
+      title: "Alleppey — Venice of the East", state: "Kerala",
+      image: "https://images.unsplash.com/photo-1602301099967-57e710c2cabb?w=700&q=80",
+      rating: "4.7 ★", mood: "relax", season: "winter", group: "couple", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "The heartland of Kerala's backwaters — houseboat cruises through a maze of canals, rice barges, and coconut palms.",
+      bestTime: "September to March — best for houseboat cruises.",
+      howToReach: "Train from Kochi (1.5 hrs) or Trivandrum (2 hrs); or drive from Kochi.",
+      stayOptions: "Kettuvallam rice barge houseboats, heritage villa guesthouses.",
+      budget: "Budget houseboat: ₹8,000/night | Luxury houseboat: ₹25,000–₹50,000/night",
+      highlights: ["Overnight houseboat cruise", "Nehru Trophy Boat Race (August)", "Alappuzha beach lighthouse", "Village canal shikara ride", "Kuttanad paddy fields from above"],
+      tips: ["Book houseboats directly for 30% discount vs agents", "1-night cruise is enough; 2-nights for slow travel lovers", "Sunrise on the backwaters from deck is unforgettable"],
+      gallery: ["https://images.unsplash.com/photo-1602301099967-57e710c2cabb?w=500&q=75", "https://images.unsplash.com/photo-1586500036706-41963de24d8b?w=500&q=75"]
+    },
+    ziro: {
+      title: "Ziro Valley — Hidden Gem", state: "Arunachal Pradesh",
+      image: "https://images.unsplash.com/photo-1626182398573-55a28b4f5c11?w=700&q=80",
+      rating: "4.7 ★", mood: "nature", season: "summer", group: "solo", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "A UNESCO tentative World Heritage site — Apatani tribal villages, pine-covered hills, rice fields, and the annual Ziro Music Festival.",
+      bestTime: "March to October; September for Ziro Music Festival.",
+      howToReach: "Fly to Naharlagun Airport (HGI) near Itanagar + 5-hr drive to Ziro.",
+      stayOptions: "Tribal homestays, eco-lodges, guesthouses in Hong village.",
+      budget: "Budget: ₹8,000–₹15,000 | Comfort: ₹18,000–₹30,000",
+      highlights: ["Apatani tribal village walk", "Talley Valley Wildlife Sanctuary", "Ziro Music Festival (September)", "Kile Pakho viewpoint", "Meghna Cave Temple"],
+      tips: ["Inner Line Permit required — get from Itanagar in advance", "Tribal culture is sacred — ask before photographing", "Ziro Music Festival tickets sell out quickly"],
+      gallery: ["https://images.unsplash.com/photo-1626182398573-55a28b4f5c11?w=500&q=75", "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=500&q=75"]
+    },
+    chikmagalur: {
+      title: "Chikmagalur Coffee Hills", state: "Karnataka",
+      image: "https://images.unsplash.com/photo-1566296731-c2a4d22f27b7?w=700&q=80",
+      rating: "4.5 ★", mood: "nature", season: "winter", group: "couple", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "India's coffee birthplace — plantation walks, Mullayanagiri peak (Karnataka's highest), Baba Budangiri, and dense shola forests.",
+      bestTime: "October to February — crisp coffee-harvest season weather.",
+      howToReach: "Drive 5 hrs from Bangalore or 2.5 hrs from Mangalore.",
+      stayOptions: "Coffee estate stays, jungle lodges, boutique mountain resorts.",
+      budget: "Budget: ₹6,000–₹12,000 | Comfort: ₹15,000–₹28,000",
+      highlights: ["Mullayanagiri peak sunrise trek", "Coffee plantation stay and tasting", "Hebbe Falls hike", "Baba Budangiri dargah visit", "Z-point viewpoint"],
+      tips: ["Plantation stays give most authentic coffee harvest experience", "Trek Mullayanagiri at 5am to catch sunrise", "Arabica vs Robusta tasting at cooperatives is educational"],
+      gallery: ["https://images.unsplash.com/photo-1566296731-c2a4d22f27b7?w=500&q=75", "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=500&q=75"]
+    },
+    bikaner: {
+      title: "Bikaner — Desert Fort City", state: "Rajasthan",
+      image: "https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=700&q=80",
+      rating: "4.3 ★", mood: "cultural", season: "winter", group: "friends", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "Junagarh Fort, Karni Mata rat temple, Camel Research Centre, and authentic Rajasthani khichdi at the edge of the Thar.",
+      bestTime: "October to February — cool desert weather.",
+      howToReach: "Train from Jaipur (5.5 hrs) or Jodhpur (4 hrs).",
+      stayOptions: "Heritage hotels, palace guesthouses, budget town lodges.",
+      budget: "Budget: ₹3,500–₹7,000 | Comfort: ₹8,000–₹15,000",
+      highlights: ["Junagarh Fort museum", "Karni Mata Temple (holy rats)", "National Research Centre on Camel", "Bikaneri bhujia and namkeen shopping", "Desert dune buggy rides"],
+      tips: ["Junagarh Fort is exceptionally well-preserved", "Karni Mata Temple is genuinely unique — go with an open mind", "Bikaner is famous for bhujia — buy directly from factory shops"],
+      gallery: ["https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=500&q=75", "https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=500&q=75"]
+    },
+    lonavala: {
+      title: "Lonavala — Mumbai's Mountain Escape", state: "Maharashtra",
+      image: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=700&q=80",
+      rating: "4.2 ★", mood: "family", season: "rainy", group: "family", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "Bhushi Dam waterfalls, Karla Caves, Rajmachi fort trek, and the famous chikki fudge — the classic Mumbai weekend hill escape.",
+      bestTime: "June to September (monsoon waterfalls); October to February (clear weather).",
+      howToReach: "Train from Mumbai (2 hrs) or Pune (1 hr) on Mumbai–Pune rail line.",
+      stayOptions: "Resorts, cottages, camping sites near Pawna Lake.",
+      budget: "Budget: ₹3,500–₹7,000 | Comfort: ₹10,000–₹18,000",
+      highlights: ["Bhushi Dam waterfall wading (monsoon)", "Karla and Bhaja Buddhist caves", "Rajmachi Fort overnight trek", "Pawna Lake camping and kayaking", "Tiger's Leap viewpoint"],
+      tips: ["Bhushi Dam is dangerously crowded in July–August peak", "Rajmachi trek is best in monsoon when the fort is misty", "Chikki from Lonavala Market is the must-buy souvenir"],
+      gallery: ["https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=500&q=75", "https://images.unsplash.com/photo-1566296731-c2a4d22f27b7?w=500&q=75"]
+    },
+    sundarbans: {
+      title: "Sundarbans — Royal Bengal Delta", state: "West Bengal",
+      image: "https://images.unsplash.com/photo-1536650135174-e88f2e64c2c4?w=700&q=80",
+      rating: "4.6 ★", mood: "adventure", season: "winter", group: "friends", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "The world's largest mangrove forest and a UNESCO World Heritage Site — boat safaris for Royal Bengal Tigers, crocodiles, and Gangetic dolphins.",
+      bestTime: "September to March — tiger activity higher and boat conditions calm.",
+      howToReach: "Fly or train to Kolkata + 3-hr drive to Godkhali jetty, then boat.",
+      stayOptions: "Eco-lodges on islands, forest department bungalows, boat camps.",
+      budget: "Budget: ₹8,000–₹15,000 | Comfort: ₹18,000–₹35,000 (2-night package)",
+      highlights: ["Tiger sighting from boat near Sudhanyakhali", "Sundaban mangrove forest boat safari", "Sajnekhali bird sanctuary", "Bonnie Camp & Dobanki canopy walk", "Gangetic river dolphin watching"],
+      tips: ["Tiger sightings are never guaranteed — but the experience is extraordinary regardless", "Go with authorized eco-tour operators only", "Pack mosquito repellent and waterproofs"],
+      gallery: ["https://images.unsplash.com/photo-1536650135174-e88f2e64c2c4?w=500&q=75", "https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=500&q=75"]
+    },
+    mount_abu: {
+      title: "Mount Abu — Rajasthan's Hill Station", state: "Rajasthan",
+      image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=700&q=80",
+      rating: "4.2 ★", mood: "family", season: "summer", group: "family", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "Rajasthan's only hill station — Nakki Lake, Dilwara Jain Temples, Guru Shikhar summit, and cooler desert air.",
+      bestTime: "March to June for summer escape; October to February for clear views.",
+      howToReach: "Drive from Udaipur (3 hrs), Ahmedabad (4 hrs), or Abu Road station + bus.",
+      stayOptions: "Heritage hotels, lakeside resorts, budget guesthouses.",
+      budget: "Budget: ₹3,500–₹7,000 | Comfort: ₹9,000–₹18,000",
+      highlights: ["Dilwara Jain Temples (finest marble carvings)", "Nakki Lake boat ride", "Guru Shikhar highest point", "Sunset Point views", "Achalgarh Fort and Brahma temple"],
+      tips: ["Dilwara temples are strictly no-photography inside", "Visit Sunset Point well before actual sunset to get spot", "Hire guide for Dilwara to appreciate the marble artistry"],
+      gallery: ["https://images.unsplash.com/photo-1599661046289-e31897846e41?w=500&q=75", "https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=500&q=75"]
+    },
+    gangotri: {
+      title: "Gangotri — Source of the Ganges", state: "Uttarakhand",
+      image: "https://images.unsplash.com/photo-1592134665534-9ae83d91f3b1?w=700&q=80",
+      rating: "4.7 ★", mood: "spiritual", season: "summer", group: "solo", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "One of Hinduism's Char Dham pilgrimages — the sacred source of the Ganges, high-altitude meadows, and the Bhagirathi gorge.",
+      bestTime: "May to June and September to October (temple closed November to April).",
+      howToReach: "Drive from Rishikesh to Uttarkashi to Gangotri (12 hrs total).",
+      stayOptions: "Ashram accommodation, basic guesthouses, PWD rest houses.",
+      budget: "Budget: ₹5,000–₹10,000 | Comfort: ₹12,000–₹20,000",
+      highlights: ["Gangotri Temple at source", "Gaumukh Glacier trek (19 km)", "Tapovan meadow camping", "Bhairav Ghati viewpoint", "Kedar Ganga river confluence"],
+      tips: ["Gaumukh trek requires forest permit", "Acclimatise at Gangotri (3,048m) before trekking higher", "Temple open mid-May to November only"],
+      gallery: ["https://images.unsplash.com/photo-1592134665534-9ae83d91f3b1?w=500&q=75", "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500&q=75"]
+    },
+    bikanero: {
+      title: "Pachmarhi Hill Station", state: "Madhya Pradesh",
+      image: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=700&q=80",
+      rating: "4.3 ★", mood: "nature", season: "summer", group: "family", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "MP's only hill station — Bee Falls, Pandava Caves, Dhoopgarh sunrise, and the Satpura Tiger Reserve.",
+      bestTime: "November to March; also April to June as summer escape.",
+      howToReach: "Train to Pipariya + 1.5-hr drive, or Bhopal + 5-hr drive.",
+      stayOptions: "MPSTDC hotels, forest bungalows, private resorts.",
+      budget: "Budget: ₹4,000–₹8,000 | Comfort: ₹10,000–₹18,000",
+      highlights: ["Bee Falls swimming", "Dhoopgarh highest point sunrise", "Pandava Caves", "Satpura biosphere jeep safari", "Jata Shankar Cave Temple"],
+      tips: ["Jeep required for most sightseeing — hire from stand at bus depot", "Dhoopgarh sunrise: arrive 5:30am in season", "Bee Falls: go weekdays to avoid crowds"],
+      gallery: ["https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=500&q=75", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=75"]
+    },
+    konark: {
+      title: "Konark Sun Temple", state: "Odisha",
+      image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=700&q=80",
+      rating: "4.6 ★", mood: "photography", season: "winter", group: "solo", budgetRange: "budget-5001-10000",
+      budgetDisplay: "₹5,001 – ₹10,000", description: "A UNESCO World Heritage Site — the 13th-century chariot temple of the Sun god, Chandrabhaga Beach, and Odisha's artistic traditions.",
+      bestTime: "October to March — cool for monument exploration.",
+      howToReach: "Drive 65 km from Bhubaneswar or from Puri (35 km).",
+      stayOptions: "Eco-resort near temple, basic guesthouses.",
+      budget: "Budget: ₹4,000–₹8,000 (day trip from Puri/Bhubaneswar recommended)",
+      highlights: ["Konark Sun Temple chariot wheels", "Chandrabhaga Beach sunrise", "Konark Museum", "Raghurajpur artist village", "Odissi dance performances"],
+      tips: ["Visit at 7am for best light on the temple stones", "Raghurajpur artists' village is 20 km away — excellent folk crafts", "Combine with Puri and Chilika in a 4-day Odisha circuit"],
+      gallery: ["https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&q=75", "https://images.unsplash.com/photo-1582560475093-ba66accbc424?w=500&q=75"]
+    },
+    thekkady: {
+      title: "Thekkady Spice Country", state: "Kerala",
+      image: "https://images.unsplash.com/photo-1566296731-c2a4d22f27b7?w=700&q=80",
+      rating: "4.5 ★", mood: "nature", season: "winter", group: "family", budgetRange: "budget-10001-20000",
+      budgetDisplay: "₹10,001 – ₹20,000", description: "Periyar Wildlife Sanctuary boat safari, spice and tea plantations, elephant camp, and Kalaripayattu martial arts shows.",
+      bestTime: "September to May — lake boat safaris operational.",
+      howToReach: "Drive from Kochi (4 hrs), Madurai (3 hrs), or Munnar (2.5 hrs).",
+      stayOptions: "Spice plantation homestays, eco-resorts, KTDC lake view hotels.",
+      budget: "Budget: ₹7,000–₹13,000 | Comfort: ₹15,000–₹28,000",
+      highlights: ["Periyar Lake boat safari (elephants and deer)", "Spice plantation guided walk", "Elephant bathing interaction", "Bamboo rafting through the forest", "Kalaripayattu evening show"],
+      tips: ["Book bamboo rafting well in advance — limited slots daily", "Morning boat safari yields most wildlife sightings", "Buy whole spices from the plantation directly — excellent quality"],
+      gallery: ["https://images.unsplash.com/photo-1566296731-c2a4d22f27b7?w=500&q=75", "https://images.unsplash.com/photo-1602301099967-57e710c2cabb?w=500&q=75"]
     }
+  };
 
-    // Filter functionality
-    function applyFilters() {
-      const seasonFilter = document.getElementById('season').value;
-      const groupFilter = document.getElementById('group').value;
-      const moodFilter = document.getElementById('mood').value;
-      const budgetFilter = document.getElementById('budget').value;
-      
-      const cards = document.querySelectorAll('.trip-card');
-      let visibleCount = 0;
-      
-      cards.forEach(card => {
-        const season = card.getAttribute('data-season');
-        const group = card.getAttribute('data-group');
-        const mood = card.getAttribute('data-mood');
-        const budget = card.getAttribute('data-budget');
-        
-        const showCard = 
-          (seasonFilter === '' || season === seasonFilter) &&
-          (groupFilter === '' || group === groupFilter) &&
-          (moodFilter === '' || mood === moodFilter) &&
-          (budgetFilter === '' || budget === budgetFilter);
-        
-        if (showCard) {
-          card.style.display = 'flex';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-      
-      // Show no results message if needed
-      const noResults = document.querySelector('.no-results');
-      if (noResults) {
-        noResults.remove();
-      }
-      
-      if (visibleCount === 0) {
-        const tripCardsContainer = document.getElementById('tripCards');
-        const noResultsDiv = document.createElement('div');
-        noResultsDiv.className = 'no-results';
-        noResultsDiv.innerHTML = `
-          <h3>No Destinations Found</h3>
-          <p>Try adjusting your filters to see more options.</p>
-        `;
-        tripCardsContainer.appendChild(noResultsDiv);
-      }
-    }
-
-    // Modal functionality
-    const modal = document.getElementById("detailsModal");
-    const closeModal = document.getElementById("closeModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalBestTime = document.getElementById("modalBestTime");
-    const modalHowToReach = document.getElementById("modalHowToReach");
-    const modalStayOptions = document.getElementById("modalStayOptions");
-    const modalBudget = document.getElementById("modalBudget");
-    const modalHighlights = document.getElementById("modalHighlights");
-    const modalTips = document.getElementById("modalTips");
-    const modalGallery = document.getElementById("modalGallery");
-
-    const imageModal = document.getElementById("imageModal");
-    const zoomedImage = document.getElementById("zoomedImage");
-    const imgClose = document.getElementById("imgClose");
-
-    function openModal(destination) {
-      const details = tripDetails[destination];
-      
-      modalTitle.textContent = details.title;
-      modalBestTime.textContent = details.bestTime;
-      modalHowToReach.textContent = details.howToReach;
-      modalStayOptions.textContent = details.stayOptions;
-      modalBudget.textContent = details.budget;
-      
-      // Populate highlights
-      modalHighlights.innerHTML = '';
-      details.highlights.forEach(highlight => {
-        const li = document.createElement('li');
-        li.innerHTML = `<i class="fas fa-check-circle"></i> ${highlight}`;
-        modalHighlights.appendChild(li);
-      });
-      
-      // Populate tips
-      modalTips.innerHTML = '';
-      details.tips.forEach(tip => {
-        const li = document.createElement('li');
-        li.innerHTML = `<i class="fas fa-lightbulb"></i> ${tip}`;
-        modalTips.appendChild(li);
-      });
-      
-      // Populate gallery
-      modalGallery.innerHTML = '';
-      details.gallery.forEach(img => {
-        const imgElem = document.createElement("img");
-        imgElem.src = img;
-        imgElem.alt = details.title;
-        imgElem.addEventListener("click", () => openImageModal(img));
-        modalGallery.appendChild(imgElem);
-      });
-      
-      modal.style.display = "flex";
-    }
-
-    function openImageModal(src) {
-      imageModal.style.display = "block";
-      zoomedImage.src = src;
-    }
-
-    // Close buttons
-    closeModal.onclick = () => modal.style.display = "none";
-    imgClose.onclick = () => imageModal.style.display = "none";
-
-    // Close on outside click
-    window.onclick = function(event) {
-      if (event.target === modal) modal.style.display = "none";
-      if (event.target === imageModal) imageModal.style.display = "none";
-    };
-
-    // Filter panel functionality
-    const openBtn = document.getElementById('openPanelBtn');
-    const panel = document.getElementById('filterPanel');
-    const filterForm = document.getElementById('filterForm');
-
-    openBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      panel.classList.remove('hidden');
-      panel.classList.add('visible');
+  // ===== CARD RENDERING =====
+  function initializeTripCards() {
+    const container = document.getElementById('tripCards');
+    container.innerHTML = '';
+    const keys = Object.keys(tripDetails);
+    keys.forEach(function(key) {
+      const trip = tripDetails[key];
+      const card = document.createElement('div');
+      card.className = 'trip-card';
+      card.setAttribute('data-season', trip.season);
+      card.setAttribute('data-group', trip.group);
+      card.setAttribute('data-mood', trip.mood);
+      card.setAttribute('data-budget', trip.budgetRange);
+      card.setAttribute('data-key', key);
+      card.onclick = function() { openModal(key); };
+      card.innerHTML =
+        '<img src="' + trip.image + '" alt="' + trip.title + '" class="card-image" loading="lazy">' +
+        '<div class="trip-overlay-center"><i class="fas fa-eye" style="margin-right:8px"></i>View Details</div>' +
+        '<span class="mood-badge">' + formatMood(trip.mood) + '</span>' +
+        '<span class="rating-badge">' + trip.rating + '</span>' +
+        '<div class="content">' +
+          '<h3>' + trip.title + '</h3>' +
+          '<div class="state-label"><i class="fas fa-map-marker-alt" style="color:var(--sapphire);font-size:0.75rem;margin-right:4px"></i>' + trip.state + '</div>' +
+          '<p>' + trip.description + '</p>' +
+          '<div class="trip-tags">' +
+            '<span class="trip-tag">' + trip.season + '</span>' +
+            '<span class="trip-tag">' + trip.group + '</span>' +
+            '<span class="trip-tag budget-tag">' + trip.budgetDisplay + '</span>' +
+          '</div>' +
+        '</div>';
+      container.appendChild(card);
     });
+    updateResultsCount();
+  }
 
-    document.addEventListener('click', (e) => {
-      if (!panel.contains(e.target) && e.target !== openBtn) {
-        panel.classList.remove('visible');
-        panel.classList.add('hidden');
-      }
+  function formatMood(m) {
+    const map = {adventure:'⚡ Adventure',relax:'😌 Relax',romantic:'❤️ Romantic',solo:'🧭 Solo',family:'👨‍👩‍👧 Family',beach:'🏖️ Beach',mountains:'⛰️ Mountains',nature:'🌿 Nature',spiritual:'🙏 Spiritual',foodlover:'🍛 Food Lover',photography:'📸 Photography',luxury:'💎 Luxury',cultural:'🏛️ Cultural'};
+    return map[m] || m;
+  }
+
+  // ===== FILTER =====
+  function applyFilters() {
+    var s = document.getElementById('season').value;
+    var g = document.getElementById('group').value;
+    var m = document.getElementById('mood').value;
+    var b = document.getElementById('budget').value;
+    var cards = document.querySelectorAll('.trip-card');
+    var visible = 0;
+    cards.forEach(function(card) {
+      var cs = card.getAttribute('data-season');
+      var cg = card.getAttribute('data-group');
+      var cm = card.getAttribute('data-mood');
+      var cb = card.getAttribute('data-budget');
+      var show = (!s || cs === s) && (!g || cg === g) && (!m || cm === m) && (!b || cb === b);
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
     });
+    var noRes = document.querySelector('.no-results');
+    if (noRes) noRes.remove();
+    if (visible === 0) {
+      var d = document.createElement('div');
+      d.className = 'no-results';
+      d.innerHTML = '<h3>No Destinations Found</h3><p>Try adjusting your filters to see more options.</p>';
+      document.getElementById('tripCards').appendChild(d);
+    }
+    updateResultsCount(visible, cards.length);
+  }
 
-    filterForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // Get values from mobile filter panel
-      const seasonValue = document.getElementById('panelSeason').value;
-      const groupValue = document.getElementById('panelGroup').value;
-      const moodValue = document.getElementById('panelMood').value;
-      const budgetValue = document.getElementById('panelBudget').value;
-      
-      // Update desktop filter values
-      document.getElementById('season').value = seasonValue;
-      document.getElementById('group').value = groupValue;
-      document.getElementById('mood').value = moodValue;
-      document.getElementById('budget').value = budgetValue;
-      
-      // Apply filters
-      applyFilters();
-      
-      // Close the panel
-      panel.classList.remove('visible');
-      panel.classList.add('hidden');
+  function updateResultsCount(visible, total) {
+    var v = (visible !== undefined) ? visible : document.querySelectorAll('.trip-card').length;
+    document.getElementById('visibleCount').textContent = v;
+  }
+
+  // ===== MODAL =====
+  var modal = document.getElementById('detailsModal');
+  var closeModalBtn = document.getElementById('closeModal');
+  var imageModal = document.getElementById('imageModal');
+  var zoomedImage = document.getElementById('zoomedImage');
+  var imgClose = document.getElementById('imgClose');
+
+  function openModal(key) {
+    var d = tripDetails[key];
+    document.getElementById('modalTitle').textContent = d.title;
+    document.getElementById('modalBestTime').textContent = d.bestTime;
+    document.getElementById('modalHowToReach').textContent = d.howToReach;
+    document.getElementById('modalStayOptions').textContent = d.stayOptions;
+    document.getElementById('modalBudget').textContent = d.budget;
+    var hl = document.getElementById('modalHighlights');
+    hl.innerHTML = '';
+    d.highlights.forEach(function(h) {
+      var li = document.createElement('li');
+      li.innerHTML = '<i class="fas fa-check-circle"></i> ' + h;
+      hl.appendChild(li);
     });
+    var tips = document.getElementById('modalTips');
+    tips.innerHTML = '';
+    d.tips.forEach(function(t) {
+      var li = document.createElement('li');
+      li.innerHTML = '<i class="fas fa-lightbulb"></i> ' + t;
+      tips.appendChild(li);
+    });
+    var gallery = document.getElementById('modalGallery');
+    gallery.innerHTML = '';
+    d.gallery.forEach(function(img) {
+      var el = document.createElement('img');
+      el.src = img; el.alt = d.title; el.loading = 'lazy';
+      el.addEventListener('click', function() { openImageModal(img); });
+      gallery.appendChild(el);
+    });
+    modal.style.display = 'flex';
+  }
 
-    // Add event listeners to desktop filters
-    document.getElementById('season').addEventListener('change', applyFilters);
-    document.getElementById('group').addEventListener('change', applyFilters);
-    document.getElementById('mood').addEventListener('change', applyFilters);
-    document.getElementById('budget').addEventListener('change', applyFilters);
+  function openImageModal(src) {
+    zoomedImage.src = src;
+    imageModal.classList.add('open');
+  }
 
-    // Initialize the page
-    initializeTripCards();
+  closeModalBtn.onclick = function() { modal.style.display = 'none'; };
+  imgClose.onclick = function() { imageModal.classList.remove('open'); };
+  window.onclick = function(e) {
+    if (e.target === modal) modal.style.display = 'none';
+    if (e.target === imageModal) imageModal.classList.remove('open');
+  };
+
+  // Desktop filters
+  document.getElementById('season').addEventListener('change', applyFilters);
+  document.getElementById('group').addEventListener('change', applyFilters);
+  document.getElementById('mood').addEventListener('change', applyFilters);
+  document.getElementById('budget').addEventListener('change', applyFilters);
+
+  // Mobile filter panel
+  var openBtn = document.getElementById('openPanelBtn');
+  var panel = document.getElementById('filterPanel');
+  var filterForm = document.getElementById('filterForm');
+  openBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    panel.classList.remove('hidden'); panel.classList.add('visible');
+  });
+  document.addEventListener('click', function(e) {
+    if (!panel.contains(e.target) && e.target !== openBtn) {
+      panel.classList.remove('visible'); panel.classList.add('hidden');
+    }
+  });
+  filterForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('season').value = document.getElementById('panelSeason').value;
+    document.getElementById('group').value = document.getElementById('panelGroup').value;
+    document.getElementById('mood').value = document.getElementById('panelMood').value;
+    document.getElementById('budget').value = document.getElementById('panelBudget').value;
+    applyFilters();
+    panel.classList.remove('visible'); panel.classList.add('hidden');
+  });
+
+  // Init
+  initializeTripCards();
   </script>
 </body>
 </html>

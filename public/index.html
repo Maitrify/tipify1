@@ -576,7 +576,617 @@ function closeModal12() {
 
 
         <!-- BLOG PAGE END -->
-    
+
+        <!-- ===== TRIPIFY CURATED BLOGS SECTION ===== -->
+        <section class="tripify-curated-blogs" id="travel-blogs">
+          <div class="section-header">
+            <h2>Travel Stories &amp; Guides</h2>
+            <div class="section-line"></div>
+            <p>Expert-written travel blogs to inspire your next adventure across India</p>
+          </div>
+          <div class="tripify-blog-grid" id="curatedBlogGrid">
+            <!-- Cards rendered by JS below -->
+          </div>
+        </section>
+
+        <!-- Blog Full-Page Modal -->
+        <div class="tripify-blog-modal-overlay" id="tripifyBlogModal" role="dialog" aria-modal="true" aria-labelledby="blogModalTitle">
+          <div class="tripify-blog-modal-box" id="tripifyBlogModalBox">
+            <button class="blog-modal-close-btn" id="closeTripifyBlogModal" aria-label="Close blog">&#10005;</button>
+            <img class="blog-modal-cover" id="blogModalCover" src="" alt="" loading="lazy" />
+            <div class="blog-modal-content-area">
+              <div class="blog-modal-top-meta">
+                <span class="blog-modal-tag" id="blogModalTag"></span>
+                <span class="blog-modal-read-time" id="blogModalReadTime"></span>
+              </div>
+              <h2 class="blog-modal-title" id="blogModalTitle"></h2>
+              <div class="blog-modal-author-row">
+                <div class="blog-modal-author-info">
+                  <div class="blog-modal-author-avatar" id="blogModalAuthorAvatar"></div>
+                  <div>
+                    <div class="author-name" id="blogModalAuthorName"></div>
+                    <div id="blogModalDate" style="font-size:0.78rem;color:#9a9a9a;"></div>
+                  </div>
+                </div>
+                <button class="blog-modal-share-btn" id="blogModalShareBtn">
+                  <i class="fa fa-share-alt"></i> Share
+                </button>
+              </div>
+              <div class="blog-modal-info-grid" id="blogModalInfoGrid"></div>
+              <span class="blog-modal-destination-tag" id="blogModalDestTag">
+                <i class="fa fa-map-marker"></i> <span id="blogModalDestName"></span>
+              </span>
+              <div class="blog-modal-article" id="blogModalArticle"></div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+        // ===== TRIPIFY CURATED BLOGS DATA =====
+        const tripifyBlogs = [
+          {
+            id: 1,
+            title: "Goa's Golden Shores: The Ultimate Beach Paradise Guide",
+            author: "Priya Sharma",
+            authorInitials: "PS",
+            date: "December 15, 2024",
+            readTime: "8 min read",
+            tag: "Beach",
+            destination: "Goa, India",
+            image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=900&q=80",
+            excerpt: "Discover the magic of Goa's sun-kissed beaches, vibrant nightlife, and rich Portuguese heritage — your perfect winter escape.",
+            bestSeason: "November – February",
+            budget: "₹8,000 – ₹25,000 / person",
+            duration: "5 – 7 Days",
+            nearbyAttractions: "Dudhsagar Falls, Basilica of Bom Jesus, Chapora Fort",
+            article: `<p>Goa — the name alone conjures images of golden sands, swaying palms, and the gentle lapping of the Arabian Sea. This small coastal state on India's western coast is a paradox: it is simultaneously India's most laid-back destination and its most exciting. Whether you are a first-time visitor or a seasoned Goa aficionado, the state always has something new to reveal.</p>
+
+<h4>The Beaches: North vs. South</h4>
+<p>Goa's coastline stretches over 100 kilometres, and the character of each beach is entirely different. The northern beaches — Anjuna, Baga, Calangute, and Vagator — are lively, colourful affairs. Shacks blasting trance music at sunset, flea markets selling Rajasthani jewellery, and impromptu drum circles define the north. Anjuna is the spiritual home of Goa's legendary party scene, with its Wednesday flea market drawing thousands every week.</p>
+<p>Head south and the atmosphere shifts dramatically. Palolem, Agonda, and Butterfly Beach are quieter, more contemplative. The sand here is finer, the crowds thinner, and the huts simpler. Many long-term travellers — digital nomads, yoga practitioners, and those seeking genuine rest — make the south their home for entire seasons.</p>
+
+<h4>Portuguese Heritage Worth Exploring</h4>
+<p>Beyond the beaches, Goa's 450-year Portuguese colonial history has left an indelible architectural and culinary mark. Old Goa, a UNESCO World Heritage Site, houses the Basilica of Bom Jesus — the oldest basilica in Asia — where the mortal remains of St. Francis Xavier rest in a silver casket. The nearby Se Cathedral is the largest church in Asia. Spend a morning here; the quiet grandeur is humbling.</p>
+<p>The Latin Quarter of Fontainhas in Panaji is a photographer's dream. Narrow winding lanes, colour-washed Indo-Portuguese houses, and cafes serving bebinca (a layered Goan coconut cake) make this neighbourhood one of the most charming pockets on the subcontinent.</p>
+
+<h4>Food Recommendations</h4>
+<ul>
+  <li><strong>Fish Curry Rice:</strong> The unofficial state dish. Every Goan household has their own recipe — try it at local lunch homes rather than tourist restaurants for the real experience.</li>
+  <li><strong>Prawn Balchão:</strong> A spicy, pickled prawn dish with deep Portuguese roots. Pairs perfectly with pão (Goan bread).</li>
+  <li><strong>Bebinca:</strong> A rich, multi-layered coconut pudding — the traditional dessert of Goa.</li>
+  <li><strong>Feni:</strong> The local cashew or coconut spirit. Sip it responsibly — it is far more potent than it appears.</li>
+  <li><strong>Xacuti Chicken:</strong> Aromatic curry made with roasted spices, coconut, and red chillies — deeply satisfying on a cool evening.</li>
+</ul>
+
+<h4>Travel Tips for Goa</h4>
+<ul>
+  <li>Rent a scooter (₹300–400/day) — it is the best and most authentic way to explore the backroads and hidden beaches.</li>
+  <li>Avoid visiting during the monsoon (June–September) unless you enjoy dramatic, empty landscapes — most shacks close.</li>
+  <li>Book accommodations at least 6 weeks in advance for the Christmas–New Year peak season.</li>
+  <li>Carry cash — many beach shacks and local markets do not accept cards.</li>
+  <li>Respect local customs when visiting churches and temples — dress modestly and remove footwear.</li>
+</ul>
+
+<h4>Nearby Attractions</h4>
+<p><strong>Dudhsagar Falls</strong> — Located 60 km from Panaji, the four-tiered Dudhsagar (Sea of Milk) waterfall is one of India's tallest. Accessible by jeep safari through the Bhagwan Mahaveer Wildlife Sanctuary, it is best visited between October and January when water levels are safe.</p>
+<p><strong>Chapora Fort</strong> — Perched dramatically on a headland above Vagator Beach, this 17th-century fort offers perhaps the most cinematically perfect sunset view in all of Goa. The fort itself is mostly ruined, but the panorama of the Arabian Sea is absolutely worth the short climb.</p>`
+          },
+          {
+            id: 2,
+            title: "Manali Mountain Magic: Where Adventure Meets Serenity",
+            author: "Arjun Mehta",
+            authorInitials: "AM",
+            date: "January 8, 2025",
+            readTime: "9 min read",
+            tag: "Mountains",
+            destination: "Manali, Himachal Pradesh",
+            image: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=900&q=80",
+            excerpt: "From snow-dusted peaks to roaring rivers, Manali is Himachal Pradesh's crown jewel — a destination that rewards every kind of traveller.",
+            bestSeason: "October – June",
+            budget: "₹10,000 – ₹30,000 / person",
+            duration: "6 – 9 Days",
+            nearbyAttractions: "Rohtang Pass, Solang Valley, Kasol",
+            article: `<p>Perched at 2,050 metres above sea level, Manali sits at the northern end of the Kullu Valley, framed by soaring Himalayan peaks and the roaring Beas River. It is Himachal Pradesh's most visited mountain town — and for good reason. Manali delivers drama: snow-capped passes, ancient forests of deodar and pine, apple orchards that turn golden in autumn, and a culture steeped in Tibetan Buddhism and Himachali tradition.</p>
+
+<h4>Old Manali vs. New Manali</h4>
+<p>Most visitors arrive in New Manali — the commercial hub of restaurants, guesthouses, and gear shops along the main bazaar. But the soul of the town lives in Old Manali, a 30-minute walk across the Manalsu stream. Here, narrow cobbled lanes wind past stone houses draped in flowering vines, and small cafes serve filter coffee and homemade apple pie with views of snow peaks. Old Manali attracts backpackers who linger for weeks, working remotely or simply finding their rhythm in the mountains.</p>
+
+<h4>Adventure Activities</h4>
+<p>Manali is the adventure capital of northern India. The options are extraordinary:</p>
+<ul>
+  <li><strong>White-water rafting</strong> on the Beas River (Grade III–IV) — runs typically available May to July.</li>
+  <li><strong>Paragliding</strong> at Solang Valley — tandem flights with panoramic Himalayan views.</li>
+  <li><strong>Skiing and snowboarding</strong> at Solang Valley (January–March) and Rohtang Pass.</li>
+  <li><strong>Trekking</strong> to Chandrakhani Pass, Hampta Pass, and Bhrigu Lake — all require 4–5 days and moderate fitness.</li>
+  <li><strong>Motorcycle expeditions</strong> to Spiti Valley or Leh — Manali is the traditional starting point for both legendary Himalayan routes.</li>
+</ul>
+
+<h4>Cultural Highlights</h4>
+<p>The Hadimba Devi Temple (1553 CE) is Manali's most iconic landmark — a remarkable four-storeyed pagoda-style structure nestled among ancient deodar trees. Built without a single nail, its woodwork is extraordinarily intricate. The surrounding cedar forest feels sacred and hushed even on busy days. Visit early morning for the most contemplative experience.</p>
+<p>The Tibetan Monastery and the small Gadhan Thekchhokling Gompa near Old Manali are worth visiting for their painted frescoes and butter-lamp-lit prayer halls. Every evening, monks recite prayers as the peaks turn pink in the alpenglow — a deeply moving experience.</p>
+
+<h4>Food Recommendations</h4>
+<ul>
+  <li><strong>Sidu:</strong> A steamed wheat bread stuffed with walnuts and poppy seeds — the quintessential Himachali snack.</li>
+  <li><strong>Dham:</strong> A traditional feast of rajma, dal, rice, and kaddu (pumpkin) curry, typically served on banana leaves.</li>
+  <li><strong>Trout:</strong> Fresh river trout grilled or fried — available at most restaurants along the Beas River.</li>
+  <li><strong>Apple products:</strong> Manali apples, apple jam, and apple cider are available everywhere and make perfect souvenirs.</li>
+</ul>
+
+<h4>Travel Tips for Manali</h4>
+<ul>
+  <li>Acclimatise for at least one full day before attempting high-altitude excursions like Rohtang Pass (3,978 m).</li>
+  <li>Carry warm clothing in ALL seasons — temperatures can drop sharply after sunset even in summer.</li>
+  <li>Rohtang Pass requires a permit (₹500) booked online at least 24 hours in advance.</li>
+  <li>The Manali–Leh Highway (NH3) is open only from late May to October — verify road status before planning.</li>
+  <li>Avoid peak season (May–June) if possible — the hill station gets extremely crowded during Indian school holidays.</li>
+</ul>
+
+<h4>Nearby Attractions</h4>
+<p><strong>Solang Valley</strong> lies just 14 km from Manali and is the hub for snow activities in winter and paragliding in summer. <strong>Kasol</strong>, 76 km away, is a tiny village that has become a backpacker haven, sitting by the Parvati River and serving as the gateway to the famous Kheerganga trek.</p>`
+          },
+          {
+            id: 3,
+            title: "Kashmir: Heaven on Earth — A Complete Travel Guide",
+            author: "Nadia Khan",
+            authorInitials: "NK",
+            date: "February 3, 2025",
+            readTime: "10 min read",
+            tag: "Nature",
+            destination: "Kashmir, Jammu & Kashmir",
+            image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=900&q=80",
+            excerpt: "Dal Lake, saffron meadows, houseboats, and Mughal gardens — Kashmir's beauty is a living poem that must be experienced to be believed.",
+            bestSeason: "March – June, September – November",
+            budget: "₹15,000 – ₹40,000 / person",
+            duration: "7 – 10 Days",
+            nearbyAttractions: "Gulmarg, Pahalgam, Sonamarg",
+            article: `<p>There is a reason the Mughals called Kashmir "Jannat" — paradise. This northernmost region of the Indian subcontinent sits in a broad mountain valley at 1,600 metres, cradled by peaks that rise above 4,000 metres. Dal Lake, reflecting the Zabarwan Mountains, the fragrant saffron fields of Pampore, the wooden chinar trees turning flame-red in autumn — Kashmir is the most achingly beautiful place in India.</p>
+
+<h4>The Dal Lake Experience</h4>
+<p>No visit to Kashmir is complete without staying in a houseboat on Dal Lake. These elaborately carved wooden vessels — some over a hundred years old — float on the lake's gentle surface and offer a window into a way of life that has barely changed in centuries. Waking to the sound of water lapping against the hull, watching the shikara boats glide past laden with flowers and vegetables heading to the floating market, sipping kahwa (green tea with saffron and almonds) on the sun deck — this is Kashmir's most intimate experience.</p>
+<p>The Floating Vegetable Market operates from 6am and sees dozens of small boats converging on the lake, their occupants trading vegetables grown on floating gardens called "rads." The noise, colour, and energy of this market is extraordinary.</p>
+
+<h4>Mughal Gardens</h4>
+<p>The three great Mughal gardens along the shores of Dal Lake — Shalimar Bagh, Nishat Bagh, and Chashme Shahi — were laid out in the 17th century by Emperor Jahangir and Shah Jahan. Each follows the Persian "charbagh" (four-garden) design with cascading terraces, fountains, and flowerbeds. Visit in April when the irises and tulips bloom, or in October when the chinar trees turn gold and red.</p>
+
+<h4>Beyond Srinagar: The Three Valleys</h4>
+<p><strong>Gulmarg</strong> (2,650 m) is home to the world's highest gondola, which climbs to the Apharwat Peak at 4,200 m. In winter it is Asia's premier skiing destination; in summer, the meadow is carpeted with wildflowers and offers panoramic views of Nanga Parbat. <strong>Pahalgam</strong> (2,130 m) is a wide valley town on the Lidder River — the base for the annual Amarnath Yatra pilgrimage and the starting point for magnificent treks into Kolahoi Glacier territory. <strong>Sonamarg</strong> (2,740 m), the "Meadow of Gold," is the last major settlement before the Zoji La pass. Thajiwas Glacier lies just 3 km from the town and is accessible by pony.</p>
+
+<h4>Food Recommendations</h4>
+<ul>
+  <li><strong>Wazwan:</strong> The grand Kashmiri multi-course feast. A wazwan can have up to 36 courses — rogan josh, tabak maaz (fried lamb ribs), gushtaba (minced lamb in yoghurt sauce), and more.</li>
+  <li><strong>Rogan Josh:</strong> Slow-cooked lamb in an aromatic sauce of dried Kashmiri chillies and spices. The colour is vivid scarlet but the heat is mild and fragrant.</li>
+  <li><strong>Kahwa:</strong> The iconic Kashmiri green tea brewed with saffron, cardamom, cinnamon, and almonds. Warming and aromatic.</li>
+  <li><strong>Nadru Monje:</strong> Crispy fried lotus stem fritters — a beloved street snack.</li>
+  <li><strong>Shufta:</strong> A dessert of dried fruits cooked in ghee and sugar — rich, sweet, and indulgent.</li>
+</ul>
+
+<h4>Travel Tips for Kashmir</h4>
+<ul>
+  <li>Check travel advisories and conditions before visiting; stay updated through official channels.</li>
+  <li>Book houseboats through registered operators recommended by the J&amp;K Tourism Board.</li>
+  <li>Carry warm clothes even in summer — Srinagar evenings are cool and higher elevations can be cold.</li>
+  <li>Bargain at shikara rides and market stalls — this is expected and enjoyable.</li>
+  <li>Saffron harvesting (mid-October to mid-November in Pampore) is a once-in-a-lifetime experience to witness.</li>
+</ul>
+
+<h4>Nearby Attractions</h4>
+<p>The ancient hill fort and temple complex of <strong>Shankaracharya Hill</strong> overlooks all of Srinagar from 1,000 feet above the valley. The <strong>Hazratbal Shrine</strong>, home to a sacred relic of the Prophet Muhammad, sits elegantly at the edge of Dal Lake. Both are essential visits for understanding Kashmir's deep spiritual character.</p>`
+          },
+          {
+            id: 4,
+            title: "Ladakh: The Land of High Passes and Endless Skies",
+            author: "Vikram Nair",
+            authorInitials: "VN",
+            date: "March 20, 2025",
+            readTime: "9 min read",
+            tag: "Adventure",
+            destination: "Ladakh, Union Territory",
+            image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=900&q=80",
+            excerpt: "At 3,500 metres above sea level, Ladakh is a raw, magnificent landscape of monasteries, barren mountains, and crystalline lakes that will reset your soul.",
+            bestSeason: "June – September",
+            budget: "₹20,000 – ₹55,000 / person",
+            duration: "8 – 14 Days",
+            nearbyAttractions: "Pangong Lake, Nubra Valley, Khardung La",
+            article: `<p>There is no preparing for Ladakh. No photograph, no travel documentary, no friend's enthusiastic description adequately conveys what it is like to drive through a moonscape of rust-red mountains and suddenly glimpse the jewel-blue of Pangong Lake stretching 134 km to the Tibetan border. Ladakh operates on a different scale — geographically and emotionally. It is not merely a destination; it is a reckoning.</p>
+
+<h4>Getting There: The Journey Is Part of It</h4>
+<p>Arriving in Leh by air is dramatic — the plane descends sharply between snow peaks to land on a runway surrounded by mountains. But arriving by road is transformative. The Manali–Leh Highway (NH3) is one of the world's great road trips — 479 km through five mountain passes, including the Baralacha La (4,890 m) and Tanglang La (5,328 m). The Srinagar–Leh Highway via Kargil is the alternative, passing the iconic Moonland of Lamayuru and the Magnetic Hill. Both routes demand at least two days of driving and offer scenery that beggars description.</p>
+
+<h4>Leh and Its Monasteries</h4>
+<p>Leh itself is a compact, magnetic town — its old quarter of mud-brick buildings stacked up the hillside beneath the ruins of Leh Palace. The Palace (17th century) offers sweeping views over the Indus Valley. The Leh Mosque and Jama Masjid in the old bazaar speak to the town's Central Asian trading heritage. But Ladakh's monasteries are its supreme cultural achievement.</p>
+<p>Thiksey Monastery, 17 km from Leh, is often called "Ladakh's Potala Palace" for its resemblance to Lhasa's famous landmark. Its 12-storey complex houses 60 monks and contains one of Ladakh's most beautiful statues — a two-storey Maitreya Buddha. Hemis Monastery, the largest in Ladakh, is famous for its annual festival (June/July) when masked dancers in elaborate costumes perform centuries-old cham dances in the courtyard. Diskit Monastery in Nubra Valley houses a 32-metre statue of Maitreya Buddha with its gaze turned toward Pakistan — a striking symbol of peace.</p>
+
+<h4>Pangong Lake and Nubra Valley</h4>
+<p>Pangong Tso (4,350 m) is the crown jewel of Ladakh's landscape — a 134-km lake whose colour shifts between turquoise, blue, and green depending on the light, sky, and time of day. Camping overnight on its banks (with a permit) and watching the stars emerge over a moonlit lake at such altitude is an experience few forget. Nubra Valley, reached via the world's highest motorable pass (Khardung La, 5,359 m), is a surreal landscape of sand dunes dotted with double-humped Bactrian camels, set against snow peaks. The village of Hunder offers camel safaris across these incongruous dunes.</p>
+
+<h4>Food Recommendations</h4>
+<ul>
+  <li><strong>Thukpa:</strong> A rich, warming noodle soup with vegetables or meat — staple sustenance at altitude.</li>
+  <li><strong>Tsampa:</strong> Roasted barley flour mixed with butter tea — the traditional Ladakhi breakfast.</li>
+  <li><strong>Butter Tea (Po Cha):</strong> Tea churned with yak butter and salt — an acquired taste but genuinely warming in cold conditions.</li>
+  <li><strong>Skyu:</strong> A thick stew of thumb-sized pasta and root vegetables — hearty and satisfying.</li>
+  <li><strong>Apricot products:</strong> Ladakh produces exceptional apricots. Fresh, dried, and as oil — don't leave without buying some.</li>
+</ul>
+
+<h4>Travel Tips for Ladakh</h4>
+<ul>
+  <li>Acclimatise strictly: spend your first 48 hours in Leh resting. Do not attempt treks or high-altitude drives immediately.</li>
+  <li>Inner Line Permits are required for Pangong Lake, Nubra Valley, and other protected areas — get them from the SDM office in Leh.</li>
+  <li>The season is short: most roads are open only June to September. Plan early.</li>
+  <li>Fuel up in Leh — petrol stations are scarce on remote routes.</li>
+  <li>Download offline maps (Maps.me or Google offline) — connectivity is limited.</li>
+</ul>`
+          },
+          {
+            id: 5,
+            title: "Jaipur: The Pink City's Royal Heritage Trail",
+            author: "Meera Patel",
+            authorInitials: "MP",
+            date: "April 12, 2025",
+            readTime: "8 min read",
+            tag: "Cultural",
+            destination: "Jaipur, Rajasthan",
+            image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=900&q=80",
+            excerpt: "Majestic forts, opulent palaces, bustling bazaars, and a culinary scene as colourful as its famous pink buildings — Jaipur is Rajasthan at its most spectacular.",
+            bestSeason: "October – March",
+            budget: "₹7,000 – ₹22,000 / person",
+            duration: "3 – 5 Days",
+            nearbyAttractions: "Amber Fort, Nahargarh Fort, Abhaneri Stepwell",
+            article: `<p>The city of Jaipur earns its nickname "The Pink City" honestly — in 1876, Maharaja Ram Singh II ordered the entire old city painted terracotta pink to welcome Prince Albert of Wales. Over 140 years later, the rose-pink hue remains, lending Jaipur a warm, unified aesthetic unlike any other Indian city. Walking through the walled city at golden hour, when the fading light catches those coral facades, is one of the most beautiful urban experiences in India.</p>
+
+<h4>The Magnificent Forts</h4>
+<p>Amber Fort (11 km from the city) is Jaipur's crown jewel. Perched on a ridge above Maota Lake, this massive complex of courtyards, palaces, temples, and gardens was the former residence of the Kachchwaha Rajput rulers. The Sheesh Mahal (Hall of Mirrors) — its walls and ceiling encrusted with thousands of glass mosaic pieces — is dazzling when lit by a single candle. Arrive at sunrise to photograph the fort's reflection in the lake below with minimal crowds.</p>
+<p>Nahargarh Fort, overlooking the city from the Aravalli hills, is best visited at sunset when Jaipur's pink skyline spreads below you in every direction. The fort houses Madhavendra Bhavan — nine identical suites built by Maharaja Sawai Madho Singh II for his nine queens, each opening onto shared corridors. Jaigarh Fort, connected to Amber by an underground tunnel, houses the world's largest cannon on wheels — the Jaivana.</p>
+
+<h4>The City Palace and Hawa Mahal</h4>
+<p>The City Palace in the heart of the old city is a masterwork of Rajput and Mughal architecture — a complex of courtyards, galleries, and royal apartments still partially inhabited by the royal family. The Mubarak Mahal (Welcome Palace) now houses a museum of royal costumes and textiles, including a silk garment worn by the enormous Maharaja Sawai Madho Singh I, who reportedly weighed 250 kg.</p>
+<p>Hawa Mahal (Palace of Winds) — the iconic five-storey pink sandstone screen facade with 953 small windows — was built in 1799 to allow royal women to observe street life while remaining unseen. It is Jaipur's most photographed building and best admired from the tea stall opposite, at sunrise or dusk.</p>
+
+<h4>Food Recommendations</h4>
+<ul>
+  <li><strong>Dal Baati Churma:</strong> The quintessential Rajasthani meal — baked wheat dumplings (baati) served with lentil curry (dal) and sweet crushed wheat (churma). Unmissable.</li>
+  <li><strong>Ghevar:</strong> A disc-shaped sweet of fried flour lattice soaked in sugar syrup and topped with cream — especially popular during Teej and Gangaur festivals.</li>
+  <li><strong>Laal Maas:</strong> A fiery lamb curry made with dried Mathania red chillies. Intensely spiced and deeply flavourful.</li>
+  <li><strong>Pyaaz Kachori:</strong> Flaky fried pastry stuffed with spiced onion — the city's most beloved street breakfast.</li>
+</ul>
+
+<h4>Travel Tips for Jaipur</h4>
+<ul>
+  <li>Book the Amber Fort elephant ride in advance or opt for a jeep — the elephants are treated controversially and many travellers choose the latter.</li>
+  <li>The Jaipur City Palace sound-and-light show runs nightly and is a good cultural introduction.</li>
+  <li>Bargain at Johari Bazaar for gemstones and Bapu Bazaar for textiles — prices are negotiable.</li>
+  <li>Consider staying in a heritage haveli or palace hotel for a genuinely royal experience — many are surprisingly affordable.</li>
+  <li>Jaipur is the golden leg of the "Golden Triangle" tour (Delhi–Agra–Jaipur), easily combined into a 7–10 day India introduction.</li>
+</ul>`
+          },
+          {
+            id: 6,
+            title: "Udaipur: India's City of Lakes and Timeless Romance",
+            author: "Ritu Agarwal",
+            authorInitials: "RA",
+            date: "May 5, 2025",
+            readTime: "8 min read",
+            tag: "Romantic",
+            destination: "Udaipur, Rajasthan",
+            image: "https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?w=900&q=80",
+            excerpt: "Floating palaces, royal lakeside sunsets, and the gentle clink of anklets from a Kathak dancer — Udaipur is India's most romantic city, without question.",
+            bestSeason: "September – March",
+            budget: "₹10,000 – ₹35,000 / person",
+            duration: "3 – 5 Days",
+            nearbyAttractions: "Kumbhalgarh Fort, Ranakpur Jain Temple, Sajjangarh",
+            article: `<p>Udaipur is what happens when a city is built around water. Seven artificial lakes, created by the Mewar kings between the 13th and 18th centuries, mirror the Aravalli hills that cradle this city. The Lake Palace — appearing to float on the centre of Lake Pichola — is one of the most iconic hotel images on earth. Udaipur moves at a different pace from Rajasthan's other great cities. It is contemplative, even meditative, inviting you to sit by a lakeside ghat and simply watch the light change.</p>
+
+<h4>The Palaces</h4>
+<p>The City Palace complex, built over 400 years from 1559 onwards, is the largest palace complex in Rajasthan. Its warren of royal apartments, each in a different architectural style reflecting the tastes of successive maharanas, is disorienting and magnificent. The Peacock Courtyard (Mor Chowk) is inlaid with glass mosaics of peacocks so intricate they appear to dance. The views from the upper terraces across Lake Pichola to the Lake Palace beyond are simply extraordinary.</p>
+<p>The Lake Palace (Jag Niwas), built entirely from white marble on a natural island, has been a luxury hotel since 1971. Even if you cannot afford to stay, book dinner here — arriving by boat as the palace glitters gold on the water is unforgettable. Jag Mandir, the smaller island palace across the lake, served as a refuge for Mughal Prince Khurram (later Shah Jahan) and offers boat trips that let you explore its terraced gardens.</p>
+
+<h4>Bagging the Best Sunsets</h4>
+<p>Sunset-watching is a competitive activity in Udaipur. The rooftop restaurants of the old city that overlook Lake Pichola compete fiercely for sunset-hour business — and the views they offer are genuinely world-class. Ambrai Restaurant, at water level on the lake's eastern bank, offers perhaps the most striking angle: looking back at the City Palace and Lake Palace simultaneously as the sky turns scarlet. Fateh Sagar Lake, to the north, is favoured by locals for evening walks along the promenade and boat rides to the small island in its centre.</p>
+
+<h4>Food Recommendations</h4>
+<ul>
+  <li><strong>Dal Baati Churma:</strong> Rajasthan's classic dish — present at every traditional restaurant in Udaipur.</li>
+  <li><strong>Bajre ki Roti with Lahsun Chutney:</strong> Pearl millet flatbread with pungent garlic chutney — a rustic, deeply satisfying combination.</li>
+  <li><strong>Mawa Kachori:</strong> Sweet kachori stuffed with thickened milk and dry fruits — a Udaipur speciality.</li>
+  <li><strong>Haldi ki Sabzi:</strong> A unique local dish of fresh turmeric root cooked with yoghurt and spices.</li>
+  <li><strong>Rajasthani Thali:</strong> A comprehensive feast — 15+ dishes including gatta curry, ker sangri, and various dals.</li>
+</ul>
+
+<h4>Travel Tips for Udaipur</h4>
+<ul>
+  <li>Explore the old city on foot — it is compact, charming, and full of hidden havelis and rooftop views.</li>
+  <li>Hire a cycle-rickshaw or auto rather than a cab for short hops within the old city.</li>
+  <li>The Cultural Centre at Bagore ki Haveli hosts evening classical dance performances daily at 7pm — excellent value.</li>
+  <li>Udaipur's markets (Hathi Pol Bazaar) sell excellent silver jewellery, miniature paintings, and block-printed textiles.</li>
+  <li>Visit Eklingji Temple (22 km north) — the personal deity of the Mewar royal family — for early morning prayers.</li>
+</ul>`
+          },
+          {
+            id: 7,
+            title: "Rishikesh: Where the Ganges Roars and the Soul Stills",
+            author: "Aarav Singh",
+            authorInitials: "AS",
+            date: "June 18, 2025",
+            readTime: "8 min read",
+            tag: "Spiritual",
+            destination: "Rishikesh, Uttarakhand",
+            image: "https://images.unsplash.com/photo-1592134665534-9ae83d91f3b1?w=900&q=80",
+            excerpt: "The yoga capital of the world sits where the Ganges leaves the Himalayas — a place of ancient temples, wild river adventures, and profound inner journeys.",
+            bestSeason: "February – May, September – November",
+            budget: "₹5,000 – ₹18,000 / person",
+            duration: "4 – 7 Days",
+            nearbyAttractions: "Haridwar, Neelkanth Mahadev Temple, Kunjapuri Temple",
+            article: `<p>Rishikesh sits at a geographic frontier: the point where the Ganges, after gathering the snowmelt of dozens of Himalayan glaciers, leaves the mountains and enters the plains. The river is still young and muscular here — fast, cold, and dramatically clear. Above the town, the forested hills of the lower Himalayas rise steeply. The combination of sacred river, mountain energy, and ancient ashram tradition has made Rishikesh the world's foremost destination for yoga, meditation, and spiritual seeking.</p>
+
+<h4>Laxman Jhula and the Ashrams</h4>
+<p>The town's famous suspension bridges — Laxman Jhula and Ram Jhula — sway gently over the rushing Ganges. Crossing either bridge is a sensory experience: below, the green-blue river surges over boulders; ahead, temple spires and ashram rooftops crowd the far bank; around you, bells ring, sadhus pass in saffron robes, and mischievous monkeys monitor every movement.</p>
+<p>The Parmarth Niketan Ashram, the largest in Rishikesh, hosts the most celebrated Ganga Aarti ceremony every evening at sunset. Hundreds of devotees gather on the ghats as priests wave large oil lamps in choreographed arcs, chanting that rises above the sound of the river. The ceremony lasts 45 minutes and is profoundly atmospheric — even for those without any spiritual orientation.</p>
+
+<h4>The Beatles Connection</h4>
+<p>In February 1968, John Lennon, Paul McCartney, George Harrison, and Ringo Starr came to Rishikesh to study Transcendental Meditation with Maharishi Mahesh Yogi at his Chaurasi Kutia Ashram. They stayed for two months and wrote many of the songs that would appear on the White Album. The ashram, now known as the Beatles Ashram, is open to visitors and its ruins — covered in vivid graffiti murals — are deeply atmospheric and surprisingly moving.</p>
+
+<h4>Adventure Sports</h4>
+<p>Rishikesh is the adventure capital of India as well as its spiritual capital. White-water rafting on the Ganges runs from Shivpuri (16 km upstream) to Rishikesh — a thrilling 2.5-hour run through rapids with names like Golf Course, Three Blind Mice, and Return to Sender. Bungee jumping at Jumpin Heights (83 m — India's highest fixed bungee) and the Giant Swing and Flying Fox are offered at a dedicated adventure park. Rock climbing, rappelling, and camping are available at numerous riverside camps.</p>
+
+<h4>Food Recommendations</h4>
+<ul>
+  <li><strong>Aloo Puri:</strong> Rishikesh is famously vegetarian — the humble aloo puri (spiced potato with fried bread) at roadside stalls is extraordinary.</li>
+  <li><strong>Chole Bhature:</strong> The beloved North Indian breakfast, done particularly well in the Laxman Jhula market.</li>
+  <li><strong>Maggi and masala chai:</strong> At the riverside cafes, this humble combination transcends the ordinary — there is something about mountain air.</li>
+  <li><strong>Banana lassi:</strong> Cold, creamy, and refreshing after a yoga session or rafting run.</li>
+  <li><strong>Tibetan thukpa:</strong> The Tibetan noodle soup available at cafes near the ashram area is warming and filling.</li>
+</ul>
+
+<h4>Travel Tips for Rishikesh</h4>
+<ul>
+  <li>The entire Rishikesh ashram area is strictly vegetarian and alcohol-free — respect these rules completely.</li>
+  <li>Book rafting only with IRDP (Indian River Rafting Operators Association) licensed operators — safety standards vary widely.</li>
+  <li>Yoga and meditation retreats range from day classes to month-long immersions — research thoroughly and read reviews.</li>
+  <li>The Ganga Aarti at Parmarth Niketan is free and open to all — arrive 30 minutes early for a good position.</li>
+</ul>`
+          },
+          {
+            id: 8,
+            title: "Kerala Backwaters: God's Own Country in All Its Glory",
+            author: "Sunita Menon",
+            authorInitials: "SM",
+            date: "July 10, 2025",
+            readTime: "9 min read",
+            tag: "Relax",
+            destination: "Kerala, South India",
+            image: "https://images.unsplash.com/photo-1602301099967-57e710c2cabb?w=900&q=80",
+            excerpt: "A network of 900 km of waterways, ancient Ayurvedic traditions, spice plantations in misty hills, and a coastline that feels like it belongs to a different world.",
+            bestSeason: "September – March",
+            budget: "₹12,000 – ₹40,000 / person",
+            duration: "7 – 10 Days",
+            nearbyAttractions: "Munnar Tea Gardens, Periyar Wildlife Sanctuary, Kovalam Beach",
+            article: `<p>Kerala is India distilled to its gentlest, most beautiful essence. The state's famous slogan — "God's Own Country" — is not tourism hyperbole; it reflects a genuine conviction among Keralites that their land, with its extraordinary natural abundance, is touched by something divine. The backwaters stretch like a mirror across the low-lying coast; the Western Ghats rise green and mist-wreathed to the east; between them, rice paddies, coconut groves, and rubber plantations form the world's most fertile countryside.</p>
+
+<h4>The Backwaters: Life on the Water</h4>
+<p>Kerala's network of interconnected rivers, lakes, and man-made canals forms one of the world's most unique ecosystems. Alleppey (Alappuzha) is the gateway to the backwaters and the departure point for the famous kettuvallam (houseboat) cruises. These traditional rice barges — converted into floating homes with bedrooms, bathrooms, sun decks, and kitchens — are the most coveted accommodation in Kerala. Drifting through narrow village canals where children wave from the banks, past Chinese fishing nets catching the afternoon light, stopping at villages to buy fresh fish for dinner — it is unhurried, deeply restful travel.</p>
+<p>Kumarakom, 12 km from Kottayam on the banks of Vembanad Lake, is the other major backwater hub. More secluded than Alleppey, Kumarakom is famed for its bird sanctuary (home to egrets, herons, and migrating Siberian ducks) and its exceptional luxury resorts set among coconut palms right on the water's edge.</p>
+
+<h4>Munnar: Tea Country</h4>
+<p>The Munnar plateau (1,600 m) in the Western Ghats is one of South India's most beautiful landscapes — endless rolling hills covered in the geometric green of tea bushes, punctuated by waterfalls and wildlife reserves. The tea estates here (many established in the colonial era) produce some of India's finest teas. Factory tours are available at several estates and include a tea-tasting session. Eravikulam National Park, 15 km from Munnar town, is the habitat of the nearly-extinct Nilgiri Tahr (mountain goat) and offers extraordinary views of the Anaimudi Peak — the highest in South India.</p>
+
+<h4>Ayurveda and Wellness</h4>
+<p>Kerala is the birthplace of Ayurveda — the 5,000-year-old system of natural medicine. Authentic Panchakarma treatments (detoxification programmes lasting 7–21 days) are available at traditional Ayurvedic centres across the state. Even a basic 90-minute Abhyanga massage (warm oil full-body massage performed by two therapists simultaneously) offers remarkable therapeutic benefits. Distinguish between genuine Ayurvedic centres (which employ qualified vaidyas — Ayurvedic physicians) and mere spa-style operations.</p>
+
+<h4>Food Recommendations</h4>
+<ul>
+  <li><strong>Karimeen Pollichathu:</strong> Pearl spot fish marinated in spices, wrapped in banana leaf, and fried — the iconic backwater dish.</li>
+  <li><strong>Appam with Stew:</strong> Lacy rice hoppers with a coconut milk-based vegetable or chicken stew — the most satisfying Kerala breakfast.</li>
+  <li><strong>Sadya:</strong> The grand vegetarian feast served on banana leaf during Onam — 24+ dishes of rice, curries, pickles, and desserts.</li>
+  <li><strong>Kerala Prawn Curry:</strong> Cooked in coconut milk with raw mango — aromatic, tangy, and unforgettable.</li>
+  <li><strong>Puttu and Kadala Curry:</strong> Steamed rice cylinders with black chickpea curry — earthy and filling.</li>
+</ul>
+
+<h4>Travel Tips for Kerala</h4>
+<ul>
+  <li>Book houseboats directly with operators rather than through agents to avoid inflated prices.</li>
+  <li>Avoid visiting during the peak of monsoon (June–August) — while beautiful, roads flood and houseboat operations are restricted.</li>
+  <li>Kochi (Cochin) is an excellent base and is home to one of India's most vibrant contemporary art scenes.</li>
+  <li>Try Kathakali (classical dance-drama) and Kalaripayattu (ancient martial art) performances — available at cultural centres across the state.</li>
+</ul>`
+          },
+          {
+            id: 9,
+            title: "Andaman Islands: Untouched Paradise in the Bay of Bengal",
+            author: "Dev Kumar",
+            authorInitials: "DK",
+            date: "August 22, 2025",
+            readTime: "8 min read",
+            tag: "Beach",
+            destination: "Andaman Islands, UT",
+            image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80",
+            excerpt: "Glass-clear water, pristine coral reefs, bioluminescent bays, and beaches so perfect they look computer-generated — the Andamans are India's greatest natural secret.",
+            bestSeason: "October – May",
+            budget: "₹18,000 – ₹55,000 / person",
+            duration: "7 – 10 Days",
+            nearbyAttractions: "Radhanagar Beach, Barren Island, North Bay Island",
+            article: `<p>The Andaman and Nicobar Islands lie 1,400 km from the Indian mainland, in the waters between the Bay of Bengal and the Andaman Sea. They are closer to Thailand than to Chennai. This geographic isolation has preserved them extraordinarily well — 86% of the archipelago (which consists of 572 islands) remains covered in tropical rainforest, and their coral reefs are among the healthiest in Asia. Coming here feels like discovering a world that the industrial age has barely touched.</p>
+
+<h4>Havelock Island: The Crown Jewel</h4>
+<p>Havelock Island (now officially called Swaraj Dweep) is the most visited island in the archipelago and is reached by ferry from Port Blair (2–2.5 hours). Its beach, Radhanagar, has repeatedly been voted Asia's best beach — and the accolades are entirely deserved. The sand is fine and white; the water is shallow and warm for 100 metres from the shore, graduating from palest aquamarine to deep cobalt; the jungle comes down to the beach's edge. Sunsets here are among the most beautiful on earth.</p>
+<p>Havelock is also the epicentre of the Andamans' excellent dive scene. The Barracuda City, The Wall, Dixon's Pinnacle, and Lighthouse dive sites offer encounters with sea turtles, reef sharks, Napoleonfish, and — if you're very lucky — whale sharks. The waters here have visibility up to 40 metres in the dry season.</p>
+
+<h4>Neil Island</h4>
+<p>Neil Island (Shaheed Dweep), a 30-minute ferry from Havelock, is smaller, quieter, and beloved by travellers seeking genuine seclusion. The island has no ATM and limited phone connectivity — which is, for many visitors, precisely the point. Its three main beaches — Laxmanpur, Bharatpur, and Sitapur — each have a different character. Sitapur's sunrise is the most spectacular in the archipelago.</p>
+
+<h4>Bioluminescence and Night Kayaking</h4>
+<p>One of the most extraordinary experiences in the Andamans is night kayaking through the bioluminescent plankton in the creeks around Havelock. As your paddle cuts through the water, trails of cold blue-green light swirl and cascade in the dark. It is genuinely magical — and perfectly safe. Several operators offer guided night kayaking tours.</p>
+
+<h4>Food Recommendations</h4>
+<ul>
+  <li><strong>Grilled Red Snapper:</strong> The Andamans' waters produce exceptional seafood. Red snapper, simply grilled with lemon and butter, is the best way to eat it.</li>
+  <li><strong>Coconut Prawn Curry:</strong> A South Indian-inflected curry of large Andaman prawns in coconut milk — extraordinary with plain rice.</li>
+  <li><strong>Fresh tuna sashimi:</strong> Increasingly available at upmarket restaurants on Havelock — the tuna here rivals Japanese quality.</li>
+  <li><strong>Fresh coconut water:</strong> Drink litres of it — you will be dehydrated from the heat and activity, and nothing replaces it.</li>
+</ul>
+
+<h4>Travel Tips for the Andamans</h4>
+<ul>
+  <li>Carry sufficient cash — ATMs are unreliable and many places on outer islands are cash-only.</li>
+  <li>Inter-island ferries are the main transport — book private ferries through makemytrip or directly with operators for the Havelock–Neil sector.</li>
+  <li>Tribal reserve areas (North Sentinel Island and others) are strictly off-limits — these rules exist to protect uncontacted tribes and carry serious legal penalties.</li>
+  <li>Use reef-safe sunscreen — the coral reefs here are too precious to risk.</li>
+  <li>Book accommodations early for the October–February peak season — good rooms on Havelock sell out months in advance.</li>
+</ul>`
+          },
+          {
+            id: 10,
+            title: "Meghalaya: The Abode of Clouds and Living Root Bridges",
+            author: "Tara Bose",
+            authorInitials: "TB",
+            date: "September 15, 2025",
+            readTime: "9 min read",
+            tag: "Nature",
+            destination: "Meghalaya, Northeast India",
+            image: "https://images.unsplash.com/photo-1626182398573-55a28b4f5c11?w=900&q=80",
+            excerpt: "The wettest place on earth is also one of India's most breathtaking — a land of sacred forests, waterfalls that vanish into cloud, and bridges grown from living roots.",
+            bestSeason: "October – May",
+            budget: "₹12,000 – ₹30,000 / person",
+            duration: "6 – 9 Days",
+            nearbyAttractions: "Living Root Bridges, Mawsmai Cave, Dawki River",
+            article: `<p>Meghalaya means "Abode of Clouds" in Sanskrit, and the name is apt in every possible sense. The Khasi and Jaintia Hills of this northeastern state catch the warm, moisture-laden winds blowing north from the Bay of Bengal and wring them into rain — spectacular, relentless, extraordinary quantities of rain. Mawsynram and Cherrapunji, both in Meghalaya, take turns holding the record for the world's wettest place. But rain here is not misery; it is the creative force that has carved this landscape into something unlike anywhere else on earth.</p>
+
+<h4>Shillong: Scotland of the East</h4>
+<p>The state capital Shillong earned its colonial nickname because of its climate (cool and misty), its golf course (established 1898 — one of Asia's oldest), its colonial-era architecture, and its surprisingly fervent rock music culture. The local Khasi people have an extraordinary musical tradition — Shillong has produced more professional musicians per capita than any other Indian city. Don Bosco Museum of Indigenous Cultures (seven floors of Northeast India's tribal heritage) and Ward's Lake are worth an afternoon each.</p>
+
+<h4>The Living Root Bridges</h4>
+<p>The Khasi and Jaintia people of Meghalaya have developed a unique bio-engineering tradition over several centuries: training the aerial roots of rubber trees (Ficus elastica) across rivers and streams until they fuse into living bridges strong enough to carry 50 people simultaneously. The most spectacular example — the Double Decker Living Root Bridge near Nongriat village — requires a demanding but unforgettable 3,600-step descent into a steep jungle valley and an equivalent ascent on return. The bridge, around 150 years old, is both functional infrastructure and living art.</p>
+<p>The Umshiang Double Root Bridge gets over 1,000 visitors a week during peak season, but arrive early morning and you may have it almost to yourself, with mist rising from the valley below and the sound of the river.</p>
+
+<h4>Dawki: India's Clearest River</h4>
+<p>The Wah Umngot River at Dawki (88 km south of Shillong) is so transparent that the boats appear to float on glass. The river, which forms the India–Bangladesh border, is accessible by taxi from Shillong. Rowing or motorboat rides on the crystal-clear water, watching the painted-rock riverbed glide beneath you, is disorienting in the best way — your brain insists the boats must be hovering.</p>
+
+<h4>Mawsmai Cave and Nohkalikai Falls</h4>
+<p>Near Cherrapunji, Mawsmai Cave is a short but spectacular limestone cave with illuminated stalactites and stalagmites. Just 2 km away, Nohkalikai Falls — at 340 metres, India's tallest plunge waterfall — drops into a turquoise pool that glows electric green in sunlight. The waterfall is most dramatic during and immediately after the monsoon, when the water volume is highest.</p>
+
+<h4>Food Recommendations</h4>
+<ul>
+  <li><strong>Jadoh:</strong> Khasi red rice cooked with pork and turmeric — the unofficial national dish of Meghalaya. Deeply flavourful.</li>
+  <li><strong>Doh Khlieh:</strong> A spicy pork salad with onion, ginger, and chillies — served cold as a starter.</li>
+  <li><strong>Tungrymbai:</strong> Fermented soybean paste — pungent, umami-rich, and essential in Khasi cooking.</li>
+  <li><strong>Rice beer (Kyiad):</strong> The traditional home-brewed rice beer of the Khasi people — mildly alcoholic and earthy.</li>
+  <li><strong>Pukhlein:</strong> Sweet fried rice and jaggery balls — the favourite snack at local markets.</li>
+</ul>
+
+<h4>Travel Tips for Meghalaya</h4>
+<ul>
+  <li>Carry good rain gear at all times — even in the dry season, brief downpours are common.</li>
+  <li>The trek to Nongriat (Double Decker Root Bridge) takes 2–3 hours each way — start before 7am to avoid midday heat and crowds.</li>
+  <li>Hire a local guide in Cherrapunji — they know trails, caves, and viewpoints that no map will show you.</li>
+  <li>Meghalaya is alcohol-permissive (unlike some northeastern states) but respect local customs in villages.</li>
+  <li>The Shillong–Cherrapunji road is one of the most scenic drives in Northeast India — allocate a full day for the journey.</li>
+</ul>`
+          }
+        ];
+
+        // Render blog cards
+        function renderCuratedBlogCards() {
+          const grid = document.getElementById('curatedBlogGrid');
+          if (!grid) return;
+          grid.innerHTML = '';
+          tripifyBlogs.forEach(function(blog) {
+            const card = document.createElement('article');
+            card.className = 'tripify-blog-card';
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-label', 'Read blog: ' + blog.title);
+            card.innerHTML =
+              '<div class="blog-card-img-wrap">' +
+                '<img src="' + blog.image + '" alt="' + blog.destination + '" loading="lazy" />' +
+                '<span class="blog-card-mood-tag">' + blog.tag + '</span>' +
+              '</div>' +
+              '<div class="blog-card-body">' +
+                '<div class="blog-card-meta">' +
+                  '<span>' + blog.date + '</span>' +
+                  '<span class="meta-dot"></span>' +
+                  '<span>' + blog.destination + '</span>' +
+                '</div>' +
+                '<h3>' + blog.title + '</h3>' +
+                '<p class="blog-card-excerpt">' + blog.excerpt + '</p>' +
+                '<div class="blog-card-footer">' +
+                  '<div class="blog-card-author">' +
+                    '<div class="author-avatar">' + blog.authorInitials + '</div>' +
+                    '<span>' + blog.author + '</span>' +
+                  '</div>' +
+                  '<span class="read-time">' + blog.readTime + '</span>' +
+                '</div>' +
+              '</div>';
+
+            card.addEventListener('click', function() { openTripifyBlogModal(blog.id); });
+            card.addEventListener('keydown', function(e) {
+              if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openTripifyBlogModal(blog.id); }
+            });
+            grid.appendChild(card);
+          });
+        }
+
+        // Open blog modal
+        function openTripifyBlogModal(blogId) {
+          var blog = tripifyBlogs.find(function(b) { return b.id === blogId; });
+          if (!blog) return;
+
+          document.getElementById('blogModalCover').src = blog.image;
+          document.getElementById('blogModalCover').alt = blog.destination;
+          document.getElementById('blogModalTag').textContent = blog.tag;
+          document.getElementById('blogModalReadTime').textContent = blog.readTime;
+          document.getElementById('blogModalTitle').textContent = blog.title;
+          document.getElementById('blogModalAuthorAvatar').textContent = blog.authorInitials;
+          document.getElementById('blogModalAuthorName').textContent = blog.author;
+          document.getElementById('blogModalDate').textContent = blog.date;
+          document.getElementById('blogModalDestName').textContent = blog.destination;
+
+          // Info grid
+          document.getElementById('blogModalInfoGrid').innerHTML =
+            '<div class="blog-modal-info-item"><div class="info-label">Best Season</div><div class="info-value">' + blog.bestSeason + '</div></div>' +
+            '<div class="blog-modal-info-item"><div class="info-label">Budget</div><div class="info-value">' + blog.budget + '</div></div>' +
+            '<div class="blog-modal-info-item"><div class="info-label">Duration</div><div class="info-value">' + blog.duration + '</div></div>' +
+            '<div class="blog-modal-info-item"><div class="info-label">Nearby</div><div class="info-value">' + blog.nearbyAttractions + '</div></div>';
+
+          document.getElementById('blogModalArticle').innerHTML = blog.article;
+
+          // Share button
+          document.getElementById('blogModalShareBtn').onclick = function() {
+            var shareData = { title: blog.title, text: blog.excerpt, url: window.location.href };
+            if (navigator.share) {
+              navigator.share(shareData).catch(function() {});
+            } else {
+              navigator.clipboard.writeText(window.location.href + ' — ' + blog.title)
+                .then(function() { alert('Link copied to clipboard!'); })
+                .catch(function() { alert('Share: ' + blog.title + '\n' + window.location.href); });
+            }
+          };
+
+          var overlay = document.getElementById('tripifyBlogModal');
+          overlay.style.display = 'flex';
+          requestAnimationFrame(function() { overlay.classList.add('active'); });
+          document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeTripifyBlogModal() {
+          var overlay = document.getElementById('tripifyBlogModal');
+          overlay.classList.remove('active');
+          setTimeout(function() { overlay.style.display = 'none'; }, 300);
+          document.body.style.overflow = '';
+        }
+
+        document.getElementById('closeTripifyBlogModal').addEventListener('click', closeTripifyBlogModal);
+        document.getElementById('tripifyBlogModal').addEventListener('click', function(e) {
+          if (e.target === this) { closeTripifyBlogModal(); }
+        });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') { closeTripifyBlogModal(); }
+        });
+
+        // Init
+        renderCuratedBlogCards();
+        </script>
+        <!-- ===== TRIPIFY CURATED BLOGS SECTION END ===== -->
 
 
         <!-- contact -->
@@ -896,6 +1506,7 @@ async function fetchBlogs() {
 
 snapshot.forEach(doc => {
     const blog = doc.data();
+    console.log(blog);
     const div = document.createElement("div");
     div.classList.add("blog-item");
 
@@ -903,14 +1514,38 @@ snapshot.forEach(doc => {
     // const safeContent = (blog.content || "").replace(/`/g, "\\`");
 
     div.innerHTML = `
-        ${blog.imageUrl ? `<img src="${blog.imageUrl}" alt="Blog Image" class="blog-img"/>` : ""}
-        <h3>${blog.title}</h3>
-        <p>${blog.content.length > 60 ? blog.content.substring(0, 60) + "..." : blog.content}</p>
-        <div class="blog-meta">
-            Posted by ${blog.userEmail || "Unknown"}<br>
-            ${blog.createdAt?.toDate().toLocaleString() || 'Just now'}
-        </div>
-    `;
+    ${blog.imageUrl ? `<img src="${blog.imageUrl}" class="blog-img">` : ""}
+
+    <h3>${blog.title}</h3>
+
+    <p>
+        ${
+          blog.content.length > 180
+            ? blog.content.substring(0, 180) + "..."
+            : blog.content
+        }
+    </p>
+
+    <button class="read-more-btn">Read More</button>
+
+    <div class="blog-meta">
+        Posted by ${blog.userEmail || "Unknown"} <br>
+        ${blog.createdAt?.toDate().toLocaleString() || "Just now"}
+    </div>
+`;
+    div.style.cursor = "pointer";
+
+div.onclick = () => {
+    console.log(blog);
+    alert(blog.title);
+    alert(blog.content);
+    document.getElementById("popup-title").innerText = blog.title;
+    document.getElementById("popup-image").src = blog.imageUrl || "";
+    document.getElementById("popup-content").innerText = blog.content;
+
+    document.getElementById("blogPopup").style.display = "flex";
+};
+
 
      blogList.appendChild(div);
 });
@@ -918,6 +1553,17 @@ snapshot.forEach(doc => {
 
 // Auto-fetch blogs on load
 fetchBlogs();
+// Close popup
+document.getElementById("closePopup").addEventListener("click", () => {
+    document.getElementById("blogPopup").style.display = "none";
+});
+
+// Close popup when clicking outside
+document.getElementById("blogPopup").addEventListener("click", (e) => {
+    if (e.target.id === "blogPopup") {
+        document.getElementById("blogPopup").style.display = "none";
+    }
+});
 
 // Listen for Auth changes
 onAuthStateChanged(auth, user => {
