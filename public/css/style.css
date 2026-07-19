@@ -154,15 +154,17 @@ body{
 }
 
 header {
-  width: 100vw;
-  height: 100vh;
-  background-image: url("../img/maitri1.jpg");
-  background-position: bottom;
-  background-attachment: fixed;
-  background-size: cover;
-  display: flex;
-  align-items: end;
-  justify-content: center;
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url("../img/Boat.jpeg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .header1{
